@@ -62,22 +62,45 @@ include "conn.php";
     </div>
     <section class="mainContainer">
         <div class="navbar">
-            <a href="dashboard.php">Dashboard</a>
+            <a href="dashboard.php">
+                <span class="h-icons"><i class="fa-solid fa-house"></i></span>
+                Dashboard
+            </a>
             <?php
             if($hRow['Admin_Type']==1){
             ?>
-                <div class="items"><span>MasterForms</span><span>></span></div>
+                <div class="items">
+                    <span class="h-icons"><i class="fa-solid fa-layer-group"></i></span>
+                    <span>MasterForms</span><span></span>
+                </div>
                 <div class="itemDropdown">
-                    <a href="company.php">All Companies</a>
-                    <a href="branch.php">All Branches</a>
-                    <a href="category.php">Admin Category</a>
-                    <a href="PCategory.php">Product Category</a>
-                    <a href="product.php">Products</a>
-                    <a href="orders.php">All Orders</a>
+                    <a href="company.php">
+                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building"></i></span> 
+                        All Companies
+                    </a>
+                    <a href="branch.php">
+                    <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span> 
+                        All Branches</a>
+                    <a href="category.php">
+                    <span class="h-icons"><i class="fa-solid fa-user"></i></span> 
+                        Admin Category</a>
+                    <a href="PCategory.php">
+                    <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span> 
+                        Product Category</a>
+                    <a href="product.php">
+                    <span class="h-icons"><i class="fa-solid fa-file"></i></span> 
+                        Products</a>
+                    <a href="orders.php">
+                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping"></i></span> 
+                        All Orders</a>
                 </div>
             <?php
             }
             ?>
-            <a href="myBranch.php">My Branch</a>
-            <a href="myOrders.php">My Orders</a>
+            <a href="myBranch.php">
+                <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
+                My Branch</a>
+            <a href="myOrders.php">
+            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping"></i></span>
+                My Orders</a>
         </div>
