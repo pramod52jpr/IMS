@@ -8,6 +8,6 @@ $(document).ready(() => {
     })
     $(".hamburger").click(() => {
         var width = $(".navbar").css("width");
-        $(".navbar").animate({ width: width == "0px" ? "250px" : "0px" }, 300);
+        $(".navbar").animate({ width: width == "0px" ? "265px" : "0px" }, 300);
     })
 })

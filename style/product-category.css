@@ -1,0 +1,28 @@
+.productCategoryPage{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(220, 255, 255);
+    width: 100%;
+    min-height: 750px;
+    padding: 10px;
+}
+.productCategoryPage .categoryItems{
+    display: flex;
+    flex-wrap: wrap;
+}
+.productCategoryPage .categoryItems .item{
+    width: 31.5%;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    background-color: rgb(231, 150, 0);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+.productCategoryPage .categoryItems .item img{
+    width: 200px;
+}
+.productCategoryPage .categoryItems .item div{
+    margin-top: 10px;
+}

@@ -89,6 +89,7 @@
     background-color: rgb(56, 55, 53);
     width: 0px;
     min-height: 700px;
+    overflow: hidden;
     color: rgb(194, 194, 194);
     font-size: 12px;
     font-family: 'Montserrat', sans-serif;
