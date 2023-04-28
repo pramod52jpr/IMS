@@ -1,7 +1,7 @@
 .dashboardPage{
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(220, 255, 255);
-    width: 100%;
+    /* width: 100%; */
     min-height: 750px;
     padding: 10px;
 }
