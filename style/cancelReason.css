@@ -1,0 +1,24 @@
+.cancelFormPage{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: rgb(220, 255, 255);
+    min-height: 650px;
+}
+.cancelFormPage form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.cancelFormPage form label{
+    font-size: 17px;
+    
+}
+.cancelFormPage form input{
+    font-size: 20px;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-top: 10px;
+}

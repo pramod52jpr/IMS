@@ -1,0 +1,58 @@
+.branchPage{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(220, 255, 255);
+    width: 100%;
+    min-height: 750px;
+    padding: 10px;
+}
+.branchPage h2{
+    font-size: 30px;
+    color: rgb(32, 32, 32);
+    margin: 10px 0px;
+}
+.branchPage .crudBtn{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.branchPage .crudBtn .add a{
+    padding: 5px 10px;
+    background-color: rgb(0, 158, 0);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 18px;
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+.branchPage .crudBtn .add a:hover{
+    background-color: rgb(0, 99, 0);
+}
+.branchPage .branchContainer{
+    background-color: white;
+    border-radius: 10px;
+}
+.branchPage .branchContainer table{
+    width: 100%;
+    padding: 10px;
+}
+.branchPage .branchContainer table th{
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 10px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 5px;
+}
+.branchPage .branchContainer table td{
+    font-size: 15px;
+    padding: 5px 10px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 5px;
+}
+.branchPage .branchContainer table td a{
+    margin: 0px 5px;
+}
+.branchPage .branchContainer table td:last-child,.categoryPage .branchContainer table th:last-child{
+    text-align: left;
+    width: 15%;
+}

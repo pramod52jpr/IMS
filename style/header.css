@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(#3c8dbc, #07a4ff);
+    padding: 5px 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.headerContainer .hamburger {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2px;
+    border: 1px solid black;
+    width: 33px;
+    height: 27px;
+    border-radius: 3px;
+    transition-duration: 0.2s;
+}
+
+.headerContainer .hamburger:hover {
+    background-color: #8ad6ff;
+}
+
+
+/* .headerContainer .hamburger hr {
+    margin: 0;
+    border-radius: 10px;
+} */
+
+.headerContainer .helloCompany {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: fit-content;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    color: white;
+}
+
+.headerContainer .helloCompany div {
+    margin-left: 10px;
+}
+
+.headerContainer .helloCompany:hover {
+    color: #8ad6ff;
+}
+
+.hellocompanyDropdown {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    background-color: #3c8dbc;
+    border-radius: 5px;
+    transition-duration: 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    display: none;
+}
+
+.hellocompanyDropdown a {
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    font-size: 17px;
+    transition-duration: 0.2s;
+}
+
+.hellocompanyDropdown a:hover {
+    background-color: rgba(0, 0, 0, 0.116);
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.mainContainer .navbar {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(56, 55, 53);
+    width: 0px;
+    min-height: 700px;
+    color: rgb(194, 194, 194);
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mainContainer .navbar a {
+    color: rgb(194, 194, 194);
+    text-decoration: none;
+    padding: 5px 20px;
+    margin-top: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.mainContainer .navbar a:hover {
+    color: white;
+}
+
+.mainContainer .navbar .items {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 20px;
+    margin: 3px 0px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.mainContainer .navbar .items:hover {
+    color: white;
+}
+
+.mainContainer .navbar .itemDropdown {
+    display: flex;
+    flex-direction: column;
+    text-indent: 0.5cm;
+    background-color: rgb(48, 48, 47);
+}
+
+.mainContainer .sideSection {
+    transition-duration: 0.1s;
+}

@@ -1,0 +1,86 @@
+.companyPage {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(220, 255, 255);
+    width: 100%;
+    min-height: 750px;
+    padding: 10px;
+}
+
+.companyPage h2 {
+    font-size: 30px;
+    margin: 10px 0px;
+    color: rgb(32, 32, 32);
+}
+
+.companyPage .crudBtn {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.companyPage .crudBtn .add a {
+    padding: 5px 10px;
+    background-color: rgb(0, 158, 0);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 18px;
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+
+.companyPage .crudBtn .add a:hover {
+    background-color: rgb(0, 99, 0);
+}
+
+.companyPage .companyContainer {
+    background-color: #ffffff;
+}
+
+.companyPage .companyContainer table {
+    width: 100%;
+    padding: 10px;
+}
+
+.companyPage .companyContainer table th {
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 10px;
+    /* border: 1px solid rgb(235, 235, 235); */
+    /* border-radius: 5px; */
+}
+
+.companyPage .companyContainer table td {
+    font-size: 15px;
+    padding: 5px 10px;
+    /* border: 1px solid rgb(235, 235, 235); */
+    /* border-radius: 5px; */
+}
+
+.companyPage .companyContainer table td a {
+    margin: 0px 5px;
+}
+
+.companyPage .companyContainer table td:last-child,
+.categoryPage .companyContainer table th:last-child {
+    text-align: left;
+    width: 15%;
+}
+/* -------------------------------------new style----------------------------------------------- */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 12px 12px 0px 0px;
+    box-shadow: 0 12px 5pxrgba(32, 32, 32, .3);
+}
+
+th {
+    border-spacing: none;
+    background: #bde0fe;
+    border-radius: none;
+}
+
+tr:nth-child(odd) {
+    background-color: #eeeeee
+}

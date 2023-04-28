@@ -1,0 +1,57 @@
+.profilePage{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(220, 255, 255);
+    width: 100%;
+    min-height: 750px;
+}
+.profilePage h2{
+    font-size: 30px;
+    color: rgb(32, 32, 32);
+    padding: 10px;
+}
+.profilePage .profileForm{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 10px 30px;
+    border-radius: 10px;
+    padding: 20px;
+}
+.profilePage .profileForm h4{
+    margin-bottom: 10px;
+}
+.profilePage .profileForm label{
+    font-size: 15px;
+    margin: 5px 0px;
+}
+.profilePage .profileForm input{
+    padding: 8px 10px;
+    outline: 0;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(228, 228, 228);
+}
+.profilePage .profileForm .profileBtn{
+    align-self: center;
+    margin-top: 20px;
+}
+.profilePage .profileForm .profileBtn .btn{
+    background-color: green;
+    text-decoration: none;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 100px;
+    transition-duration: 0.1s;
+}
+.profilePage .profileForm .profileBtn .btn:hover{
+    background-color: rgb(0, 219, 0);
+}
+.profilePage .profileForm .profileBtn a.btn{
+    background-color: rgb(238, 0, 0);
+}
+.profilePage .profileForm .profileBtn a.btn:hover{
+    background-color: rgb(255, 98, 98);
+}

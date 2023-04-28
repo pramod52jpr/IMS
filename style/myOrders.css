@@ -1,0 +1,38 @@
+.myOrdersPage{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(220, 255, 255);
+    width: 100%;
+    min-height: 750px;
+    padding: 10px;
+}
+.myOrdersPage .myOrdersContainer h2{
+    margin-top: 50px;
+}
+.myOrdersPage .myOrdersContainer .myOrder{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgrey;
+    padding: 20px;
+}
+.myOrdersPage .myOrdersContainer .myOrder img{
+    height: 150px;
+}
+.myOrdersPage .myOrdersContainer .myOrder .about{
+    font-size: 20px;
+    margin-left: 5%;
+}
+.myOrdersPage .myOrdersContainer .myOrder .about div{
+    margin: 10px;
+}
+.myOrdersPage .myOrdersContainer .myOrder a{
+    margin-left: 10%;
+    text-decoration: none;
+    color: white;
+    background-color: brown;
+    padding: 5px 20px;
+    border-radius: 5px;
+    transition-duration: 0.1s;
+}
+.myOrdersPage .myOrdersContainer .myOrder a:hover{
+    background-color: rgb(128, 28, 28);
+}

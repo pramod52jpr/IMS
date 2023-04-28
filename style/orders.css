@@ -1,0 +1,99 @@
+.allOrdersPage{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(220, 255, 255);
+    width: 100%;
+    min-height: 750px;
+    padding: 10px;
+}
+.allOrdersPage .filterBtnContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:15px 40px;
+    box-shadow: 0px 10px 30px -15px black;
+    margin: -10px;
+    margin-bottom: 10px;
+}
+.allOrdersPage .filterBtnContainer form input,.allOrdersPage .filterBtnContainer form select{
+    outline: 0;
+    border: 1px solid black;
+    font-size: 15px;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+.allOrdersPage .filterBtnContainer .statusBtn{
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.allOrdersPage .filterBtnContainer .statusBtn a{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: blueviolet;
+    padding: 5px 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    margin: 3px;
+}
+.allOrdersPage .filterBtnContainer .statusBtn a:hover{
+    background-color: rgb(110, 33, 182)
+}
+.allOrdersPage .allOrdersContainer h3{
+    font-size: 15px;
+    padding: 5px 20px;
+    display: flex;
+    width: fit-content;
+    margin-top: 30px;
+    margin-left: 20px;
+    border-radius: 5px;
+    color:white;
+    background-color:rgb(196, 85, 85);
+}
+.allOrdersPage .allOrdersContainer .order{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
+    padding: 20px;
+}
+.allOrdersPage .allOrdersContainer .order img{
+    height: 150px;
+}
+.allOrdersPage .allOrdersContainer .order .about{
+    font-size: 15px;
+    margin-left: 1%;
+}
+.allOrdersPage .allOrdersContainer .order .about:last-child{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.allOrdersPage .allOrdersContainer .order .about div,.allOrdersPage .allOrdersContainer .order .about h2{
+    font-size: 15px;
+    margin: 10px;
+}
+.allOrdersPage .allOrdersContainer .order .about form select,.allOrdersPage .allOrdersContainer .order .about form input{
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-size: 15px;
+}
+.allOrdersPage .allOrdersContainer .order a{
+    display: inline-block;
+    margin: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: brown;
+    padding: 5px 20px;
+    border-radius: 5px;
+    transition-duration: 0.1s;
+}
+.allOrdersPage .allOrdersContainer .order a:hover{
+    background-color: rgb(128, 28, 28);
+}
+.allOrdersPage .allOrdersContainer h2{
+    margin-top: 50px;
+}

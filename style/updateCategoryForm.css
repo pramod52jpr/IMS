@@ -1,0 +1,58 @@
+.UpdateCategoryFormContainer{
+    width: 100%;
+    display: flex;
+    min-height: 750px;
+    justify-content: center;
+    background-color: rgb(220, 255, 255);
+    align-items: flex-start;
+}
+.UpdateCategoryFormContainer .categoryUpdateForm{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+    width: 50%;
+    margin-top: 100px;
+    border-radius: 10px;
+}
+.UpdateCategoryFormContainer .categoryUpdateForm label{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.UpdateCategoryFormContainer .categoryUpdateForm input{
+    padding: 10px;
+    margin: 5px;
+    outline: 0;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    font-size: 20px;
+}
+.UpdateCategoryFormContainer .categoryUpdateForm .updatecategoryFormBtn{
+    align-self: center;
+}
+.UpdateCategoryFormContainer .categoryUpdateForm .updatecategoryFormBtn .btn{
+    color: white;
+    background-color: blue;
+    text-decoration: none;
+    margin: 0;
+    width: 100px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin: 20px 2px;
+    transition-duration: 0.1s;
+}
+.UpdateCategoryFormContainer .categoryUpdateForm .updatecategoryFormBtn .btn:hover{
+    background-color: rgb(93, 93, 255);
+}
+.UpdateCategoryFormContainer .categoryUpdateForm .updatecategoryFormBtn a.btn{
+    background-color: rgb(214, 0, 0);
+}
+.UpdateCategoryFormContainer .categoryUpdateForm .updatecategoryFormBtn a.btn:hover{
+    background-color: rgb(255, 0, 0);
+}

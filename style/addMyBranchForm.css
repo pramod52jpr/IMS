@@ -1,0 +1,58 @@
+.addMyBranchFormContainer{
+    width: 100%;
+    display: flex;
+    min-height: 750px;
+    justify-content: center;
+    background-color: rgb(220, 255, 255);
+    align-items: flex-start;
+}
+.addMyBranchFormContainer .myBranchAddForm{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+    width: 50%;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+.addMyBranchFormContainer .myBranchAddForm label{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    margin-top: 5px;
+}
+.addMyBranchFormContainer .myBranchAddForm input{
+    padding: 10px;
+    margin: 5px;
+    outline: 0;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    font-size: 20px;
+}
+.addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn{
+    align-self: center;
+}
+.addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn .btn{
+    color: white;
+    background-color: green;
+    text-decoration: none;
+    margin: 0;
+    width: 100px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin: 20px 2px;
+    transition-duration: 0.1s;
+}
+.addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn .btn:hover{
+    background-color: rgb(0, 177, 0);
+}
+.addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn a.btn{
+    background-color: rgb(214, 0, 0);
+}
+.addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn a.btn:hover{
+    background-color: rgb(255, 0, 0);
+}

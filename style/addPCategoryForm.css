@@ -1,0 +1,58 @@
+.addPCategoryFormContainer{
+    width: 100%;
+    display: flex;
+    min-height: 750px;
+    justify-content: center;
+    background-color: rgb(220, 255, 255);
+    align-items: flex-start;
+}
+.addPCategoryFormContainer .PCategoryAddForm{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+    width: 50%;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+.addPCategoryFormContainer .PCategoryAddForm label{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    margin-top: 5px;
+}
+.addPCategoryFormContainer .PCategoryAddForm input,.addPCategoryFormContainer .PCategoryAddForm select{
+    padding: 10px;
+    margin: 5px;
+    outline: 0;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    font-size: 20px;
+}
+.addPCategoryFormContainer .PCategoryAddForm .addPCategoryFormBtn{
+    align-self: center;
+}
+.addPCategoryFormContainer .PCategoryAddForm .addPCategoryFormBtn .btn{
+    color: white;
+    background-color: green;
+    text-decoration: none;
+    margin: 0;
+    width: 100px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin: 20px 2px;
+    transition-duration: 0.1s;
+}
+.addPCategoryFormContainer .PCategoryAddForm .addPCategoryFormBtn .btn:hover{
+    background-color: rgb(0, 177, 0);
+}
+.addPCategoryFormContainer .PCategoryAddForm .addPCategoryFormBtn a.btn{
+    background-color: rgb(214, 0, 0);
+}
+.addPCategoryFormContainer .PCategoryAddForm .addPCategoryFormBtn a.btn:hover{
+    background-color: rgb(255, 0, 0);
+}

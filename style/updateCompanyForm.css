@@ -1,0 +1,350 @@
+.updateCompanyPage {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(220, 255, 255);
+    width: 100%;
+    min-height: 750px;
+    padding: 20px;
+}
+
+.updateCompanyPage h2 {
+    font-size: 30px;
+    color: rgb(32, 32, 32);
+    padding: 10px;
+}
+
+.updateCompanyPage .updateCompanyForm {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    /* margin: 10px 30px; */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.updateCompanyPage .updateCompanyForm h4 {
+    margin-bottom: 10px;
+}
+
+.updateCompanyPage .updateCompanyForm label {
+    font-size: 15px;
+    margin: 5px 0px;
+}
+
+.updateCompanyPage .updateCompanyForm input,
+.updateCompanyPage .updateCompanyForm select {
+    padding: 8px 10px;
+    outline: 0;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(228, 228, 228);
+}
+
+.updateCompanyPage .updateCompanyForm .updateCompanyBtn {
+    align-self: center;
+    margin-top: 20px;
+}
+
+.updateCompanyPage .updateCompanyForm .updateCompanyBtn .btn {
+    background-color: green;
+    text-decoration: none;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 100px;
+    transition-duration: 0.1s;
+}
+
+.updateCompanyPage .updateCompanyForm .updateCompanyBtn .btn:hover {
+    background-color: rgb(0, 219, 0);
+}
+
+.updateCompanyPage .updateCompanyForm .updateCompanyBtn a.btn {
+    background-color: rgb(238, 0, 0);
+}
+
+.updateCompanyPage .updateCompanyForm .updateCompanyBtn a.btn:hover {
+    background-color: rgb(255, 98, 98);
+}
+
+
+/* ----------------------------new rull---------------------- */
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-25 {
+    display: flex;
+    width: 25%;
+}
+
+label {
+    width: 80%;
+}
+
+input#companyCode {
+    width: 95%;
+}
+
+select#companyCategory {
+    width: 100%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyName {
+    width: 95%;
+    transition: 0.3s;
+    /* margin-top: 10px; */
+}
+
+.row2 {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+input#companyContact {
+    width: 100%;
+    transition: 0.3s;
+}
+
+.row3 {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.row4 {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+input#companyEmail {
+    width: 95%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyAddress {
+    width: 100%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyUsername {
+    width: 95%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyPassword {
+    width: 100%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyGst {
+    width: 95%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyPan {
+    width: 100%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyTan {
+    width: 95%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyLicence {
+    width: 100%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+input#companyRgNo {
+    width: 95%;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+h4.heading {
+    font-size: 20px;
+}
+
+.labelfill {
+    font-weight: bold;
+}
+
+input#companyTan:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyRgNo:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyLicence:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyPan:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyGst:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyPassword:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyUsername:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyAddress:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyEmail:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyGst:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyContact:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+input#companyName:focus {
+    border-color: rgba(25, 177, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    outline: 0 none;
+}
+
+
+/* ----------------------------media qurrey---------------------------------- */
+
+@media(max-width:390px) {
+    .row {
+        flex-direction: column;
+    }
+    .row2 {
+        flex-direction: column;
+    }
+    .row3 {
+        flex-direction: column;
+    }
+    .row4 {
+        flex-direction: column;
+    }
+    .col-25 {
+        width: 100%;
+    }
+    label.labelfill {
+        width: 100%;
+    }
+    input#companyCode {
+        width: 100%;
+    }
+    input#companyName {
+        width: 100%;
+    }
+    input#companyEmail {
+        width: 100%;
+    }
+    input#companyUsername {
+        width: 100%;
+    }
+    input#companyGst {
+        width: 100%;
+    }
+    input#companyTan {
+        width: 100%;
+    }
+    input#companyRgNo {
+        width: 100%;
+    }
+}
+
+@media(max-width:820px) {
+    .row {
+        flex-direction: column;
+    }
+    .row2 {
+        flex-direction: column;
+    }
+    .row3 {
+        flex-direction: column;
+    }
+    .row4 {
+        flex-direction: column;
+    }
+    .col-25 {
+        width: 100%;
+    }
+    label.labelfill {
+        width: 100%;
+    }
+    input#companyCode {
+        width: 100%;
+    }
+    input#companyName {
+        width: 100%;
+    }
+    input#companyEmail {
+        width: 100%;
+    }
+    input#companyUsername {
+        width: 100%;
+    }
+    input#companyGst {
+        width: 100%;
+    }
+    input#companyTan {
+        width: 100%;
+    }
+    input#companyRgNo {
+        width: 100%;
+    }
+}
