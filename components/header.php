@@ -63,15 +63,11 @@ include "conn.php";
     </div>
     <section class="mainContainer">
         <div class="navbar">
-<<<<<<< HEAD
-            <a href="dashboard.php">Dashboard</a>
-            <a href="product-category.php">Products</a>
-=======
             <a href="dashboard.php">
                 <span class="h-icons"><i class="fa-solid fa-house"></i></span>
                 Dashboard
             </a>
->>>>>>> 84c902905b3210bb6c86b0965d3a44fc2988bc23
+            <a href="product-category.php">Products</a>
             <?php
             if($hRow['Admin_Type']==1){
             ?>
