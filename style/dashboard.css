@@ -1,5 +1,7 @@
+
+
 .dashboardPage{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     background-color: rgb(220, 255, 255);
     width: 100%;
     min-height: 750px;
@@ -10,48 +12,7 @@
     justify-content: space-evenly;
     align-items: flex-start;
 }
-.dashboardPage .adminSection .items{
-    background-image: linear-gradient(rgb(199, 139, 255),blueviolet);
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    width: 20%;
-    overflow: hidden;
-    margin: 10px;
-}
-.dashboardPage .adminSection .items h3{
-    font-size: 15px;
-    margin: 10px 5px;
-    font-weight: 100;
-    letter-spacing: 1px;
-}
-.dashboardPage .adminSection .items h2{
-    font-size: 50px;
-    margin: 5px 5px;
-}
-.dashboardPage .adminSection .items p{
-    font-size: 15px;
-    margin: 5px;
-    letter-spacing: 2px;
-}
-.dashboardPage .adminSection .items a{
-    display: block;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    font-size: 15px;
-    background-image: linear-gradient(rgb(202, 145, 255),rgb(71, 22, 247));
-    font-weight: bold;
-    margin:-10px;
-    margin-top: 10px;
-    letter-spacing: 1px;
-    padding: 5px;
-    transition-duration: 0.1s;
-}
-.dashboardPage .adminSection .items a:hover{
-    background-image: linear-gradient(rgb(179, 97, 255),rgb(55, 13, 209));
-    letter-spacing: 1.5px;
-}
+
 .dashboardPage h1{
     font-size: 30px;
     letter-spacing: 2px;
@@ -85,13 +46,6 @@
 .dashboardPage .todayOrdersContainer .order .about div,.dashboardPage .todayOrdersContainer .order .about h2{
     font-size: 15px;
     margin: 10px;
-}
-.dashboardPage .todayOrdersContainer .order .about form select,.dashboardPage .todayOrdersContainer .order .about form input{
-    outline: none;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 3px 5px;
-    font-size: 15px;
 }
 .dashboardPage .todayOrdersContainer .order a{
     display: inline-block;
@@ -131,4 +85,240 @@
 }
 .dashboardPage .todayOrdersContainer .distributerAbout a:hover{
     background-color: rgb(128, 28, 28);
+}
+
+
+
+
+
+
+
+
+/* ----------------------------------style css----------------------------------------------- */
+
+.dashboardPage .adminSection .items {
+    background-image: linear-gradient(rgb(199, 139, 255),blueviolet);
+    color: white;
+    /* padding: 10px; */
+    border-radius: 10px;
+    width: 25%;
+    min-height: 190px;
+    overflow: hidden;
+    margin: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    display: flex;
+    margin: 30px 5px;
+}
+
+
+.inner-item1 {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 60%;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.inner-item2 {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    /* padding: 5px; */
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    /* margin: 20px; */
+    /* margin-top: 24px; */
+}
+
+
+.dashboardPage .adminSection .items h2 {
+    font-size: 90px;
+    /* margin: 5px 5px; */
+    text-align: center;
+}
+
+
+.dashboardPage .adminSection .items h3 {
+    font-size: 17px;
+    /* margin: 10px 5px; */
+    font-weight: 100;
+    /* letter-spacing: 1px; */
+}
+
+
+.dashboardPage .adminSection .items p {
+    font-size: 15px;
+    margin: 5px;
+    /* letter-spacing: 2px; */
+}
+
+
+i.fa-solid.fa-cart-shopping {
+    font-size: 86px;
+    text-align: center;
+    align-items: center;
+    /* display: flex; */
+    color: white;
+    position: relative;
+    line-height: 1px;
+    
+   
+}
+
+
+i.fa-solid.fa-building{
+    font-size: 86px;
+    text-align: center;
+    align-items: center;
+    /* display: flex; */
+    color: white;
+    /* position: relative; */
+    line-height: 1px;
+}
+
+
+.inner-item2 a {
+    transition: 0.3s;
+    
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+}
+
+
+span.title {
+    position: relative;
+    top: 100;
+    top: 147%;
+    left: 9%;
+}
+
+
+span.company {
+    position: relative;
+    top: 100;
+    top: 140%;
+    left: -11%;
+    font-size: 14px;
+}
+.inner-item2 a:hover{
+    /* background: red;
+    border:1px solid black; */
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+/* ---------------------------media qurrey------------------------------------- */
+
+
+
+@media (max-width: 380px){
+    .dashboardPage .adminSection {
+        
+        width: 100%;
+        flex-direction: column;
+    }
+    .dashboardPage .adminSection .items {
+       
+        width: 100%;
+       
+        margin: 3px;
+       
+    }
+}
+
+
+
+
+@media (max-width: 414px){
+    .dashboardPage .adminSection {
+        
+        width: 100%;
+        flex-direction: column;
+    }
+    .dashboardPage .adminSection .items {
+       
+        width: 100%;
+       
+        margin: 3px;
+       
+    }
+}
+
+
+
+@media (max-width: 825px){
+    .dashboardPage .adminSection {
+        
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .dashboardPage .adminSection .items {
+       
+       
+        width: 49%;
+        overflow: hidden;
+        margin: 4px;
+       
+    }
+}
+
+@media (max-width: 825px){
+    .dashboardPage .adminSection {
+        
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .dashboardPage .adminSection .items {
+       
+       
+        width: 48%;
+        overflow: hidden;
+        margin: 4px;
+       
+    }
+}
+
+
+@media (max-width: 915px){
+    .dashboardPage .adminSection {
+        
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .dashboardPage .adminSection .items {
+       
+       
+        width: 49%;
+        overflow: hidden;
+        margin: 3px;
+       
+    }
+}
+
+
+
+
+@media (max-width: 540px){
+    .dashboardPage .adminSection {
+        
+        width: 100%;
+        flex-direction: column;
+    }
+    .dashboardPage .adminSection .items {
+       
+        width: 100%;
+       
+        margin: 3px;
+       
+    }
 }

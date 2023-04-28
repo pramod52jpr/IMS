@@ -77,7 +77,7 @@ include "conn.php";
                 </div>
                 <div class="itemDropdown">
                     <a href="company.php">
-                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building"></i></span> 
+                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass"></i></span> 
                         All Companies
                     </a>
                     <a href="branch.php">
@@ -93,7 +93,7 @@ include "conn.php";
                     <span class="h-icons"><i class="fa-solid fa-file"></i></span> 
                         Products</a>
                     <a href="orders.php">
-                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping"></i></span> 
+                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span> 
                         All Orders</a>
                 </div>
             <?php
@@ -103,6 +103,6 @@ include "conn.php";
                 <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
                 My Branch</a>
             <a href="myOrders.php">
-            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping"></i></span>
+            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
                 My Orders</a>
         </div>

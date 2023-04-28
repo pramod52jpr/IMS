@@ -1,5 +1,5 @@
 .allOrdersPage{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     background-color: rgb(220, 255, 255);
     width: 100%;
     min-height: 750px;
@@ -15,6 +15,7 @@
     margin-bottom: 10px;
 }
 .allOrdersPage .filterBtnContainer form input,.allOrdersPage .filterBtnContainer form select{
+    font-family: 'Ubuntu', sans-serif;
     outline: 0;
     border: 1px solid black;
     font-size: 15px;
@@ -75,6 +76,7 @@
     margin: 10px;
 }
 .allOrdersPage .allOrdersContainer .order .about form select,.allOrdersPage .allOrdersContainer .order .about form input{
+    font-family: 'Ubuntu', sans-serif;
     outline: none;
     border: 1px solid black;
     border-radius: 5px;

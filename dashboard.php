@@ -48,28 +48,53 @@ if($adminRow['Admin_Type']==1){
 ?>
     <div class="adminSection">
         <div class="items">
-            <h3>Last Week Orders</h3>
-            <h2><?php echo mysqli_num_rows($lastWeekOrderResult) ?></h2>
-            <p>Order Recieved</p>
-            <a href="orders.php?weekDate=<?php echo $lastweekDate ?>">View Orders</a>
+            <div class="inner-item1">
+                <h3>Last Week Orders</h3>
+                <h2><?php echo mysqli_num_rows($lastWeekOrderResult) ?></h2>
+                <p>Order Recieved</p>
+            </div>
+            <div class="inner-item2">
+                <a href="orders.php?weekDate=<?php echo $lastweekDate ?>">
+                <span class="title">View Order</span>
+                <i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
         </div>
         <div class="items">
-            <h3>Last Month Orders</h3>
-            <h2><?php echo mysqli_num_rows($lastMonthOrderResult) ?></h2>
-            <p>Order Recieved</p>
-            <a href="orders.php?monthDate=<?php echo $lastMonthDate ?>">View Orders</a>
+            <div class="inner-item1">
+                <h3>Last Month Orders</h3>
+                <h2><?php echo mysqli_num_rows($lastMonthOrderResult) ?></h2>
+                <p>Order Recieved</p>
+            </div>
+            <div class="inner-item2">
+                <a href="orders.php?monthDate=<?php echo $lastMonthDate ?>">
+                <span class="title">View Order</span>
+                <i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
         </div>
         <div class="items">
-            <h3>All Orders</h3>
-            <h2><?php echo mysqli_num_rows($allOrderResult) ?></h2>
-            <p>Order Recieved</p>
-            <a href="orders.php">View Orders</a>
+            <div class="inner-item1">
+                <h3>All Orders</h3>
+                <h2><?php echo mysqli_num_rows($allOrderResult) ?></h2>
+                <p>Order Recieved</p>
+            </div>
+            <div class="inner-item2">
+                <a href="orders.php">
+                <span class="title">View Order</span>
+                <i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
         </div>
         <div class="items">
-            <h3>Companies</h3>
-            <h2><?php echo mysqli_num_rows($allCompanyResult) ?></h2>
-            <p>Company Registered</p>
-            <a href="company.php">View Companies</a>
+            <div class="inner-item1">
+                <h3>Companies</h3>
+                <h2><?php echo mysqli_num_rows($allCompanyResult) ?></h2>
+                <p>Company Registered</p>
+            </div>
+            <div class="inner-item2">
+                <a href="company.php">
+                <span class="company">View Company</span>
+                <i class="fa-solid fa-building"></i></a>
+                </div>
+            </div>
         </div>
     </div>
     <h1>Today Orders</h1>
