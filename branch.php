@@ -61,7 +61,7 @@ if(isset($_GET['dbid'])){
                 }else{
                 ?>
                 <tr>
-                    <td colspan="5" style="text-align:center;font-size:20px">No Branch Added</td>
+                    <td colspan="6" style="text-align:center;font-size:20px">No Branch Added</td>
                 </tr>
                 <?php
                 }
