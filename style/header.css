@@ -110,8 +110,7 @@
 
 .mainContainer .navbar .items {
     display: flex;
-    justify-content: space-between;
-    padding: 2px 35px;
+    padding: 2px 13px;
     margin-top: 10px;
     cursor: pointer;
     font-weight: bold;
