@@ -123,7 +123,7 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
                 }else{
                 ?>
                 <tr>
-                    <td colspan="5" style="text-align:center;font-size:20px">No Product Added</td>
+                    <td colspan="6" style="text-align:center;font-size:20px">No Product Added</td>
                 </tr>
                 <?php
                 }

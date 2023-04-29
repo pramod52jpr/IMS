@@ -86,7 +86,14 @@
 .dashboardPage .todayOrdersContainer .distributerAbout a:hover{
     background-color: rgb(128, 28, 28);
 }
-
+form select,form input{
+    font-family: 'Ubuntu', sans-serif;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-size: 15px;
+}
 
 
 
