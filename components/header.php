@@ -96,7 +96,7 @@ include "conn.php";
                     <span class="h-icons"><i class="fa-solid fa-file"></i></span> 
                         Products</a>
                     <a href="orders.php">
-                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span> 
+                    <span class="h-icons"><img src="img/product.png"></span> 
                         All Orders</a>
                     <a href="users.php">Users</a>
                 </div>
