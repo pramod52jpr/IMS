@@ -59,17 +59,21 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
 ?>
 <section class="allOrdersPage">
     <div class="filterBtnContainer">
+        <!-- <div class="innerbtnbox"> -->
+        
         <?php
         if(!isset($_GET['weekDate'])and !isset($_GET['monthDate'])){
             ?>
-            <form action="orders.php" method="get">
+            <form class="orform" action="orders.php" method="get">
                 From
                 <input type="date" name="fromDate" id="" required>
                 To
                 <input type="date" name="toDate" id="" required>
                 <input type="submit" value="Show Record">
             </form>
-            <form action="orders.php" method="get">
+        <!-- </div> -->
+        <!-- <div class="innerbtnbox"> -->
+            <form class="orform" action="orders.php" method="get">
                 <select name="comId">
                     <option value="" disabled selected>Select Company</option>
                     <?php
@@ -86,6 +90,7 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                 </select>
                 <input type="submit" value="Show">
             </form>
+            <!-- </div> -->
             <div class="statusBtn">
                 <?php
                 $allSql="select `Order_Id` as count from orders";
@@ -149,9 +154,11 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
             while($aorow=mysqli_fetch_assoc($aoresult)){
         ?>
                 <div class="order">
+                    <div class="order-box">
                     <img src="./uploadImages/<?php echo $aorow['Product_Img'] ?>" alt="">
-                    <div class="about">
-                        <h2>Order Details : </h2>
+                    </div>
+                    <div class="order-box">
+                        <h2>Order Details</h2>
                         <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
                         <div><span>Modal No. : </span><span><?php echo $aorow['Product_Modal_No'] ?></span></div>
@@ -160,6 +167,7 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                     <?php
                     if($aorow['Order_Status']>=3 and $aorow['Order_Status']!=5){
                     ?>
+                   
                         <div><span>Delivery Mode : </span><span><?php echo $aorow['Delivery_Type'] ?></span></div>
                     <?php
                     }
@@ -170,21 +178,23 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                     }
                     ?>
                     </div>
-                    <div class="about">
-                        <h2>Company Details : </h2>
+                
+                    <div class="order-box">
+                        <h2>Company Details</h2>
                         <div><span>Company : </span><span><?php echo $aorow['Company_Name'] ?></span></div>
                         <div><span>Contact : </span><span><?php echo $aorow['Company_Phone'] ?></span></div>
                         <div><span>Email : </span><span><?php echo $aorow['Company_Email'] ?></span></div>
                         <div><span>Address : </span><span><?php echo $aorow['Company_Address'] ?></span></div>
                     </div>
-                    <div class="about">
-                        <h2>Orderer Details : </h2>
+                    <div class="order-box">
+                        <h2>Orderer Details</h2>
                         <div><span>Name : </span><span><?php echo $aorow['Person_Name'] ?></span></div>
                         <div><span>Contact : </span><span><?php echo $aorow['Person_Phone'] ?></span></div>
                         <div><span>Email : </span><span><?php echo $aorow['Person_Email'] ?></span></div>
                         <div><span>Address : </span><span><?php echo $aorow['Order_Address'] ?></span></div>
                     </div>
-                    <div class="about">
+                
+                    <div class="order-box2">
                         <?php
                             $statusId=isset($status)?"status=$status&":"";
                             $dateId=isset($_GET['fromDate']) && isset($_GET['toDate'])?"fromDate=".$_GET['fromDate']."&toDate=".$_GET['toDate']."&":"";
@@ -199,7 +209,7 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                             }
                             ?>
                             <input type="hidden" name="orderId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <select name="delivery" <?php echo $disabledAgain ?>>
+                            <select class="select-b" name="delivery" <?php echo $disabledAgain ?>>
                                 <option value="" selected disabled>Select Delivery Mode</option>
                                 <?php
                                 $delModeSql="select * from deliverymode";
@@ -218,7 +228,7 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                                 }
                                 ?>
                             </select>
-                            <input type="submit" value="save" <?php echo $disabledAgain ?>>
+                            <input class="sub-b" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";
@@ -234,7 +244,7 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                                     continue;
                                 }
                     ?>
-                        <a href="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
+                        <a class="order-button" href="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
                     <?php
                         if((($aorow['Order_Status']==$orderstatusRow['Status_Id'])) and ($aorow['Order_Status']>=mysqli_num_rows($orderstatusResult)-1)){
                             break;
@@ -252,6 +262,7 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
         <?php
         }
         ?>
+    </div>
     </div>
 </section>
 <?php include "./components/footer.php" ?>

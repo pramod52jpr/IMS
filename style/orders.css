@@ -1,18 +1,20 @@
 .allOrdersPage{
     font-family: 'Ubuntu', sans-serif;
-    background-color: rgb(220, 255, 255);
+    /* background: #219ebc; */
     width: 100%;
     min-height: 750px;
     padding: 10px;
 }
-.allOrdersPage .filterBtnContainer{
+.allOrdersPage .filterBtnContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:15px 40px;
-    box-shadow: 0px 10px 30px -15px black;
+    padding: 15px 40px;
+    box-shadow: 0px 10px 30px -15px rgba(0, 0, 0, 0.6);
     margin: -10px;
     margin-bottom: 10px;
+    background: #023047;
+    color: white;
 }
 .allOrdersPage .filterBtnContainer form input,.allOrdersPage .filterBtnContainer form select{
     font-family: 'Ubuntu', sans-serif;
@@ -22,25 +24,23 @@
     padding: 2px 7px;
     border-radius: 5px;
 }
-.allOrdersPage .filterBtnContainer .statusBtn{
+/* .allOrdersPage .filterBtnContainer .statusBtn{
     width: 40%;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-}
+} */
 .allOrdersPage .filterBtnContainer .statusBtn a{
     display: inline-block;
     text-decoration: none;
     color: white;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     padding: 5px 10px;
     font-size: 15px;
     border-radius: 5px;
     margin: 3px;
 }
-.allOrdersPage .filterBtnContainer .statusBtn a:hover{
-    background-color: rgb(110, 33, 182)
-}
+
 .allOrdersPage .allOrdersContainer h3{
     font-size: 15px;
     padding: 5px 20px;
@@ -59,8 +59,9 @@
     border-bottom: 1px solid lightgrey;
     padding: 20px;
 }
-.allOrdersPage .allOrdersContainer .order img{
-    height: 150px;
+.allOrdersPage .allOrdersContainer .order img {
+    /* height: 150px; */
+    width: 100%;
 }
 .allOrdersPage .allOrdersContainer .order .about{
     font-size: 15px;
@@ -83,7 +84,7 @@
     padding: 3px 5px;
     font-size: 15px;
 }
-.allOrdersPage .allOrdersContainer .order a{
+/* .allOrdersPage .allOrdersContainer .order a{
     display: inline-block;
     margin: 5px;
     text-decoration: none;
@@ -98,4 +99,263 @@
 }
 .allOrdersPage .allOrdersContainer h2{
     margin-top: 50px;
+} */
+
+
+
+
+
+
+
+/* ------------------------------new style------------------------------------------- */
+
+.innerbtnbox {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 30%;
+}
+
+form.orform {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+input[type="submit"] {
+    height: 40px;
+}
+
+input[type="submit"] {
+    height: 40px;
+}
+input[type="date"] {
+    margin: 5px 0px;
+}
+
+input[type="date"] {
+    height: 40px;
+    border: none;
+    outline: none;
+   
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+
+.allOrdersPage .filterBtnContainer form input, .allOrdersPage .filterBtnContainer form select {
+    font-family: 'Ubuntu', sans-serif;
+    outline: 0;
+    border: 1px solid black;
+    font-size: 15px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+
+.allOrdersPage .filterBtnContainer .statusBtn {
+    display: flex;
+    flex-direction: column;
+    background: #023047;
+    border-radius: 5px;
+    transition: 0.5s ease;
+}
+.allOrdersPage .filterBtnContainer .statusBtn a:hover{
+    color: red;
+     border-radius: 2px;
+ }
+.order-box2 {
+    display: flex;
+    flex-direction: column;
+}
+.allOrdersPage .allOrdersContainer .order {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
+    padding: 20px;
+    align-items: stretch;
+}   
+.order-box {
+    /* border: 1px solid; */
+    width: 100%;
+    margin: 0px 5px;
+    padding: 10px;
+    text-align: center;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #023047;
+    color: white;
+}
+
+.order-box2 {
+    /* border: 1px solid; */
+    width: 100%;
+    margin: 0px 5px;
+    padding: 10px;
+    text-align: center;
+    padding: 10px;
+    background: #023047;
+    color: white;
+}
+
+
+a.order-button {
+    margin: 3px 0px;
+    text-decoration: none;
+    color: rgb(226, 222, 222);
+    cursor: pointer;
+    border: 1px solid #dfd6d6;
+    padding: 3px;
+    border-radius: 5px;
+  transition: 0.2;
+    background: brown;
+}
+
+a.order-button:hover{
+   
+    color: white;
+}
+
+select.select-b {
+    outline: none;
+    height: 31px;
+    padding: 4px;
+    border-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: none;
+}
+
+
+input.sub-b {
+    outline: none;
+    height: 30px;
+    padding: 4px;
+    border-radius: 5px;
+    /* width: 40px; */
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: #219ebc;
+}
+
+
+select {
+    height: 47px;
+    margin-bottom: 15px;
+}
+
+
+
+
+
+/* --------------------------------media qurry-------------------------------- */
+
+@media (max-width: 380px){
+    .allOrdersPage .allOrdersContainer .order {
+      flex-wrap: wrap;
+    }
+    .order-box {
+      margin-bottom: 10px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .allOrdersPage {
+        padding: 0px;
+    }
+    .allOrdersPage .filterBtnContainer {
+       margin:0;
+       flex-direction: column;
+    }
+    form.orform {
+        width: 100%;
+    }
+
+    .allOrdersPage .filterBtnContainer .statusBtn {
+       text-align: center;
+    }
+}
+@media (max-width: 412px){
+    .allOrdersPage .allOrdersContainer .order {
+      flex-wrap: wrap;
+    }
+    .order-box {
+      margin-bottom: 10px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .allOrdersPage {
+        padding: 0px;
+    }
+    .allOrdersPage .filterBtnContainer {
+        margin:0;
+        flex-direction: column;
+     }
+     form.orform {
+         width: 100%;
+     }
+ 
+     .allOrdersPage .filterBtnContainer .statusBtn {
+        text-align: center;
+     }
+}
+
+@media (max-width: 820px){
+    .allOrdersPage .allOrdersContainer .order {
+      flex-wrap: wrap;
+    }
+
+    .order-box {
+      margin-bottom: 10px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .allOrdersPage {
+      padding: 0px;
+    }
+    .allOrdersPage .filterBtnContainer {
+        display: flex;
+       flex-direction: column;
+        padding: 15px 40px;
+        box-shadow: 0px 10px 30px -15px rgba(0, 0, 0, 0.6);
+        margin: -0px;
+        margin-bottom: 0px;
+    }  
+     form.orform {
+         width: 100%;
+     }
+ 
+     .allOrdersPage .filterBtnContainer .statusBtn {
+        text-align: center;
+     }
+}
+
+@media (max-width: 920px){
+    .allOrdersPage .allOrdersContainer .order {
+      flex-wrap: wrap;
+    }
+    .order-box {
+      margin-bottom: 10px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .allOrdersPage {
+        padding: 0px;
+    }
+    .allOrdersPage .filterBtnContainer {
+        display: flex;
+       flex-direction: column;
+        padding: 15px 40px;
+        box-shadow: 0px 10px 30px -15px rgba(0, 0, 0, 0.6);
+        margin: -0px;
+        margin-bottom: 0px;
+    }  
+     form.orform {
+         width: 100%;
+     }
+ 
+     .allOrdersPage .filterBtnContainer .statusBtn {
+        text-align: center;
+     }
 }

@@ -8,7 +8,8 @@
 .headerContainer {
     display: flex;
     justify-content: space-between;
-    background-image: linear-gradient(#3c8dbc, #07a4ff);
+    /* background-image: linear-gradient(#3c8dbc, #07a4ff); */
+    background-color: #023047;
     padding: 5px 10px;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -19,7 +20,7 @@
     justify-content: space-evenly;
     align-items: center;
     padding: 2px;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     width: 33px;
     height: 27px;
     border-radius: 3px;
@@ -27,7 +28,7 @@
 }
 
 .headerContainer .hamburger:hover {
-    background-color: #8ad6ff;
+    color: #000000;
 }
 
 
@@ -47,14 +48,14 @@
 }
 
 .headerContainer .helloCompany:hover {
-    color: #8ad6ff;
+    transform: scale(1.1);
 }
 
 .hellocompanyDropdown {
     position: absolute;
     right: 0;
     width: 100px;
-    background-color: #3c8dbc;
+    /* background-color: #3c8dbc; */
     border-radius: 5px;
     transition-duration: 0.2s;
     font-family: 'Montserrat', sans-serif;
@@ -73,7 +74,7 @@
 }
 
 .hellocompanyDropdown a:hover {
-    background-color: rgba(0, 0, 0, 0.116);
+   font-weight: 700;
 }
 
 .mainContainer {
@@ -83,23 +84,25 @@
 .mainContainer .navbar {
     display: flex;
     flex-direction: column;
-    background-color: rgb(56, 55, 53);
+    background-color: #023047;
     width: 0;
     min-height: 700px;
     overflow: hidden;
-    color: rgb(194, 194, 194);
+    color: rgb(255 255 255);
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
+    z-index: 1;
+    outline: 1px solid white;
 }
 
-.mainContainer .navbar a {
+/* .mainContainer .navbar a {
     color: rgb(194, 194, 194);
     text-decoration: none;
     padding: 11px 0px;
     margin-top: 10px;
     font-weight: 700;
     letter-spacing: 1px;
-}
+} */
 
 .mainContainer .navbar a:hover {
     color: white;
@@ -123,7 +126,7 @@
     display: flex;
     flex-direction: column;
     text-indent: 0.5cm;
-    background-color: rgb(48, 48, 47);
+   
 }
 
 .mainContainer .sideSection {
@@ -133,12 +136,11 @@
 
 
 
-
 /* -------------------------------------new style ----------------------------------------- */
 
 
 span.h-icons {
-    font-size: 15px;
+    font-size: 14px;
     color: white;
     margin-right: 5px;
 }
@@ -147,4 +149,26 @@ i.fa-sharp.fa-solid.fa-cart-shopping.advanceClass{
 }
 i.fa-sharp.fa-solid.fa-building.advanceClass{
     font-size: 15px;
+}
+
+
+.h-icons img {
+    width: 25px;
+    /* color: #d12424; */
+   
+}
+.mainContainer .navbar a {
+    color: rgb(194, 194, 194);
+    text-decoration: none;
+    padding: 11px 0px;
+    margin-top: 10px;
+    font-weight: 700;
+    /* letter-spacing: 1px; */
+    display: flex;
+    margin-left: 13px;
+}
+
+
+i.fa-solid.fa-bars {
+    color: white;
 }

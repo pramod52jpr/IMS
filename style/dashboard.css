@@ -2,7 +2,7 @@
 
 .dashboardPage{
     font-family: 'Ubuntu', sans-serif;
-    background-color: rgb(220, 255, 255);
+    /* background-color: rgb(220, 255, 255); */
     width: 100%;
     min-height: 750px;
     padding: 10px;
@@ -97,7 +97,7 @@
 /* ----------------------------------style css----------------------------------------------- */
 
 .dashboardPage .adminSection .items {
-    background-image: linear-gradient(rgb(199, 139, 255),blueviolet);
+   background:#023047;
     color: white;
     /* padding: 10px; */
     border-radius: 10px;
