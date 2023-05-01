@@ -10,11 +10,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
-    box-shadow: 0px 10px 30px -15px rgba(0, 0, 0, 0.6);
-    margin: -10px;
     margin-bottom: 10px;
-    background: #023047;
+    background:  #1b4965;
     color: white;
+    margin: -9px 25px 0px 25px;
 }
 .allOrdersPage .filterBtnContainer form input,.allOrdersPage .filterBtnContainer form select{
     font-family: 'Ubuntu', sans-serif;
@@ -155,7 +154,7 @@ input[type="date"] {
 .allOrdersPage .filterBtnContainer .statusBtn {
     display: flex;
     flex-direction: column;
-    background: #023047;
+    background:  #1b4965;
     border-radius: 5px;
     transition: 0.5s ease;
 }
@@ -180,12 +179,11 @@ input[type="date"] {
     width: 100%;
     margin: 0px 5px;
     padding: 10px;
-    text-align: center;
     line-height: 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #023047;
+    background: #1b4965;
     color: white;
 }
 
@@ -196,7 +194,7 @@ input[type="date"] {
     padding: 10px;
     text-align: center;
     padding: 10px;
-    background: #023047;
+    background: #1b4965;
     color: white;
 }
 
@@ -206,11 +204,10 @@ a.order-button {
     text-decoration: none;
     color: rgb(226, 222, 222);
     cursor: pointer;
-    border: 1px solid #dfd6d6;
     padding: 3px;
     border-radius: 5px;
   transition: 0.2;
-    background: brown;
+  
 }
 
 a.order-button:hover{
@@ -237,7 +234,7 @@ input.sub-b {
     border: none;
     cursor: pointer;
     font-weight: 600;
-    background: #219ebc;
+    background:  #fff;
 }
 
 

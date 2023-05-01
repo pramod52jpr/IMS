@@ -1,8 +1,10 @@
+body {
+    background: #e7e6e6;
+}
 .updateCompanyPage {
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(220, 255, 255);
     width: 100%;
-    min-height: 750px;
+   min-height: 750px;
     padding: 20px;
 }
 
@@ -15,8 +17,8 @@
 .updateCompanyPage .updateCompanyForm {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    /* margin: 10px 30px; */
+    background-color: #1b4965;
+   color: white;
     border-radius: 10px;
     padding: 20px;
 }
@@ -191,74 +193,74 @@ h4.heading {
 }
 
 input#companyTan:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyRgNo:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyLicence:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyPan:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyGst:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyPassword:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyUsername:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyAddress:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyEmail:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyGst:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyContact:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 
 input#companyName:focus {
-    border-color: rgba(25, 177, 248, 0.8);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(8, 128, 240, 0.6);
+    border-color: rgba(248, 248, 248, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
 }
 

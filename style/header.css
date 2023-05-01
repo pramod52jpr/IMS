@@ -8,8 +8,8 @@
 .headerContainer {
     display: flex;
     justify-content: space-between;
-    /* background-image: linear-gradient(#3c8dbc, #07a4ff); */
-    background-color: #023047;
+    
+    background-color: #1b4965;
     padding: 5px 10px;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -55,16 +55,16 @@
     position: absolute;
     right: 0;
     width: 100px;
-    /* background-color: #3c8dbc; */
-    border-radius: 5px;
+     border-radius: 5px;
     transition-duration: 0.2s;
     font-family: 'Montserrat', sans-serif;
     display: none;
+    background: #ffffff;
 }
 
 .hellocompanyDropdown a {
     text-decoration: none;
-    color: white;
+    color: #000000;
     width: 100%;
     display: block;
     text-align: center;
@@ -84,7 +84,7 @@
 .mainContainer .navbar {
     display: flex;
     flex-direction: column;
-    background-color: #023047;
+    background-color: #1b4965;
     width: 0;
     min-height: 700px;
     overflow: hidden;
@@ -133,6 +133,11 @@
 }
 
 
+i.fa-solid.fa-caret-down {
+    margin-left: 10px;
+}
+
+
 
 
 /* -------------------------------------new style ----------------------------------------- */
@@ -152,8 +157,9 @@ i.fa-sharp.fa-solid.fa-building.advanceClass{
 
 
 .h-icons img {
-    width: 25px;
-    /* color: #d12424; */
+    width: 20px;
+   
+    margin-left: 10px;
    
 }
 .mainContainer .navbar a {
@@ -162,12 +168,61 @@ i.fa-sharp.fa-solid.fa-building.advanceClass{
     padding: 11px 0px;
     margin-top: 10px;
     font-weight: 700;
-    /* letter-spacing: 1px; */
-    display: flex;
+     display: flex;
     margin-left: 13px;
+    transition: 0.3s ease;
 }
 
 
+.mainContainer .navbar a.user{
+    
+    position: relative;
+   
+    width: 100%;
+}
 i.fa-solid.fa-bars {
     color: white;
+}
+
+a.user {
+    color: rgb(194, 194, 194);
+    text-decoration: none;
+    padding: 11px 0px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+.navbar ul li {
+    width: 117%;
+}
+
+.navbar ul li:hover a{
+    color: rgb(255, 255, 255);
+}
+.h-icons img:hover{
+    color: rgb(255, 255, 255);
+}
+.navbar ul li:hover a .h-icons{
+    color: rgb(255, 255, 255);
+}
+.navbar ul li:hover a .Title{
+    color: rgb(255, 255, 255);
+}
+.navbar ul li a .icon i{
+    font-size: 1.75em;
+}
+.navbar ul li:hover
+{
+background: #219ebc;
+border-top-left-radius: 50px;
+border-bottom-left-radius: 50px;
+}
+
+
+i.fa-solid.fa-user {
+    margin-left: -3px;
 }
