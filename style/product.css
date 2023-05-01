@@ -1,6 +1,9 @@
+body {
+    background: #e7e6e6;
+}
 .machinePage{
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(220, 255, 255);
+   
     width: 100%;
     min-height: 750px;
     padding: 10px;
@@ -39,14 +42,12 @@
     text-align: left;
     font-size: 15px;
     padding: 5px 10px;
-    border: 1px solid rgb(235, 235, 235);
-    border-radius: 5px;
+
 }
 .machinePage .machineContainer table td{
     font-size: 15px;
     padding: 5px 10px;
-    border: 1px solid rgb(235, 235, 235);
-    border-radius: 5px;
+ 
 }
 .machinePage .machineContainer table td form{
     display: inline-block;
@@ -60,6 +61,7 @@
     outline: none;
     border: 1px solid grey;
     border-radius: 5px;
+    width: 128px;
 }
 .machinePage .machineContainer table td a{
     margin: 0px 5px;
@@ -67,4 +69,17 @@
 .machinePage .machineContainer table td:last-child,.categoryPage .machineContainer table th:last-child{
     text-align: left;
     width: 15%;
+}
+
+
+
+
+
+
+
+
+.machinePage .machineContainer table td form  input[type="submit"] {
+    height: 26px;
+    width: 106px;
+    margin-top: -1px;
 }

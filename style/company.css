@@ -1,6 +1,10 @@
+body {
+    background: #e7e6e6;
+}
+
 .companyPage {
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(220, 255, 255);
+    /* background-color: rgb(220, 255, 255); */
     width: 100%;
     min-height: 750px;
     padding: 10px;
@@ -46,15 +50,13 @@
     text-align: left;
     font-size: 15px;
     padding: 5px 10px;
-    /* border: 1px solid rgb(235, 235, 235); */
-    /* border-radius: 5px; */
+   
 }
 
 .companyPage .companyContainer table td {
     font-size: 15px;
     padding: 5px 10px;
-    /* border: 1px solid rgb(235, 235, 235); */
-    /* border-radius: 5px; */
+   
 }
 
 .companyPage .companyContainer table td a {
@@ -77,7 +79,8 @@ table {
 
 th {
     border-spacing: none;
-    background: #bde0fe;
+    background: #1b4965;
+    color: white;
     border-radius: none;
 }
 

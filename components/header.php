@@ -64,49 +64,95 @@ include "conn.php";
     </div>
     <section class="mainContainer">
         <div class="navbar">
+            <ul>
+                <li>
             <a href="dashboard.php">
                 <span class="h-icons"><i class="fa-solid fa-house"></i></span>
-                Dashboard
+                <span class="Title">Dashboard</span>
             </a>
+</li>
+<li>
             <a href="product-category.php">
                 <span class="h-icons"><img src="img/product.png"></span>
-                Products</a>
+                <span class="Title">Products</span>
+                </a>
+                </li>
+                </ul>
             <?php
             if($hRow['Admin_Type']==1){
             ?>
                 <div class="items">
+                    <ul>
+                        <li>
+                            <a href="#">
                     <span class="h-icons"><i class="fa-solid fa-layer-group"></i></span>
-                    <span>MasterForms</span><span></span>
+                    <span class="Title">MasterForms</span>
+                    
+                    <span class="Title"><i class="fa-solid fa-caret-down" style="color: #fcfcfc;"></i></span>
+                    </a>
+                    </li>
+                    </ul>
                 </div>
                 <div class="itemDropdown">
+                    <ul>
+                        <li>
                     <a href="company.php">
                     <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass"></i></span> 
-                        All Companies
+                    <span class="Title">All Companies</span>
                     </a>
+            </li>
+            <li>
                     <a href="branch.php">
                     <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span> 
-                        All Branches</a>
+                    <span class="Title"> All Branches</span>
+                       </a>
+            </li>
+            <li>
                     <a href="category.php">
                     <span class="h-icons"><i class="fa-solid fa-user"></i></span> 
-                        Admin Category</a>
+                    <span class="Title">Admin Category</span>
+                     </a>
+            </li>
+            <li>
                     <a href="PCategory.php">
                     <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span> 
-                        Product Category</a>
+                    <span class="Title"> Product Category</span>
+                       </a>
+            </li>
+            <li>
                     <a href="product.php">
-                    <span class="h-icons"><i class="fa-solid fa-file"></i></span> 
-                        Products</a>
+                    <span class="h-icons"><i class="fa-solid fa-file"></i></span>
+                    <span class="Title">Products</span> 
+                        </a>
+            </li>
+            <li>
                     <a href="orders.php">
                     <span class="h-icons"><img src="img/product.png"></span> 
                         All Orders</a>
-                    <a href="users.php">Users</a>
+            </li>
+            <li>
+                    <a class="user" href="users.php">
+                    <span class="h-icons"><i class="fa-solid fa-user" style="color: #ffffff;"></i></span> 
+                    <span class="Title">Users</span> 
+                        </a>
+            </li>
+                        </ul>
                 </div>
             <?php
             }
             ?>
+            <ul>
+                <li>
             <a href="myBranch.php">
                 <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
-                My Branch</a>
+                <span class="Title"> My Branch</span> 
+               </a>
+                </li>
+                <li>
             <a href="myOrders.php">
             <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
-                My Orders</a>
+            <span class="Title"> My Orders</span> 
+               </a>
+        </li>
+                </ul>
         </div>
