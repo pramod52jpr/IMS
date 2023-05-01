@@ -4,10 +4,10 @@
     <form class="myBranchUpdateForm" action="users.php" method="post">
         <div class="row">
             <div class="col-25">
-                <label for="userame">Username</label>
+                <label for="username">Username</label>
             </div>
             <div class="col-25">
-                <input class="addBranchField" type="text" name="userame" id="userame" placeholder="Enter Username"
+                <input class="addBranchField" type="text" name="username" id="username" placeholder="Enter Username"
                     required>
             </div>
             <div class="col-25">

@@ -20,7 +20,7 @@
                 }
             }else{
         ?>
-        <h2 align="center">No Products Available</h2>
+        <h2 style="width:100%;text-align:center">No Products Available</h2>
         <?php
             }
         }

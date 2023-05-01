@@ -2,9 +2,13 @@
 <?php include "./components/header.php" ?>
 <section class="dashboardPage">
 <?php
-$companyId=$_SESSION['Company_Id'];
-
-$adminSql="select `Admin_Type` from company where `Company_Id`=$companyId";
+if(isset($_SESSION['Company_Id'])){
+    $companyId=$_SESSION['Company_Id'];
+    $adminSql="select `Admin_Type` from company where `Company_Id`=$companyId";
+}elseif(isset($_SESSION['User_Id'])){
+    $userId=$_SESSION['User_Id'];
+    $adminSql="select `Admin_Type` from users where `User_Id`=$userId";
+}
 $adminResult=mysqli_query($conn,$adminSql);
 $adminRow=mysqli_fetch_assoc($adminResult);
 if($adminRow['Admin_Type']==1){

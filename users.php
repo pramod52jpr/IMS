@@ -2,8 +2,8 @@
 <?php include "./components/header.php" ?>
 <?php
 $id=$_SESSION['Company_Id'];
-if(isset($_POST['userame']) and isset($_POST['userPassword'])){
-    $userame=$_POST['userame'];
+if(isset($_POST['username']) and isset($_POST['userPassword'])){
+    $username=$_POST['username'];
     $userPassword=$_POST['userPassword'];
     $userPhone=$_POST['userPhone'];
     $userEmail=$_POST['userEmail'];
@@ -15,7 +15,7 @@ if(isset($_POST['userame']) and isset($_POST['userPassword'])){
     $branches=isset($_POST['branches'])?$_POST['branches']:"";
     $userPermit=$AdminCategory.$productCategory.$product.$orders.$branches;
 
-    $addSql="insert into users(`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values('$userame','$userPassword','$userPhone','$userEmail','$userPermit')";
+    $addSql="insert into users(`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values('$username','$userPassword','$userPhone','$userEmail','$userPermit')";
     $addResult=mysqli_query($conn,$addSql);
     if($addResult){
         echo "<script>alert('User Added Successfully')</script>";

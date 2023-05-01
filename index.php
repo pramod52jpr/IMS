@@ -38,9 +38,20 @@
                                 $lgRow=mysqli_fetch_assoc($lgResult);
                                 session_start();
                                 $_SESSION['Company_Id']=$lgRow['Company_Id'];
+                                $_SESSION['Company_Code']=$lgRow['Company_Code'];
                                 Header("Location: $secure://$domain$lDomain/dashboard.php");
                             }else{
-                                echo "<script>alert('Wrong Username or Password')</script>";
+                                $lgUserSql="select * from users where `Company_Code`=$lgCode and `Username`='$lgUsername' and `User_Password`='$lgPassword'";
+                                $lgUserResult=mysqli_query($conn,$lgUserSql);
+                                if(mysqli_num_rows($lgUserResult)>0){
+                                    $lgUserRow=mysqli_fetch_assoc($lgUserResult);
+                                    session_start();
+                                    $_SESSION['User_Id']=$lgUserRow['User_Id'];
+                                    $_SESSION['Company_Code']=$lgRow['Company_Code'];
+                                    Header("Location: $secure://$domain$lDomain/dashboard.php");
+                                }else{
+                                    echo "<script>alert('Wrong Username or Password')</script>";
+                                }
                             }
                         }
                     ?>
@@ -64,7 +75,7 @@
                             $rgAddress=$_POST['rgAddress'];
                             $companyRgCode=mt_rand(111,999);
 
-                            $rgConfirmSql="select `Company_Username` from company where `Company_Username`='$rgUsername'";
+                            $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername' or `Company_Code`=$companyRgCode";
                             $rgConfirmResult=mysqli_query($conn,$rgConfirmSql);
                             if(mysqli_num_rows($rgConfirmResult)>0){
                                 echo "<script>alert('This Username is already Registered! Please try different One')</script>";
