@@ -15,7 +15,7 @@ if(isset($_POST['username']) and isset($_POST['userPassword'])){
     $branches=isset($_POST['branches'])?$_POST['branches']:"";
     $userPermit=$AdminCategory.$productCategory.$product.$orders.$branches;
 
-    $addSql="insert into users(`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values('$username','$userPassword','$userPhone','$userEmail','$userPermit')";
+    $addSql="insert into users(`Company_Code`,`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values('$username','$userPassword','$userPhone','$userEmail','$userPermit')";
     $addResult=mysqli_query($conn,$addSql);
     if($addResult){
         echo "<script>alert('User Added Successfully')</script>";

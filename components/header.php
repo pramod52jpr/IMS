@@ -4,6 +4,7 @@ include "conn.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,30 +40,35 @@ include "conn.php";
     <link rel="stylesheet" href="./style/myOrders.css">
     <link rel="stylesheet" href="./style/cancelReason.css">
     <link rel="stylesheet" href="./style/product-category.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+
 <body>
     <header class="headerContainer">
-    <div class="hamburger">
-        <i class="fa-solid fa-bars"></i>
+        <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
         </div>
         <?php
-        if(isset($_SESSION['Company_Id'])){
-            $hcid=$_SESSION['Company_Id'];
-            $hcSql="select `Company_Name`,`Admin_Type` from company where `Company_Id`=$hcid";
-            $hcResult=mysqli_query($conn,$hcSql);
-            $hcRow=mysqli_fetch_assoc($hcResult);
-        }elseif(isset($_SESSION['User_Id'])){
-            $huid=$_SESSION['User_Id'];
-            $huSql="select `Username`,`User_Permission` from users where `User_Id`=$huid";
-            $huResult=mysqli_query($conn,$huSql);
-            $huRow=mysqli_fetch_assoc($huResult);
+        if (isset($_SESSION['Company_Id'])) {
+            $hcid = $_SESSION['Company_Id'];
+            $hcSql = "select `Company_Name`,`Admin_Type` from company where `Company_Id`=$hcid";
+            $hcResult = mysqli_query($conn, $hcSql);
+            $hcRow = mysqli_fetch_assoc($hcResult);
+        } elseif (isset($_SESSION['User_Id'])) {
+            $huid = $_SESSION['User_Id'];
+            $huSql = "select `Username`,`User_Permission` from users where `User_Id`=$huid";
+            $huResult = mysqli_query($conn, $huSql);
+            $huRow = mysqli_fetch_assoc($huResult);
         }
         ?>
         <div class="helloCompany" id="helloCompany">
-        <i class="fa-solid fa-user"></i>
-            <div><?php echo isset($hcRow['Company_Name'])?$hcRow['Company_Name']:$huRow['Username'] ?></div>
+            <i class="fa-solid fa-user"></i>
+            <div>
+                <?php echo isset($hcRow['Company_Name']) ? $hcRow['Company_Name'] : $huRow['Username'] ?>
+            </div>
         </div>
     </header>
     <div class="hellocompanyDropdown" id="hellocompanyDropdown">
@@ -73,188 +79,172 @@ include "conn.php";
         <div class="navbar">
             <ul>
                 <li>
-            <a href="dashboard.php">
-                <span class="h-icons"><i class="fa-solid fa-house"></i></span>
-                <span class="Title">Dashboard</span>
-            </a>
-</li>
-<li>
-            <a href="product-category.php">
-                <span class="h-icons"><img src="img/product.png"></span>
-                <span class="Title">Products</span>
-                </a>
+                    <a href="dashboard.php">
+                        <span class="h-icons"><i class="fa-solid fa-house"></i></span>
+                        <span class="Title">Dashboard</span>
+                    </a>
                 </li>
-                </ul>
+                <li>
+                    <a href="product-category.php">
+                        <span class="h-icons"><img src="img/product.png"></span>
+                        <span class="Title">Products</span>
+                    </a>
+                </li>
+            </ul>
             <?php
-            if((isset($hcRow['Admin_Type']) and $hcRow['Admin_Type']==1) or isset($huRow['User_Permission'])){
-            ?>
+            if ((isset($hcRow['Admin_Type']) and $hcRow['Admin_Type'] == 1) or isset($huRow['User_Permission'])) {
+                ?>
                 <div class="items">
                     <ul>
                         <li>
                             <a href="#">
-                    <span class="h-icons"><i class="fa-solid fa-layer-group"></i></span>
-                    <span class="Title">MasterForms</span>
-                    
-                    <span class="Title"><i class="fa-solid fa-caret-down" style="color: #fcfcfc;"></i></span>
-                    </a>
-                    </li>
+                                <span class="h-icons"><i class="fa-solid fa-layer-group"></i></span>
+                                <span class="Title">MasterForms</span>
+
+                                <span class="Title"><i class="fa-solid fa-caret-down" style="color: #fcfcfc;"></i></span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="itemDropdown">
                     <ul>
                         <li>
-                    <a href="company.php">
-                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass"></i></span> 
-                    <span class="Title">All Companies</span>
-                    </a>
-<<<<<<< HEAD
-                    <?php
-                    if(isset($huRow['User_Permission'])){
-                        if(str_contains($huRow['User_Permission'],"branches")){
-                    ?>
-                            <a href="branch.php">
-                            <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span> 
-                                All Branches</a>
-                    <?php
+                            <a href="company.php">
+                                <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass"></i></span>
+                                <span class="Title">All Companies</span>
+                            </a>
+                        </li>
+                        <?php
+                        if (isset($huRow['User_Permission'])) {
+                            if (str_contains($huRow['User_Permission'], "branches")) {
+                                ?>
+                                <li>
+                                    <a href="branch.php">
+                                        <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span>
+                                        All Branches</a>
+                                </li>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                            <li>
+                                <a href="branch.php">
+                                    <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span>
+                                    All Branches</a>
+                            </li>
+                            <?php
                         }
-                    }else{
-                    ?>
-                        <a href="branch.php">
-                        <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span> 
-                            All Branches</a>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if(isset($huRow['User_Permission'])){
-                        if(str_contains($huRow['User_Permission'],"AdminCategory")){
-                    ?>
-                            <a href="category.php">
-                            <span class="h-icons"><i class="fa-solid fa-user"></i></span> 
-                                Admin Category</a>
-                    <?php
+                        ?>
+                        <?php
+                        if (isset($huRow['User_Permission'])) {
+                            if (str_contains($huRow['User_Permission'], "AdminCategory")) {
+                                ?>
+                                <li>
+                                    <a href="category.php">
+                                        <span class="h-icons"><i class="fa-solid fa-user"></i></span>
+                                        Admin Category</a>
+                                </li>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                            <li>
+                                <a href="category.php">
+                                    <span class="h-icons"><i class="fa-solid fa-user"></i></span>
+                                    Admin Category</a>
+                            </li>
+                            <?php
                         }
-                    }else{
-                    ?>
-                        <a href="category.php">
-                        <span class="h-icons"><i class="fa-solid fa-user"></i></span> 
-                            Admin Category</a>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if(isset($huRow['User_Permission'])){
-                        if(str_contains($huRow['User_Permission'],"productCategory")){
-                    ?>
-                            <a href="PCategory.php">
-                            <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span> 
-                                Product Category</a>
-                    <?php
+                        ?>
+                        <?php
+                        if (isset($huRow['User_Permission'])) {
+                            if (str_contains($huRow['User_Permission'], "productCategory")) {
+                                ?>
+                                <li>
+                                    <a href="PCategory.php">
+                                        <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span>
+                                        Product Category</a>
+                                </li>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                            <li>
+                                <a href="PCategory.php">
+                                    <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span>
+                                    Product Category</a>
+                            </li>
+                            <?php
                         }
-                    }else{
-                    ?>
-                        <a href="PCategory.php">
-                        <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span> 
-                            Product Category</a>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if(isset($huRow['User_Permission'])){
-                        if(str_contains($huRow['User_Permission'],"product")){
-                    ?>
-                            <a href="product.php">
-                            <span class="h-icons"><i class="fa-solid fa-file"></i></span> 
-                                Products</a>
-                    <?php
+                        ?>
+                        <?php
+                        if (isset($huRow['User_Permission'])) {
+                            if (str_contains($huRow['User_Permission'], "product")) {
+                                ?>
+                                <li>
+                                    <a href="product.php">
+                                        <span class="h-icons"><i class="fa-solid fa-file"></i></span>
+                                        Products</a>
+                                </li>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                            <li>
+                                <a href="product.php">
+                                    <span class="h-icons"><i class="fa-solid fa-file"></i></span>
+                                    Products</a>
+                            </li>
+                            <?php
                         }
-                    }else{
-                    ?>
-                        <a href="product.php">
-                        <span class="h-icons"><i class="fa-solid fa-file"></i></span> 
-                            Products</a>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if(isset($huRow['User_Permission'])){
-                        if(str_contains($huRow['User_Permission'],"orders")){
-                    ?>
-                            <a href="orders.php">
-                            <span class="h-icons"><img src="img/product.png"></span> 
-                                All Orders</a>
-                    <?php
+                        ?>
+                        <?php
+                        if (isset($huRow['User_Permission'])) {
+                            if (str_contains($huRow['User_Permission'], "orders")) {
+                                ?>
+                                <li>
+                                    <a href="orders.php">
+                                        <span class="h-icons"><img src="img/product.png"></span>
+                                        All Orders</a>
+                                </li>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                            <li>
+                                <a href="orders.php">
+                                    <span class="h-icons"><img src="img/product.png"></span>
+                                    All Orders</a>
+                            </li>
+                            <?php
                         }
-                    }else{
-                    ?>
-                        <a href="orders.php">
-                        <span class="h-icons"><img src="img/product.png"></span> 
-                            All Orders</a>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if(!isset($huRow['User_Permission'])){
-                    ?>
-                    <a href="users.php">Users</a>
-                    <?php
-                    }
-                    ?>
-=======
-            </li>
-            <li>
-                    <a href="branch.php">
-                    <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span> 
-                    <span class="Title"> All Branches</span>
-                       </a>
-            </li>
-            <li>
-                    <a href="category.php">
-                    <span class="h-icons"><i class="fa-solid fa-user"></i></span> 
-                    <span class="Title">Admin Category</span>
-                     </a>
-            </li>
-            <li>
-                    <a href="PCategory.php">
-                    <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span> 
-                    <span class="Title"> Product Category</span>
-                       </a>
-            </li>
-            <li>
-                    <a href="product.php">
-                    <span class="h-icons"><i class="fa-solid fa-file"></i></span>
-                    <span class="Title">Products</span> 
-                        </a>
-            </li>
-            <li>
-                    <a href="orders.php">
-                    <span class="h-icons"><img src="img/product.png"></span> 
-                        All Orders</a>
-            </li>
-            <li>
-                    <a class="user" href="users.php">
-                    <span class="h-icons"><i class="fa-solid fa-user" style="color: #ffffff;"></i></span> 
-                    <span class="Title">Users</span> 
-                        </a>
-            </li>
-                        </ul>
->>>>>>> 664071b7cdfde16e64da19e2f0e1aac4fdbd4004
+                        ?>
+                        <?php
+                        if (!isset($huRow['User_Permission'])) {
+                            ?>
+                            <li>
+                                <a href="users.php">Users</a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
                 </div>
-            <?php
+                <?php
             }
             ?>
             <ul>
                 <li>
-            <a href="myBranch.php">
-                <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
-                <span class="Title"> My Branch</span> 
-               </a>
+                    <a href="myBranch.php">
+                        <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
+                        <span class="Title"> My Branch</span>
+                    </a>
                 </li>
                 <li>
-            <a href="myOrders.php">
-            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
-            <span class="Title"> My Orders</span> 
-               </a>
-        </li>
-                </ul>
+                    <a href="myOrders.php">
+                        <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
+                        <span class="Title"> My Orders</span>
+                    </a>
+                </li>
+            </ul>
         </div>
