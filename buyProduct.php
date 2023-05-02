@@ -11,12 +11,18 @@
                 while($row=mysqli_fetch_assoc($result)){
             ?>
                 <div class="item">
+                    <div class="item-img">
                     <img src="./uploadImages/<?php echo $row['Product_Img'] ?>" alt="product">
                     <div class="pname"><?php echo $row['Product_Name'] ?></div>
-                    <div class="pModal"><?php echo $row['Product_Modal_No'] ?></div>
-                    <div class="pPrice" style="text-decoration:line-through">Rs. <?php echo $row['Normal_Price'] ?></div>
+                    <div class="pModal">MODEL NO. &nbsp;<?php echo $row['Product_Modal_No'] ?></div>
+                    </div>
+                    <div class="item-innerdiv">
+                    <div class="pPrice" style="text-decoration:line-through;color:red">Rs. <?php echo $row['Normal_Price'] ?></div>
                     <div class="pPrice">Rs. <?php echo $row['Discounted_Price'] ?></div>
-                    <a href="buyProductForm.php?cid=<?php echo $cid ?>&pid=<?php echo $row['Product_Id'] ?>">Buy Now</a>
+                </div>
+                <div class="p-button">
+                <a class="p-button" href="buyProductForm.php?cid=<?php echo $cid ?>&pid=<?php echo $row['Product_Id'] ?>">Buy Now</a>
+                </div>
                 </div>
             <?php
                 }
