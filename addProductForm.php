@@ -28,10 +28,17 @@
         </div>
         <div class="col-25">
         <input type="number" name="productQuantity" id="productQuantity" required>
+<<<<<<< HEAD
         </div>
 </div>
 <div class="row4">
 <div class="col-25 col-26">
+=======
+        <label for="productNormalPrice">Normal Price</label>
+        <input type="number" name="productNormalPrice" id="productNormalPrice" required>
+        <label for="productDiscountedPrice">Discounted Price</label>
+        <input type="number" name="productDiscountedPrice" id="productDiscountedPrice" required>
+>>>>>>> daa4fc46463060eaa697e7f313e5d1944030a9ea
         <label for="productCategory">Select Category</label>
 </div>
 <div class="col-25 col-26">

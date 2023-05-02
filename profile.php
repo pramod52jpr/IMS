@@ -2,7 +2,7 @@
 <?php include "./components/header.php" ?>
 <section class="profilePage">
     <?php
-    $id=$_SESSION['Company_Id'];
+    $id=$_SESSION['Company_Id']?$_SESSION['Company_Id']:1;
 
     if(isset($_POST['companyName']) and $_POST['companyUsername']){
         $companyName=$_POST['companyName'];

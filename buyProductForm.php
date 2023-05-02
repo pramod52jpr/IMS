@@ -9,14 +9,6 @@ if(isset($_GET['pid']) and isset($_GET['cid'])){
 <section class="addBuyProductFormContainer">
     <form class="buyProductAddForm" action="myOrders.php" method="post">
         <input type="hidden" name="pid" value="<?php echo $pid ?>">
-        <label for="name">Your Name</label>
-        <input type="text" name="name" id="name" required>
-        <label for="contact">Contact No.</label>
-        <input type="text" maxlength="10" name="contact" id="contact" required>
-        <label for="email">Your Email</label>
-        <input type="email" name="email" id="email" required>
-        <label for="address">Shipping Address</label>
-        <input type="text" name="address" id="address" required>
         <label for="piece">No. of Pieces</label>
         <input type="number" name="piece" id="piece" value="1" required>
         </select>

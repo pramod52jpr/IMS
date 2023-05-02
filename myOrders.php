@@ -3,18 +3,19 @@
 <section class="myOrdersPage">
     <div class="myOrdersContainer">
         <?php
-        $id=$_SESSION['Company_Id'];
+        $id=$_SESSION['Company_Id']?$_SESSION['Company_Id']:1;
         $cancelReasonSql="select * from orderstatus";
         $cancelReasonResult=mysqli_query($conn,$cancelReasonSql);
-        if(isset($_POST['pid']) and isset($_POST['name'])){
+        if(isset($_POST['pid']) and isset($_POST['piece'])){
             $pid=$_POST['pid'];
-            $name=$_POST['name'];
-            $contact=$_POST['contact'];
-            $email=$_POST['email'];
-            $address=$_POST['address'];
             $piece=$_POST['piece'];
 
-            $sql="insert into orders(`Person_Name`,`Person_Phone`,`Person_Email`,`Order_Address`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`) values('$name','$contact','$email','$address',$piece,1,$pid,$id)";
+            $orderPriceSql="select `Discounted_Price` from product where `Product_Id`=$pid";
+            $orderPriceResult=mysqli_query($conn,$orderPriceSql);
+            $orderPriceRow=mysqli_fetch_assoc($orderPriceResult);
+            $orderPrice=$orderPriceRow['Discounted_Price'];
+
+            $sql="insert into orders(`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`) values($orderPrice,$piece,1,$pid,$id)";
             $result=mysqli_query($conn,$sql);
             if($result){
                 echo "<script>alert('Order Placed Successfully')</script>";
@@ -57,6 +58,13 @@
                     <div class="about">
                         <div><span>Product : </span><span><?php echo $orow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $orow['Order_Pieces'] ?></span></div>
+                    <?php
+                    if($orow['Approved']==1){
+                    ?>
+                        <div><span>Price Approved : </span><span><?php echo $orow['Approved_Price'] ?></span></div>
+                    <?php
+                    }
+                    ?>
                         <div><span>Modal No. : </span><span><?php echo $orow['Product_Modal_No'] ?></span></div>
                         <div><span>Status : </span><span><?php echo $orow['Status_Name'] ?></span></div>
                         <div><span>Date : </span><span><?php echo $orow['Order_Date'] ?></span></div>

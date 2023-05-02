@@ -6,6 +6,8 @@ if(isset($_POST['productName']) and isset($_FILES['productImg'])){
     $productModal=$_POST['productModal'];
     $productQuantity=$_POST['productQuantity'];
     $productCategory=$_POST['productCategory'];
+    $productNormalPrice=$_POST['productNormalPrice'];
+    $productDiscountedPrice=$_POST['productDiscountedPrice'];
     $image=$_FILES['productImg'];
         $tmp_name=$image['tmp_name'];
         $img_name=$image['name'];
@@ -15,7 +17,7 @@ if(isset($_POST['productName']) and isset($_FILES['productImg'])){
         echo "<script>alert('Product Already Added! Plz Try Another One')</script>";
     }else{
         move_uploaded_file($tmp_name,"./uploadImages/$img_name");
-        $addSql="insert into product(`Product_Name`,`Product_Modal_No`,`P_Category_Id`,`Quantity`,`Product_Img`) values('$productName','$productModal','$productCategory',$productQuantity,'$img_name')";
+        $addSql="insert into product(`Product_Name`,`Product_Modal_No`,`P_Category_Id`,`Quantity`,`Product_Img`,`Normal_Price`,`Discounted_Price`) values('$productName','$productModal','$productCategory',$productQuantity,'$img_name',$productNormalPrice,$productDiscountedPrice)";
         $addResult=mysqli_query($conn,$addSql);
         if($addResult){
             echo "<script>alert('Product Added Successfully')</script>";
@@ -29,11 +31,14 @@ if(isset($_POST['productUpdatedName']) and isset($_POST['updatepid'])){
     $productUpdatedName=$_POST['productUpdatedName'];
     $productUpdatedModal=$_POST['productUpdatedModal'];
     $productUpdatedCategory=$_POST['productUpdatedCategory'];
+    $productUpdatedQuantity=$_POST['productUpdatedQuantity'];
+    $productUpdatedNormalPrice=$_POST['productUpdatedNormalPrice'];
+    $productUpdatedDiscountedPrice=$_POST['productUpdatedDiscountedPrice'];
     $updateImage=$_FILES['productUpdatedImage'];
         $updated_tmp_name=$updateImage['tmp_name'];
         $updated_img_name=$updateImage['name'];
     move_uploaded_file($updated_tmp_name,"./uploadImages/$updated_img_name");
-    $updateSql="update product set `Product_Name`='$productUpdatedName',`Product_Modal_No`='$productUpdatedModal',`Product_Img`='$updated_img_name',`P_Category_Id`='$productUpdatedCategory' where `Product_Id`=$updatepid";
+    $updateSql="update product set `Product_Name`='$productUpdatedName',`Quantity`=$productUpdatedQuantity,`Normal_Price`=$productUpdatedNormalPrice,`Discounted_Price`=$productUpdatedDiscountedPrice,`Product_Modal_No`='$productUpdatedModal',`Product_Img`='$updated_img_name',`P_Category_Id`='$productUpdatedCategory' where `Product_Id`=$updatepid";
     $updateResult=mysqli_query($conn,$updateSql);
     if($updateResult){
         echo "<script>alert('Product Updated Successfully')</script>";
@@ -69,7 +74,10 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
     $newDate=date("Y-m-d");
     $addQuantitySql="update product set `Quantity`=$newQuantity,`Latest_Stock_Date`='$newDate' where `Product_Id`=$proId";
     $addQuantityResult=mysqli_query($conn,$addQuantitySql);
-    if($addQuantityResult){
+
+    $stockSql="insert into stockreport (`Stock_Amount`,`Product_Id`) values($quantity,$proId)";
+    $stockResult=mysqli_query($conn,$stockSql);
+    if($addQuantityResult and $stockResult){
         echo "<script>alert('Quantity added Successfully')</script>";
     }else{
         echo "<script>alert('Quantity not added')</script>";
@@ -90,8 +98,10 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
             <thead>
                 <tr>
                     <th>Product Name</th>
-                    <th>Product Desc.</th>
                     <th>Modal No.</th>
+                    <th>Category Name</th>
+                    <th>Normal Price</th>
+                    <th>Discounted Price</th>
                     <th>Latest Stock Date</th>
                     <th>Quantity</th>
                     <th>Actions</th>
@@ -108,6 +118,8 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
                     <td><?php echo $row['Product_Name'] ?></td>
                     <td><?php echo $row['Product_Modal_No'] ?></td>
                     <td><?php echo $row['P_Category_Name'] ?></td>
+                    <td><?php echo $row['Normal_Price'] ?>/-</td>
+                    <td><?php echo $row['Discounted_Price'] ?>/-</td>
                     <td><?php echo implode("/",array_reverse(explode("-",$row['Latest_Stock_Date']))) ?></td>
                     <td width="300px" style="position:relative  ">
                         <?php echo $row['Quantity'] ?>

@@ -1,7 +1,7 @@
 <?php include "conn.php" ?>
 <?php include "./components/header.php" ?>
 <?php
-$id=$_SESSION['Company_Id'];
+$id=$_SESSION['Company_Id']?$_SESSION['Company_Id']:1;
 $btnSql="select * from orderstatus";
 $btnResult=mysqli_query($conn,$btnSql);
 if(isset($_GET['oid']) and isset($_GET['osid'])){
@@ -34,6 +34,21 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
                     echo "<script>alert('Order status not Updated')</script>";
                 }
             }
+        }elseif($osid==2){
+            $priceSql="select `Approved` from orders where `Order_Id`=$oid";
+            $priceResult=mysqli_query($conn,$priceSql);
+            $priceRow=mysqli_fetch_assoc($priceResult);
+            if($priceRow['Approved']==1){
+                $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
+                $oresult=mysqli_query($conn,$osql);
+                if($oresult){
+                    echo "<script>alert('Order Status Updated Successfully')</script>";
+                }else{
+                    echo "<script>alert('Order status not Updated')</script>";
+                }
+            }else{
+                echo "<script>alert('Please Approve the Price')</script>";
+            }
         }else{
             $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
             $oresult=mysqli_query($conn,$osql);
@@ -43,6 +58,7 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
                 echo "<script>alert('Order status not Updated')</script>";
             }
         }
+        
     }
 }
 if(isset($_POST['orderId']) and isset($_POST['delivery'])){
@@ -54,6 +70,17 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
         echo "<script>alert('Delivery Mode Updated')</script>";
     }else{
         echo "<script>alert('OOPS! Delivery Mode not Updated')</script>";
+    }
+}
+if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
+    $odrId=$_POST['odrId'];
+    $approvedPrice=$_POST['approvedPrice'];
+    $updatePriceSql="update orders set `Approved_Price`=$approvedPrice,`Approved`=1 where `Order_Id`=$odrId";
+    $updatePriceResult=mysqli_query($conn,$updatePriceSql);
+    if($updatePriceResult){
+        echo "<script>alert('Price Approved')</script>";
+    }else{
+        echo "<script>alert('Price not Approved')</script>";
     }
 }
 ?>
@@ -161,6 +188,13 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                         <h2>Order Details</h2>
                         <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
+                    <?php
+                    if($aorow['Approved']==1){
+                    ?>
+                        <div><span>Price Approved : </span><span><?php echo $aorow['Approved_Price'] ?></span></div>
+                    <?php
+                    }
+                    ?>
                         <div><span>Modal No. : </span><span><?php echo $aorow['Product_Modal_No'] ?></span></div>
                         <div><span>Status : </span><span><?php echo $aorow['Status_Name'] ?></span></div>
                         <div><span>Date : </span><span><?php echo $aorow['Order_Date'] ?></span></div>
@@ -187,11 +221,19 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
                         <div><span>Address : </span><span><?php echo $aorow['Company_Address'] ?></span></div>
                     </div>
                     <div class="order-box">
-                        <h2>Orderer Details</h2>
-                        <div><span>Name : </span><span><?php echo $aorow['Person_Name'] ?></span></div>
-                        <div><span>Contact : </span><span><?php echo $aorow['Person_Phone'] ?></span></div>
-                        <div><span>Email : </span><span><?php echo $aorow['Person_Email'] ?></span></div>
-                        <div><span>Address : </span><span><?php echo $aorow['Order_Address'] ?></span></div>
+                        <h2>Price Approval : </h2>
+                        <form action="orders.php" method="post">
+                            <?php
+                            if($aorow['Approved']==1 or $aorow['Order_Status']==5){
+                                $disable="disabled";
+                            }else{
+                                $disable="";
+                            }
+                            ?>
+                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
+                            <input type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
+                            <input type="submit" value="Approve" <?php echo $disable ?>>
+                        </form>
                     </div>
                 
                     <div class="order-box2">
