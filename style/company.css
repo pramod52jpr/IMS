@@ -52,13 +52,13 @@ body {
     text-align: left;
     font-size: 15px;
     padding: 5px 10px;
-   
+
 }
 
 .companyPage .companyContainer table td {
     font-size: 15px;
     padding: 5px 10px;
-   
+
 }
 
 .companyPage .companyContainer table td a {
@@ -70,6 +70,7 @@ body {
     text-align: left;
     width: 15%;
 }
+
 /* -------------------------------------new style----------------------------------------------- */
 
 table {
@@ -95,9 +96,8 @@ tr:nth-child(odd) {
 
 /* --------------------media querry------------------------------ */
 
-@media (max-width: 870px){
-    .mainContainer .navbar{
-position: absolute;
-width: 200px;
+@media (max-width: 870px) {
+    .mainContainer .navbar {
+        position: absolute;
     }
 }
