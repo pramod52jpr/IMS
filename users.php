@@ -1,7 +1,8 @@
 <?php include "conn.php" ?>
 <?php include "./components/header.php" ?>
 <?php
-$id=$_SESSION['Company_Id']?$_SESSION['Company_Id']:1;
+$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
+$companyCode=$_SESSION['Company_Code'];
 if(isset($_POST['username']) and isset($_POST['userPassword'])){
     $username=$_POST['username'];
     $userPassword=$_POST['userPassword'];
@@ -15,7 +16,7 @@ if(isset($_POST['username']) and isset($_POST['userPassword'])){
     $branches=isset($_POST['branches'])?$_POST['branches']:"";
     $userPermit=$AdminCategory.$productCategory.$product.$orders.$branches;
 
-    $addSql="insert into users(`Company_Code`,`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values('$username','$userPassword','$userPhone','$userEmail','$userPermit')";
+    $addSql="insert into users(`Company_Code`,`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values($companyCode,'$username','$userPassword','$userPhone','$userEmail','$userPermit')";
     $addResult=mysqli_query($conn,$addSql);
     if($addResult){
         echo "<script>alert('User Added Successfully')</script>";

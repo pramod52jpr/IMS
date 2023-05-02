@@ -182,6 +182,17 @@ if($adminRow['Admin_Type']==1){
                 echo "<script>alert('OOPS! Delivery Mode not Updated')</script>";
             }
         }
+        if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
+            $odrId=$_POST['odrId'];
+            $docketNo=$_POST['docketNo'];
+            $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
+            $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
+            if($docketUpdateResult){
+                echo "<script>alert('Docket No. Added')</script>";
+            }else{
+                echo "<script>alert('Docket No. not Added')</script>";
+            }
+        }
         $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
         $aoresult=mysqli_query($conn,$aosql);
         if(mysqli_num_rows($aoresult)>0){
@@ -223,6 +234,9 @@ if($adminRow['Admin_Type']==1){
                         <div><span>Email : </span><span><?php echo $aorow['Company_Email'] ?></span></div>
                         <div><span>Address : </span><span><?php echo $aorow['Company_Address'] ?></span></div>
                     </div>
+                    <?php
+                    if(!isset($_SESSION['User_Id'])){
+                    ?>
                     <div class="about">
                         <h2>Price Approval : </h2>
                         <form action="dashboard.php" method="post">
@@ -238,6 +252,9 @@ if($adminRow['Admin_Type']==1){
                             <input type="submit" value="Approve" <?php echo $disable ?>>
                         </form>
                     </div>
+                    <?php
+                    }
+                    ?>
                     <div class="about">
                         <form action="dashboard.php" method="post">
                             <?php
@@ -269,6 +286,18 @@ if($adminRow['Admin_Type']==1){
                             </select>
                             <input type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
+                        <form action="dashboard.php" method="post">
+                            <?php
+                            if($aorow['Docket_No']!==""){
+                                $disables="disabled";
+                            }else{
+                                $disables="";
+                            }
+                            ?>
+                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
+                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
+                            <input type="submit" value="save" <?php echo $disables ?>>
+                        </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";
                         $orderstatusResult=mysqli_query($conn,$orderstatusSql);
@@ -281,6 +310,11 @@ if($adminRow['Admin_Type']==1){
                                 }
                                 if(($aorow['Order_Status']==5) and ($orderstatusRow['Status_Id']!=5)){
                                     continue;
+                                }
+                                if(isset($_SESSION['User_Id'])){
+                                    if($orderstatusRow['Status_Id']<=2){
+                                        continue;
+                                    }
                                 }
                         ?>
                                 <a href="dashboard.php?oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>

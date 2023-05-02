@@ -3,7 +3,7 @@
 <section class="myOrdersPage">
     <div class="myOrdersContainer">
         <?php
-        $id=$_SESSION['Company_Id']?$_SESSION['Company_Id']:1;
+        $id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
         $cancelReasonSql="select * from orderstatus";
         $cancelReasonResult=mysqli_query($conn,$cancelReasonSql);
         if(isset($_POST['pid']) and isset($_POST['piece'])){
