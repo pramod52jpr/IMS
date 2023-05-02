@@ -48,11 +48,6 @@ if(isset($_POST['productUpdatedName']) and isset($_POST['updatepid'])){
 }
 if(isset($_GET['dpid'])){
     $dpid=$_GET['dpid'];
-    // $productImageSql="select `Product_Img` from product where `Product_Id`=$dpid";
-    // $productImageResult=mysqli_query($conn,$productImageSql);
-    // $productImageRow=mysqli_fetch_assoc($productImageResult);
-    // $productImage=$productImageRow['Product_Img'];
-    // unlink("./uploadImages/$productImage");
     $deleteSql="delete from product where `Product_Id`=$dpid";
     $deleteResult=mysqli_query($conn,$deleteSql);
     if($deleteResult){
@@ -75,7 +70,7 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
     $addQuantitySql="update product set `Quantity`=$newQuantity,`Latest_Stock_Date`='$newDate' where `Product_Id`=$proId";
     $addQuantityResult=mysqli_query($conn,$addQuantitySql);
 
-    $stockSql="insert into stockreport (`Stock_Amount`,`Product_Id`) values($quantity,$proId)";
+    $stockSql="insert into stockreport (`Added_Quantity`,`Product_Id`) values($quantity,$proId)";
     $stockResult=mysqli_query($conn,$stockSql);
     if($addQuantityResult and $stockResult){
         echo "<script>alert('Quantity added Successfully')</script>";

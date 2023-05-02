@@ -72,7 +72,13 @@ include "conn.php";
         </div>
     </header>
     <div class="hellocompanyDropdown" id="hellocompanyDropdown">
-        <a href="profile.php">Profile</a>
+        <?php
+        if (!isset($_SESSION['User_Id'])) {
+            ?>
+            <a href="profile.php">Profile</a>
+            <?php
+        }
+        ?>
         <a href="logout.php">Logout</a>
     </div>
     <section class="mainContainer">
@@ -198,7 +204,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="product.php">
-                                <span class="h-icon"><img src="img/product.png"></span>
+                                    <span class="h-icon"><img src="img/product.png"></span>
                                     Products</a>
                             </li>
                             <?php
@@ -219,7 +225,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="orders.php">
-                                <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
+                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
                                     All Orders</a>
                             </li>
                             <?php
@@ -230,8 +236,8 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="users.php">
-                                <span class="h-icons"><i class="fa-solid fa-user"></i></span>    
-                                Users</a>
+                                    <span class="h-icons"><i class="fa-solid fa-user"></i></span>
+                                    Users</a>
                             </li>
                             <?php
                         }

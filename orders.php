@@ -1,7 +1,7 @@
 <?php include "conn.php" ?>
 <?php include "./components/header.php" ?>
 <?php
-$id=$_SESSION['Company_Id']?$_SESSION['Company_Id']:1;
+$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
 $btnSql="select * from orderstatus";
 $btnResult=mysqli_query($conn,$btnSql);
 if(isset($_GET['oid']) and isset($_GET['osid'])){
@@ -70,6 +70,17 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
         echo "<script>alert('Delivery Mode Updated')</script>";
     }else{
         echo "<script>alert('OOPS! Delivery Mode not Updated')</script>";
+    }
+}
+if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
+    $odrId=$_POST['odrId'];
+    $docketNo=$_POST['docketNo'];
+    $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
+    $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
+    if($docketUpdateResult){
+        echo "<script>alert('Docket No. Added')</script>";
+    }else{
+        echo "<script>alert('Docket No. not Added')</script>";
     }
 }
 if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
@@ -212,7 +223,6 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                     }
                     ?>
                     </div>
-                
                     <div class="order-box">
                         <h2>Company Details</h2>
                         <div><span>Company : </span><span><?php echo $aorow['Company_Name'] ?></span></div>
@@ -220,6 +230,9 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         <div><span>Email : </span><span><?php echo $aorow['Company_Email'] ?></span></div>
                         <div><span>Address : </span><span><?php echo $aorow['Company_Address'] ?></span></div>
                     </div>
+                    <?php
+                    if(!isset($_SESSION['User_Id'])){
+                    ?>
                     <div class="order-box">
                         <h2>Price Approval : </h2>
                         <form action="orders.php" method="post">
@@ -235,7 +248,9 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             <input type="submit" value="Approve" <?php echo $disable ?>>
                         </form>
                     </div>
-                
+                    <?php
+                    }
+                    ?>
                     <div class="order-box2">
                         <?php
                             $statusId=isset($status)?"status=$status&":"";
@@ -272,6 +287,18 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             </select>
                             <input class="sub-b" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
+                        <form action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
+                            <?php
+                            if($aorow['Docket_No']!==""){
+                                $disables="disabled";
+                            }else{
+                                $disables="";
+                            }
+                            ?>
+                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
+                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
+                            <input type="submit" value="save" <?php echo $disables ?>>
+                        </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";
                         $orderstatusResult=mysqli_query($conn,$orderstatusSql);
@@ -284,6 +311,11 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                                 }
                                 if(($aorow['Order_Status']==5) and ($orderstatusRow['Status_Id']!=5)){
                                     continue;
+                                }
+                                if(isset($_SESSION['User_Id'])){
+                                    if($orderstatusRow['Status_Id']<=2){
+                                        continue;
+                                    }
                                 }
                     ?>
                         <a class="order-button" href="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
