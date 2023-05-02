@@ -14,6 +14,8 @@
                     <img src="./uploadImages/<?php echo $row['Product_Img'] ?>" alt="product">
                     <div class="pname"><?php echo $row['Product_Name'] ?></div>
                     <div class="pModal"><?php echo $row['Product_Modal_No'] ?></div>
+                    <div class="pPrice" style="text-decoration:line-through">Rs. <?php echo $row['Normal_Price'] ?></div>
+                    <div class="pPrice">Rs. <?php echo $row['Discounted_Price'] ?></div>
                     <a href="buyProductForm.php?cid=<?php echo $cid ?>&pid=<?php echo $row['Product_Id'] ?>">Buy Now</a>
                 </div>
             <?php

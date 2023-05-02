@@ -108,12 +108,18 @@ include "conn.php";
                 </div>
                 <div class="itemDropdown">
                     <ul>
-                        <li>
-                            <a href="company.php">
-                                <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass"></i></span>
-                                <span class="Title">All Companies</span>
-                            </a>
-                        </li>
+                        <?php
+                        if (!isset($huRow['User_Permission'])) {
+                            ?>
+                            <li>
+                                <a href="company.php">
+                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass"></i></span>
+                                    <span class="Title">All Companies</span>
+                                </a>
+                            </li>
+                            <?php
+                        }
+                        ?>
                         <?php
                         if (isset($huRow['User_Permission'])) {
                             if (str_contains($huRow['User_Permission'], "branches")) {
@@ -234,17 +240,35 @@ include "conn.php";
             }
             ?>
             <ul>
-                <li>
-                    <a href="myBranch.php">
-                        <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
-                        <span class="Title"> My Branch</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="myOrders.php">
-                        <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
-                        <span class="Title"> My Orders</span>
-                    </a>
-                </li>
+                <?php
+                if (!isset($huRow['User_Permission'])) {
+                    ?>
+                    <li>
+                        <a href="myBranch.php">
+                            <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
+                            <span class="Title"> My Branch</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="myOrders.php">
+                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
+                            <span class="Title"> My Orders</span>
+                        </a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (isset($hcRow['Admin_Type']) and $hcRow['Admin_Type'] == 1) {
+                    ?>
+                    <li>
+                        <a href="stock-report.php">
+                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
+                            <span class="Title"> Reports</span>
+                        </a>
+                    </li>
+                    <?php
+                }
+                ?>
             </ul>
         </div>

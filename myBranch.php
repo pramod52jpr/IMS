@@ -1,7 +1,7 @@
 <?php include "conn.php" ?>
 <?php include "./components/header.php" ?>
 <?php
-$id=$_SESSION['Company_Id'];
+$id=$_SESSION['Company_Id']?$_SESSION['Company_Id']:1;
 if(isset($_POST['branchName']) and isset($_POST['branchPhone'])){
     $branchName=$_POST['branchName'];
     $branchPhone=$_POST['branchPhone'];

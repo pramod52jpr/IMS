@@ -10,6 +10,10 @@
         <input type="file" name="productImg" id="productImg" accept="image/png,image/jpg,image/jpeg" required>
         <label for="productQuantity">Quantity</label>
         <input type="number" name="productQuantity" id="productQuantity" required>
+        <label for="productNormalPrice">Normal Price</label>
+        <input type="number" name="productNormalPrice" id="productNormalPrice" required>
+        <label for="productDiscountedPrice">Discounted Price</label>
+        <input type="number" name="productDiscountedPrice" id="productDiscountedPrice" required>
         <label for="productCategory">Select Category</label>
         <select name="productCategory" id="productCategory" required>
             <option value="" selected disabled>Select Category</option>

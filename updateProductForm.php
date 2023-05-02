@@ -15,6 +15,12 @@
         <input type="text" value="<?php echo $UpdateRow['Product_Modal_No'] ?>" name="productUpdatedModal" id="productUpdatedModal" required>
         <label for="productUpdatedImage">Image</label>
         <input type="file" name="productUpdatedImage" id="productUpdatedImage" accept="image/png,image/jpg,image/jpeg" required>
+        <label for="productUpdatedQuantity">Quantity</label>
+        <input type="number" value="<?php echo $UpdateRow['Quantity'] ?>" name="productUpdatedQuantity" id="productUpdatedQuantity" required>
+        <label for="productUpdatedNormalPrice">Normal Price</label>
+        <input type="number" value="<?php echo $UpdateRow['Normal_Price'] ?>" name="productUpdatedNormalPrice" id="productUpdatedNormalPrice" required>
+        <label for="productUpdatedDiscountedPrice">Discounted Price</label>
+        <input type="number" value="<?php echo $UpdateRow['Discounted_Price'] ?>" name="productUpdatedDiscountedPrice" id="productUpdatedDiscountedPrice" required>
         <label for="productUpdatedCategory">Select Category</label>
         <select name="productUpdatedCategory" id="productCategory" required>
             <option value="" disabled>Select Category</option>
