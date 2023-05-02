@@ -304,7 +304,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             ?>
                             <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
+                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" placeholder="Docket No." <?php echo $disables ?>>
                             <input type="submit" value="save" <?php echo $disables ?>>
                         </form>
                     <?php
