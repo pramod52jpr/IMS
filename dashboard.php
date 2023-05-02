@@ -183,14 +183,21 @@ if($adminRow['Admin_Type']==1){
             }
         }
         if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
+            $billProcess=$_POST['billProcess'];
             $odrId=$_POST['odrId'];
             $docketNo=$_POST['docketNo'];
-            $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
-            $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
-            if($docketUpdateResult){
-                echo "<script>alert('Docket No. Added')</script>";
+            if($billProcess<=2){
+                echo "<script>alert('Stay for Approvel of billing')</script>";
+            }elseif($docketNo==""){
+                echo "<script>alert('Please Enter Docket No.')</script>";
             }else{
-                echo "<script>alert('Docket No. not Added')</script>";
+                $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
+                $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
+                if($docketUpdateResult){
+                    echo "<script>alert('Docket No. Added')</script>";
+                }else{
+                    echo "<script>alert('Docket No. not Added')</script>";
+                }
             }
         }
         $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
@@ -294,6 +301,7 @@ if($adminRow['Admin_Type']==1){
                                 $disables="";
                             }
                             ?>
+                            <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
                             <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
                             <input type="submit" value="save" <?php echo $disables ?>>
