@@ -78,7 +78,7 @@ if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
     $docketNo=$_POST['docketNo'];
     if($billProcess<=2){
         echo "<script>alert('Stay for Approvel of billing')</script>";
-    }elseif($docketNo=""){
+    }elseif($docketNo==""){
         echo "<script>alert('Please Enter Docket No.')</script>";
     }else{
         $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
