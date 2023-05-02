@@ -41,6 +41,7 @@ body {
 
 .UpdateMyBranchFormContainer .myBranchUpdateForm .updateMyBbranchFormBtn {
     align-self: center;
+    margin-top: 50px;
 }
 
 .UpdateMyBranchFormContainer .myBranchUpdateForm .updateMyBbranchFormBtn .btn {
@@ -77,9 +78,27 @@ body {
     align-items: center;
 }
 
+
+.row6 {
+    display: flex;
+    margin-top: 30px;
+}
+.row6 .col-28 label {
+    font-size: 17px;
+}
+.row6 .col-28 input {
+    width: 18px;
+}
 .col-25 {
     display: flex;
     width: 100%;
+}
+
+.col-28 {
+    display: flex;
+    width: 100%;
+    text-align: center;
+   
 }
 
 label {
@@ -139,38 +158,39 @@ input#branchUpdatedAddress:focus {
     .row {
         flex-direction: column;
     }
-    label {
-       
-        margin-left: 0px;
+    label { 
+     margin-left: 0px;
     }
-
     .row2 {
-        flex-direction: column;
+     flex-direction: column;
     }
-
     .col-25 {
         display: flex;
         width: 100%;
     }
-
     input#branchUpdatedName {
         width: 100%;
     }
-
     input#branchUpdatedEmail {
         width: 100%;
     }
+    .row6 {
+        display: flex;
+        margin-top: 0px;
+        flex-direction: column;
+    }
+    .col-28 {
+        text-align: inherit;
+        flex-direction: row; 
+    }
 }
-
 @media(max-width:820px) {
     .row {
         flex-direction: column;
     }
-
     .row2 {
         flex-direction: column;
     }
-
     .col-25 {
         display: flex;
         width: 100%;
@@ -186,6 +206,15 @@ input#branchUpdatedAddress:focus {
     label {
        
         margin-left: 0px;
+    }
+    .row6 {
+        display: flex;
+        margin-top: 0px;
+        flex-direction: column;
+    }
+    .col-28 {
+        text-align: inherit;
+        flex-direction: row; 
     }
 }
 @media(max-width:920px) {
@@ -212,5 +241,17 @@ input#branchUpdatedAddress:focus {
     label {
        
         margin-left: 0px;
+    }
+    .row6 {
+        display: flex;
+        margin-top: 0px;
+        flex-direction: column;
+    }
+
+    .col-28 {
+       
+        text-align: inherit;
+        flex-direction: row;
+       
     }
 }

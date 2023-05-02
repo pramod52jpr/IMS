@@ -29,9 +29,8 @@ body {
 
 .updateCompanyPage .updateCompanyForm label {
     font-size: 15px;
-    margin: 5px 0px;
+    margin: 5px 13px;
 }
-
 .updateCompanyPage .updateCompanyForm input,
 .updateCompanyPage .updateCompanyForm select {
     padding: 8px 10px;
@@ -82,24 +81,26 @@ body {
 .col-25 {
     display: flex;
     width: 25%;
+  
 }
 
+
 label {
-    width: 80%;
+    width: 100%;
 }
 
 input#companyCode {
-    width: 95%;
+    width: 100%;
 }
 
 select#companyCategory {
     width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+   
 }
 
 input#companyName {
-    width: 95%;
+    width: 100%;
     transition: 0.3s;
     /* margin-top: 10px; */
 }
@@ -131,57 +132,57 @@ input#companyContact {
 }
 
 input#companyEmail {
-    width: 95%;
+    width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+ 
 }
 
 input#companyAddress {
     width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+  
 }
 
 input#companyUsername {
-    width: 95%;
+    width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+   
 }
 
 input#companyPassword {
     width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+    
 }
 
 input#companyGst {
-    width: 95%;
+    width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+   
 }
 
 input#companyPan {
     width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+   
 }
 
 input#companyTan {
-    width: 95%;
+    width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+   
 }
 
 input#companyLicence {
     width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+
 }
 
 input#companyRgNo {
-    width: 95%;
+    width: 100%;
     transition: 0.3s;
-    border-radius: 3px;
+  
 }
 
 h4.heading {
@@ -265,6 +266,10 @@ input#companyName:focus {
 }
 
 
+.col-25.col-26 {
+    width: 25%;
+}
+
 /* ----------------------------media qurrey---------------------------------- */
 
 @media(max-width:390px) {
@@ -283,29 +288,12 @@ input#companyName:focus {
     .col-25 {
         width: 100%;
     }
-    label.labelfill {
+    .col-25.col-26 {
         width: 100%;
     }
-    input#companyCode {
-        width: 100%;
-    }
-    input#companyName {
-        width: 100%;
-    }
-    input#companyEmail {
-        width: 100%;
-    }
-    input#companyUsername {
-        width: 100%;
-    }
-    input#companyGst {
-        width: 100%;
-    }
-    input#companyTan {
-        width: 100%;
-    }
-    input#companyRgNo {
-        width: 100%;
+    
+    .updateCompanyPage .updateCompanyForm label {
+        margin: 5px 0px;
     }
 }
 
@@ -325,28 +313,38 @@ input#companyName:focus {
     .col-25 {
         width: 100%;
     }
-    label.labelfill {
+    .col-25.col-26 {
         width: 100%;
     }
-    input#companyCode {
+    .updateCompanyPage .updateCompanyForm label {
+        margin: 5px 0px;
+    }
+}
+
+
+@media(max-width:920px) {
+    .row {
+        flex-direction: column;
+    }
+    .row2 {
+        flex-direction: column;
+    }
+    .row3 {
+        flex-direction: column;
+    }
+    .row4 {
+        flex-direction: column;
+    }
+    .row4{
         width: 100%;
     }
-    input#companyName {
+    .col-25 {
         width: 100%;
     }
-    input#companyEmail {
+    .col-25.col-26 {
         width: 100%;
     }
-    input#companyUsername {
-        width: 100%;
-    }
-    input#companyGst {
-        width: 100%;
-    }
-    input#companyTan {
-        width: 100%;
-    }
-    input#companyRgNo {
-        width: 100%;
+    .updateCompanyPage .updateCompanyForm label {
+        margin: 5px 0px;
     }
 }

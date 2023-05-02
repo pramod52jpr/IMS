@@ -192,7 +192,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="product.php">
-                                    <span class="h-icons"><i class="fa-solid fa-file"></i></span>
+                                <span class="h-icon"><img src="img/product.png"></span>
                                     Products</a>
                             </li>
                             <?php
@@ -213,7 +213,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="orders.php">
-                                    <span class="h-icons"><img src="img/product.png"></span>
+                                <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
                                     All Orders</a>
                             </li>
                             <?php
@@ -223,7 +223,9 @@ include "conn.php";
                         if (!isset($huRow['User_Permission'])) {
                             ?>
                             <li>
-                                <a href="users.php">Users</a>
+                                <a href="users.php">
+                                <span class="h-icons"><i class="fa-solid fa-user"></i></span>    
+                                Users</a>
                             </li>
                             <?php
                         }

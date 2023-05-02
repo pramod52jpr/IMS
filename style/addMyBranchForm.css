@@ -1,18 +1,22 @@
+body {
+    background: #e7e6e6;
+}
 .addMyBranchFormContainer{
     width: 100%;
     display: flex;
     min-height: 750px;
     justify-content: center;
-    background-color: rgb(220, 255, 255);
     align-items: flex-start;
+    padding: 23px;
 }
 .addMyBranchFormContainer .myBranchAddForm{
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: white;
-    width: 50%;
+    background-color: #1b4965;
+    color: white;
+    width: 100%;
     margin-top: 50px;
     border-radius: 10px;
 }
@@ -22,14 +26,14 @@
     padding: 5px;
     margin-top: 5px;
 }
-.addMyBranchFormContainer .myBranchAddForm input{
+/* .addMyBranchFormContainer .myBranchAddForm input{
     padding: 10px;
     margin: 5px;
     outline: 0;
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     font-size: 20px;
-}
+} */
 .addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn{
     align-self: center;
 }
@@ -39,7 +43,7 @@
     text-decoration: none;
     margin: 0;
     width: 100px;
-    border-radius: 5px;
+    border-radius: 0px;
     padding: 5px 10px;
     font-size: 20px;
     border: none;
@@ -50,9 +54,38 @@
 .addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn .btn:hover{
     background-color: rgb(0, 177, 0);
 }
-.addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn a.btn{
+.addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn a.btn {
     background-color: rgb(214, 0, 0);
+    color: white;
+    text-decoration: none;
+    margin: 0;
+    width: 100px;
+    border-radius: 0px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    /* margin: 20px 2px; */
+    display: inline-block;
+    transition-duration: 0.1s;
+    height: 38px;
+    position: relative;
+    top: -2px;
 }
 .addMyBranchFormContainer .myBranchAddForm .addMyBranchFormBtn a.btn:hover{
     background-color: rgb(255, 0, 0);
+}
+
+
+
+
+/* ---------------------------new style-------------------------------- */
+.addMyBranchFormContainer .myBranchAddForm input {
+    padding: 10px;
+    margin: 5px;
+    outline: 0;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    font-size: 20px;
+    width: 100%;
 }

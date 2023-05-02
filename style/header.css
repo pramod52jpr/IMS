@@ -8,8 +8,7 @@
 .headerContainer {
     display: flex;
     justify-content: space-between;
-    
-    background-color: #1b4965;
+    background-color: #457b9d ;
     padding: 5px 10px;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -84,7 +83,7 @@
 .mainContainer .navbar {
     display: flex;
     flex-direction: column;
-    background-color: #1b4965;
+    background-color:#457b9d ;
     width: 0;
     min-height: 700px;
     overflow: hidden;
@@ -110,9 +109,7 @@
 
 .mainContainer .navbar .items {
     display: flex;
-    padding: 2px 13px;
-    margin-top: 10px;
-    cursor: pointer;
+     cursor: pointer;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -158,12 +155,16 @@ i.fa-sharp.fa-solid.fa-building.advanceClass{
 
 .h-icons img {
     width: 20px;
+     margin-left: -4px;
    
-    margin-left: 10px;
+}
+.h-icon img {
+    width: 20px;
+     margin-left: 11px;
    
 }
 .mainContainer .navbar a {
-    color: rgb(194, 194, 194);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     padding: 11px 0px;
     margin-top: 10px;
@@ -193,11 +194,14 @@ a.user {
 
 
 
+.navbar ul li{
+    transition: 0.3s;
+}
 
 
-
-.navbar ul li {
-    width: 117%;
+.mainContainer .navbar .items ul li{
+    width: 124%;
+    transition: 0.2;
 }
 
 .navbar ul li:hover a{
@@ -217,7 +221,7 @@ a.user {
 }
 .navbar ul li:hover
 {
-background: #219ebc;
+background:#1b4965;
 border-top-left-radius: 50px;
 border-bottom-left-radius: 50px;
 }
@@ -225,4 +229,12 @@ border-bottom-left-radius: 50px;
 
 i.fa-solid.fa-user {
     margin-left: -3px;
+}
+a i.fa-sharp.fa-solid.fa-cart-shopping.advanceClass {
+    margin-left: -4px;
+}
+
+
+.items ul {
+    margin-top: -10px;
 }

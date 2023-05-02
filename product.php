@@ -82,6 +82,7 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
     <div class="crudBtn">
         <div class="add">
             <a href="addProductForm.php">Add New</a>
+            <hr class="hrline">
         </div>
     </div>
     <div class="machineContainer">

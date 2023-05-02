@@ -116,10 +116,11 @@
     </div>
         </div>
         <div class="row4">
-        <div class="col-25">
+        <div class="col-25 col-26">
         <label class="labelfill" for="companyRgNo">Registration Number</label>
     </div>
-    <div class="col-25">
+    
+    <div class="col-25 col-26">
    
         <input class="inputfill" type="text"  value="<?php echo $comRow['Company_Registration'] ?>" name="companyRgNo" id="companyRgNo">
     </div>

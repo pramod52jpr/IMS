@@ -46,6 +46,7 @@ if(isset($_GET['dmbid'])){
     <div class="crudBtn">
         <div class="add">
             <a href="addMyBranchForm.php">Add New</a>
+            <hr class="hrline"></hr>
         </div>
     </div>
     <div class="myBranchContainer">

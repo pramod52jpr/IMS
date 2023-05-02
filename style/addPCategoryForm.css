@@ -1,18 +1,22 @@
+body {
+    background: #e7e6e6;
+}
 .addPCategoryFormContainer{
     width: 100%;
     display: flex;
     min-height: 750px;
     justify-content: center;
-    background-color: rgb(220, 255, 255);
-    align-items: flex-start;
+   align-items: flex-start;
+   padding: 23px;
 }
 .addPCategoryFormContainer .PCategoryAddForm{
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: white;
-    width: 50%;
+    background-color: #1b4965;
+    color: white;
+    width: 100%;
     margin-top: 50px;
     border-radius: 10px;
 }
@@ -29,6 +33,7 @@
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     font-size: 20px;
+    width: 100%;
 }
 .addPCategoryFormContainer .PCategoryAddForm .addPCategoryFormBtn{
     align-self: center;

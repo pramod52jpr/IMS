@@ -39,6 +39,8 @@ body {
 
 .companyPage .companyContainer {
     background-color: #ffffff;
+    width: 100%;
+    overflow: auto;
 }
 
 .companyPage .companyContainer table {
@@ -86,4 +88,16 @@ th {
 
 tr:nth-child(odd) {
     background-color: #eeeeee
+}
+
+
+
+
+/* --------------------media querry------------------------------ */
+
+@media (max-width: 870px){
+    .mainContainer .navbar{
+position: absolute;
+width: 200px;
+    }
 }

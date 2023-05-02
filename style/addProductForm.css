@@ -1,3 +1,6 @@
+body {
+    background: #e7e6e6;
+}
 .addMachineFormContainer{
     width: 100%;
     display: flex;
@@ -5,14 +8,16 @@
     justify-content: center;
     background-color: rgb(220, 255, 255);
     align-items: flex-start;
+    padding: 23px;
 }
 .addMachineFormContainer .machineAddForm{
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: white;
-    width: 50%;
+    background-color: #1b4965;
+    color: white;
+    width: 100%;
     margin-top: 50px;
     border-radius: 10px;
 }
@@ -22,14 +27,7 @@
     padding: 5px;
     margin-top: 5px;
 }
-.addMachineFormContainer .machineAddForm input,.addMachineFormContainer .machineAddForm select{
-    padding: 10px;
-    margin: 5px;
-    outline: 0;
-    border: 1px solid rgb(196, 196, 196);
-    border-radius: 5px;
-    font-size: 20px;
-}
+
 .addMachineFormContainer .machineAddForm .addMachineFormBtn{
     align-self: center;
 }
@@ -55,4 +53,16 @@
 }
 .addMachineFormContainer .machineAddForm .addMachineFormBtn a.btn:hover{
     background-color: rgb(255, 0, 0);
+}
+
+
+
+.addMachineFormContainer .machineAddForm input,.addMachineFormContainer .machineAddForm select{
+    padding: 10px;
+    margin: 5px;
+    outline: 0;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 5px;
+    font-size: 20px;
+    width: 100%;
 }

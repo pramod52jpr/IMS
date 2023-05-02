@@ -1,9 +1,12 @@
+body {
+    background: #e7e6e6;
+}
 .addCategoryFormContainer{
     width: 100%;
     display: flex;
     min-height: 750px;
     justify-content: center;
-    background-color: rgb(220, 255, 255);
+   
     align-items: flex-start;
 }
 .addCategoryFormContainer .categoryAddForm{
@@ -11,8 +14,9 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: white;
-    width: 50%;
+    background-color: #1b4965;;
+    color: white;
+    width: 70%;
     margin-top: 100px;
     border-radius: 10px;
 }
@@ -29,9 +33,11 @@
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     font-size: 20px;
+    width: 100%;
 }
 .addCategoryFormContainer .categoryAddForm .addcategoryFormBtn{
     align-self: center;
+    margin-top: 50px;
 }
 .addCategoryFormContainer .categoryAddForm .addcategoryFormBtn .btn{
     color: white;
@@ -55,4 +61,20 @@
 }
 .addCategoryFormContainer .categoryAddForm .addcategoryFormBtn a.btn:hover{
     background-color: rgb(255, 0, 0);
+}
+
+
+
+
+
+
+
+/* ----------------------------media qurrey------------------------------- */
+@media (max-width: 920px){
+    .addCategoryFormContainer .categoryAddForm {
+        width: 100%;
+    }
+    .addCategoryFormContainer {
+        padding: 23px;
+    }
 }

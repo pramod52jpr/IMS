@@ -73,8 +73,8 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
             </form>
         <!-- </div> -->
         <!-- <div class="innerbtnbox"> -->
-            <form class="orform" action="orders.php" method="get">
-                <select name="comId">
+            <form class="orform2" action="orders.php" method="get">
+                <select class="margin-top" name="comId">
                     <option value="" disabled selected>Select Company</option>
                     <?php
                     $comSearchSql="select `Company_Id`,`Company_Name` from company";

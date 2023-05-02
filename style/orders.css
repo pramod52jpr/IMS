@@ -8,7 +8,7 @@
 .allOrdersPage .filterBtnContainer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     padding: 15px 40px;
     margin-bottom: 10px;
     background:  #1b4965;
@@ -119,6 +119,16 @@ form.orform {
     display: flex;
     flex-direction: column;
     width: 30%;
+    justify-content: space-between;
+}
+
+form.orform2 {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: stretch;
+    /* height: 2%; */
+    justify-content: space-between;
 }
 
 input[type="submit"] {
@@ -139,18 +149,6 @@ input[type="date"] {
    
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
-
-.allOrdersPage .filterBtnContainer form input, .allOrdersPage .filterBtnContainer form select {
-    font-family: 'Ubuntu', sans-serif;
-    outline: 0;
-    border: 1px solid black;
-    font-size: 15px;
-    padding: 2px 7px;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-
 .allOrdersPage .filterBtnContainer .statusBtn {
     display: flex;
     flex-direction: column;
@@ -243,9 +241,19 @@ select {
     margin-bottom: 15px;
 }
 
-
-
-
+.allOrdersPage .filterBtnContainer form input, .allOrdersPage .filterBtnContainer form select {
+    font-family: 'Ubuntu', sans-serif;
+    outline: 0;
+    border: 1px solid black;
+    font-size: 15px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-top: 5px;
+    height: 44px;
+}
+.allOrdersPage .filterBtnContainer form select.margin-top{
+    margin-top: 20px;
+}
 
 /* --------------------------------media qurry-------------------------------- */
 
@@ -266,6 +274,10 @@ select {
        flex-direction: column;
     }
     form.orform {
+        width: 100%;
+    }
+
+    form.orform2 {
         width: 100%;
     }
 
@@ -292,7 +304,9 @@ select {
      form.orform {
          width: 100%;
      }
- 
+     form.orform2 {
+        width: 100%;
+    }
      .allOrdersPage .filterBtnContainer .statusBtn {
         text-align: center;
      }
@@ -322,7 +336,9 @@ select {
      form.orform {
          width: 100%;
      }
- 
+     form.orform2 {
+        width: 100%;
+    }
      .allOrdersPage .filterBtnContainer .statusBtn {
         text-align: center;
      }
@@ -351,7 +367,9 @@ select {
      form.orform {
          width: 100%;
      }
- 
+     form.orform2 {
+        width: 100%;
+    }
      .allOrdersPage .filterBtnContainer .statusBtn {
         text-align: center;
      }

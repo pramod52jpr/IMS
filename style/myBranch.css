@@ -13,20 +13,20 @@ body {
     font-size: 30px;
     color: rgb(32, 32, 32);
 }
-.myBranchPage .crudBtn{
+.myBranchPage .crudBtn {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 0px;
 }
-.myBranchPage .crudBtn .add a{
+.myBranchPage .crudBtn .add a {
     padding: 5px 10px;
-    background-color: rgb(0, 158, 0);
     color: white;
     border: 0;
-    border-radius: 5px;
+    border-radius: 1px;
     font-size: 18px;
     text-decoration: none;
     transition-duration: 0.2s;
+    background: #1b4965;
 }
 .myBranchPage .crudBtn .add a:hover{
     background-color: rgb(0, 99, 0);
@@ -59,4 +59,13 @@ body {
 }
 
 
+
+hr.hrline{
+    /* border: 2px solid black; */
+    width: 171px;
+    height: 0;
+    margin-top: 7px;
+    /* color: black; */
+    /* font-weight: bold; */
+}
 
