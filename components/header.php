@@ -86,7 +86,7 @@ include "conn.php";
             <ul>
                 <li>
                     <a href="dashboard.php">
-                        <span class="h-icons"><i class="fa-solid fa-house"></i></span>
+                        <span class="h-icons"><i class="fa-solid fa-house fa-flip"></i></span>
                         <span class="Title">Dashboard</span>
                     </a>
                 </li>
@@ -104,7 +104,7 @@ include "conn.php";
                     <ul>
                         <li>
                             <a href="#">
-                                <span class="h-icons"><i class="fa-solid fa-layer-group"></i></span>
+                                <span class="h-icons"><i class="fa-solid fa-layer-group fa-flip"></i></span>
                                 <span class="Title">MasterForms</span>
 
                                 <span class="Title"><i class="fa-solid fa-caret-down" style="color: #fcfcfc;"></i></span>
@@ -119,7 +119,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="company.php">
-                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass"></i></span>
+                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building fa-flip advanceClass"></i></span>
                                     <span class="Title">All Companies</span>
                                 </a>
                             </li>
@@ -132,7 +132,7 @@ include "conn.php";
                                 ?>
                                 <li>
                                     <a href="branch.php">
-                                        <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span>
+                                        <span class="h-icons"><i class="fa-solid fa-code-branch fa-flip"></i></span>
                                         All Branches</a>
                                 </li>
                                 <?php
@@ -141,7 +141,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="branch.php">
-                                    <span class="h-icons"><i class="fa-solid fa-code-branch"></i></span>
+                                    <span class="h-icons"><i class="fa-solid fa-code-branch fa-flip"></i></span>
                                     All Branches</a>
                             </li>
                             <?php
@@ -153,7 +153,7 @@ include "conn.php";
                                 ?>
                                 <li>
                                     <a href="category.php">
-                                        <span class="h-icons"><i class="fa-solid fa-user"></i></span>
+                                        <span class="h-icons"><i class="fa-solid fa-user fa-flip"></i></span>
                                         Admin Category</a>
                                 </li>
                                 <?php
@@ -162,7 +162,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="category.php">
-                                    <span class="h-icons"><i class="fa-solid fa-user"></i></span>
+                                    <span class="h-icons"><i class="fa-solid fa-user fa-flip"></i></span>
                                     Admin Category</a>
                             </li>
                             <?php
@@ -174,7 +174,7 @@ include "conn.php";
                                 ?>
                                 <li>
                                     <a href="PCategory.php">
-                                        <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span>
+                                        <span class="h-icons"><i class="fa-solid fa-clipboard fa-flip"></i></span>
                                         Product Category</a>
                                 </li>
                                 <?php
@@ -183,7 +183,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="PCategory.php">
-                                    <span class="h-icons"><i class="fa-solid fa-clipboard"></i></span>
+                                    <span class="h-icons"><i class="fa-solid fa-clipboard fa-flip"></i></span>
                                     Product Category</a>
                             </li>
                             <?php
@@ -195,7 +195,7 @@ include "conn.php";
                                 ?>
                                 <li>
                                     <a href="product.php">
-                                        <span class="h-icons"><i class="fa-solid fa-file"></i></span>
+                                        <span class="h-icons"><i class="fa-solid fa-file fa-flip"></i></span>
                                         Products</a>
                                 </li>
                                 <?php
@@ -225,7 +225,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="orders.php">
-                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
+                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
                                     All Orders</a>
                             </li>
                             <?php
@@ -236,7 +236,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="users.php">
-                                    <span class="h-icons"><i class="fa-solid fa-user"></i></span>
+                                    <span class="h-icons"><i class="fa-solid fa-user fa-flip"></i></span>
                                     Users</a>
                             </li>
                             <?php
@@ -253,13 +253,13 @@ include "conn.php";
                     ?>
                     <li>
                         <a href="myBranch.php">
-                            <span class="h-icons"><i class="fa-solid fa-briefcase"></i></span>
+                            <span class="h-icons"><i class="fa-solid fa-briefcase fa-flip"></i></span>
                             <span class="Title"> My Branch</span>
                         </a>
                     </li>
                     <li>
                         <a href="myOrders.php">
-                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
+                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
                             <span class="Title"> My Orders</span>
                         </a>
                     </li>
@@ -271,7 +271,7 @@ include "conn.php";
                     ?>
                     <li>
                         <a href="stock-report.php">
-                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass"></i></span>
+                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
                             <span class="Title"> Reports</span>
                         </a>
                     </li>

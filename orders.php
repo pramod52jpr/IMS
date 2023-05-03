@@ -49,6 +49,21 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
             }else{
                 echo "<script>alert('Please Approve the Price')</script>";
             }
+        }elseif($osid==4){
+            $DeliverySql="select `Delivery_Date` from orders where `Order_Id`=$oid";
+            $DeliveryResult=mysqli_query($conn,$DeliverySql);
+            $DeliveryRow=mysqli_fetch_assoc($DeliveryResult);
+            if($DeliveryRow['Delivery_Date']==""){
+                echo "<script>alert('Please Fill the Delivery Date')</script>";
+            }else{
+                $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
+                $oresult=mysqli_query($conn,$osql);
+                if($oresult){
+                    echo "<script>alert('Order Status Updated Successfully')</script>";
+                }else{
+                    echo "<script>alert('Order status not Updated')</script>";
+                }
+            }
         }else{
             $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
             $oresult=mysqli_query($conn,$osql);
@@ -87,6 +102,24 @@ if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
             echo "<script>alert('Docket No. Added')</script>";
         }else{
             echo "<script>alert('Docket No. not Added')</script>";
+        }
+    }
+}
+if(isset($_POST['oderId']) and isset($_POST['deliveryDate'])){
+    $oderStatus=$_POST['oderStatus'];
+    $oderId=$_POST['oderId'];
+    $deliveryDate=$_POST['deliveryDate'];
+    if($oderStatus<3){
+        echo "<script>alert('Stay for Intransit')</script>";
+    }elseif($deliveryDate==""){
+        echo "<script>alert('Please Enter Delivery Date')</script>";
+    }else{
+        $deliveryDateSql="update orders set `Delivery_Date`='$deliveryDate' where `Order_Id`=$oderId";
+        $deliveryDateResult=mysqli_query($conn,$deliveryDateSql);
+        if($deliveryDateResult){
+            echo "<script>alert('Delivery Date Added')</script>";
+        }else{
+            echo "<script>alert('Delivery Date not Added')</script>";
         }
     }
 }
@@ -306,6 +339,20 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
                             <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
                             <input class="order-btn" type="submit" value="save" <?php echo $disables ?>>
+                        </form>
+                        <form style="margin-top:5px;" action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
+                            <?php
+                            if($aorow['Delivery_Date']!==""){
+                                $disabling="disabled";
+                            }else{
+                                $disabling="";
+                            }
+                            ?>
+                            <input type="hidden" name="oderStatus" value="<?php echo $aorow['Order_Status'] ?>">
+                            <input type="hidden" name="oderId" value="<?php echo $aorow['Order_Id'] ?>">
+                            <label for="deliveryDate">Delivery Date</label>
+                            <input class="order-input" type="date" max="<?php echo date("Y-m-d") ?>" name="deliveryDate" id="deliveryDate" value="<?php echo $aorow['Delivery_Date'] ?>" <?php echo $disabling ?>>
+                            <input class="order-btn" type="submit" value="save" <?php echo $disabling ?>>
                         </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";
