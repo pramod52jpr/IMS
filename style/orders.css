@@ -25,17 +25,10 @@
     padding: 2px 7px;
     border-radius: 5px;
 }
-/* .allOrdersPage .filterBtnContainer .statusBtn{
-    width: 40%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-} */
 .allOrdersPage .filterBtnContainer .statusBtn a{
     display: inline-block;
     text-decoration: none;
     color: white;
-    /* background-color: blueviolet; */
     padding: 5px 10px;
     font-size: 15px;
     border-radius: 5px;
@@ -85,28 +78,6 @@
     padding: 3px 5px;
     font-size: 15px;
 }
-/* .allOrdersPage .allOrdersContainer .order a{
-    display: inline-block;
-    margin: 5px;
-    text-decoration: none;
-    color: white;
-    background-color: brown;
-    padding: 5px 20px;
-    border-radius: 5px;
-    transition-duration: 0.1s;
-}
-.allOrdersPage .allOrdersContainer .order a:hover{
-    background-color: rgb(128, 28, 28);
-}
-.allOrdersPage .allOrdersContainer h2{
-    margin-top: 50px;
-} */
-
-
-
-
-
-
 
 /* ------------------------------new style------------------------------------------- */
 
@@ -137,18 +108,11 @@ input[type="submit"] {
     height: 40px;
 }
 
-input[type="submit"] {
-    height: 40px;
-}
 input[type="date"] {
     margin: 5px 0px;
-}
-
-input[type="date"] {
     height: 40px;
     border: none;
     outline: none;
-   
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 .allOrdersPage .filterBtnContainer .statusBtn {
@@ -182,9 +146,8 @@ input[type="date"] {
     line-height: 28px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    background: #457b9d;
-    color: white;
+    font-weight: 700;
+    color: black;
     justify-content: flex-start;
     align-items: center;
 }
