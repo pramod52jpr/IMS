@@ -132,28 +132,48 @@ a.p-button:hover{
 
 /* ---------------------media qurey-------------------------- */
 
-@media (max-width: 380px){
+@media (max-width: 920px)
+{
     .buyProductPage .bpitems .item {
-        width: 100%;
-        min-height: 150px;
+        width: 30%;
+        
     }
     .item-img {
-        font-size: 20px;
-    }
-    .buyProductPage .bpitems .item img {
-        height: 111px;
+        font-size: 18px;
     }
     .pModal {
-        margin-top: -31px;
+        margin-top: -34px;
         font-size: 11px;
     }
     .item-innerdiv {
-        margin-top: -16px; 
-        font-size: 16px;
+        margin-top: -20px;
+        font-size: 15px;
     }
     a.p-button {
         width: 100%;
-      margin-left: 0;
+       
+    }
+}
+@media (max-width: 820px)
+{
+    .buyProductPage .bpitems .item {
+        width: 50%;
+        
+    }
+    .item-img {
+        font-size: 18px;
+    }
+    .pModal {
+        margin-top: -34px;
+        font-size: 11px;
+    }
+    .item-innerdiv {
+        margin-top: -20px;
+        font-size: 15px;
+    }
+    a.p-button {
+        width: 100%;
+        
     }
 }
 @media (max-width: 414px){
@@ -177,50 +197,30 @@ a.p-button:hover{
     }
     a.p-button {
         width: 100%;
+        margin-left: 0;
+    }
+}
+@media (max-width: 380px){
+    .buyProductPage .bpitems .item {
+        width: 100%;
+        min-height: 150px;
+    }
+    .item-img {
+        font-size: 20px;
+    }
+    .buyProductPage .bpitems .item img {
+        height: 111px;
+    }
+    .pModal {
+        margin-top: -31px;
+        font-size: 11px;
+    }
+    .item-innerdiv {
+        margin-top: -16px; 
+        font-size: 16px;
+    }
+    a.p-button {
+        width: 100%;
       margin-left: 0;
-    }
-}
-@media (max-width: 820px)
-{
-    .buyProductPage .bpitems .item {
-        width: 30%;
-        
-    }
-    .item-img {
-        font-size: 18px;
-    }
-    .pModal {
-        margin-top: -34px;
-        font-size: 11px;
-    }
-    .item-innerdiv {
-        margin-top: -20px;
-        font-size: 15px;
-    }
-    a.p-button {
-        width: 100%;
-       
-    }
-}
-@media (max-width: 920px)
-{
-    .buyProductPage .bpitems .item {
-        width: 30%;
-        
-    }
-    .item-img {
-        font-size: 18px;
-    }
-    .pModal {
-        margin-top: -34px;
-        font-size: 11px;
-    }
-    .item-innerdiv {
-        margin-top: -20px;
-        font-size: 15px;
-    }
-    a.p-button {
-        width: 100%;
-       
     }
 }
