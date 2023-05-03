@@ -148,10 +148,11 @@ input[type="date"] {
     line-height: 28px;
     display: flex;
     flex-direction: column;
+    font-weight: 700;
     color: black;
     justify-content: flex-start;
     font-weight: 700;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 .order-box2 {
