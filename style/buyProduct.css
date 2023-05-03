@@ -1,0 +1,202 @@
+body {
+    background: #e7e6e6;
+}
+
+.buyProductPage {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    min-height: 750px;
+    padding: 10px;
+}
+
+.buyProductPage .bpitems {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buyProductPage .bpitems .item img {
+    height: 150px;
+}
+
+
+/* ---------------------------------new style----------------------------------- */
+.buyProductPage .bpitems .item {
+    width: 31%;
+    text-align: center;
+    background-color: #457b9d;
+    margin: 10px;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 270px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.item-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 28px;
+}
+.pname {
+    width: 100%;
+    height: 56px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-transform: uppercase;
+}
+
+.pModal {
+    width: 100%;
+    height: 56px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-top: -27px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.item-innerdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    margin-top: -10px;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+.pPrice {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+}
+
+form.buyProductAddForm {
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+}
+label {
+    width: 100%;
+}
+input#piece {
+    width: 100px;
+    margin: 0px 5px 0px 20px;
+    height: 26px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+.item form input.btn {
+    height: 26px;
+    border: none;
+    color: white;
+    background: darkslateblue;
+    transition: 0.2s;
+}
+/* ---------------------media qurey-------------------------- */
+
+@media (max-width: 920px) {
+    .buyProductPage .bpitems .item {
+        width: 47%;
+    }
+    .item-img {
+       font-size: 20px;
+    }
+    .item-img {
+        font-size: 18px;
+    }
+
+    .pModal {
+        margin-top: -34px;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+    .item-innerdiv {
+        font-size: 17px;
+    }
+    form.buyProductAddForm {
+        display: flex;
+        font-size: 13px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 690px){
+    .buyProductPage .bpitems .item {
+        width: 100%;
+        text-align: center;
+        background-color: #457b9d;
+        margin: 10px;
+        padding: 20px;
+        font-size: 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+    .buyProductPage .bpitems {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 420px){
+    .buyProductPage .bpitems .item {
+        width: 100%;
+    }
+    .item-img {
+       font-size: 20px;
+    }
+
+    .item-innerdiv {
+        margin-top: -20px;
+        font-size: 15px;
+    }
+
+    a.p-button {
+        width: 100%;
+
+    }
+}
+
+@media (max-width: 380px) {
+
+    .item-img {
+        font-size: 20px;
+    }
+
+    .pModal {
+        margin-top: -31px;
+        font-size: 11px;
+    }
+
+    .item-innerdiv {
+        margin-top: -16px;
+        font-size: 16px;
+    }
+
+    a.p-button {
+        width: 100%;
+        margin-left: 0;
+    }
+}
