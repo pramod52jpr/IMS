@@ -234,8 +234,8 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                     if(!isset($_SESSION['User_Id'])){
                     ?>
                     <div class="order-box">
-                        <h2>Price Approval : </h2>
-                        <form action="orders.php" method="post">
+                        <h2>Price Approval</h2>
+                        <form style="margin-top:5px;" action="orders.php" method="post">
                             <?php
                             if($aorow['Approved']==1 or $aorow['Order_Status']==5){
                                 $disable="disabled";
@@ -244,8 +244,8 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             }
                             ?>
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
-                            <input type="submit" value="Approve" <?php echo $disable ?>>
+                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
+                            <input class="order-btn" type="submit" value="Approve" <?php echo $disable ?>>
                         </form>
                     </div>
                     <?php
@@ -287,7 +287,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             </select>
                             <input class="sub-b" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
-                        <form action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
+                        <form style="margin-top:5px;" action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
                             if($aorow['Docket_No']!==""){
                                 $disables="disabled";
@@ -296,8 +296,8 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             }
                             ?>
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
-                            <input type="submit" value="save" <?php echo $disables ?>>
+                            <input class="order-input" type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
+                            <input class="order-btn" type="submit" value="save" <?php echo $disables ?>>
                         </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";

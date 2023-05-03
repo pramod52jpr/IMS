@@ -16,12 +16,12 @@
                             <div class="pname">
                                 <?php echo $row['Product_Name'] ?>
                             </div>
-                            <div class="pModal">
+                            <div class="pModal">Model No.
                                 <?php echo $row['Product_Modal_No'] ?>
                             </div>
                         </div>
                         <div class="item-innerdiv">
-                            <div class="pPrice" style="text-decoration:line-through">Rs.
+                            <div class="pPrice" style="text-decoration:line-through;color:red;">Rs.
                                 <?php echo $row['Normal_Price'] ?>
                             </div>
                             <div class="pPrice">Rs.

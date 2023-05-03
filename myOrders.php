@@ -53,9 +53,11 @@
         if(mysqli_num_rows($oresult)>0){
             while($orow=mysqli_fetch_assoc($oresult)){
         ?>
-                <div class="myOrder">
+            <div class="Morder">
+                <div class="myorder-box">
                     <img src="./uploadImages/<?php echo $orow['Product_Img'] ?>" alt="">
-                    <div class="about">
+                </div>
+                <div class="myorder-box">
                         <div><span>Product : </span><span><?php echo $orow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $orow['Order_Pieces'] ?></span></div>
                     <?php
@@ -79,7 +81,9 @@
                     <?php
                     if($orow['Order_Status']!=mysqli_num_rows($cancelReasonResult)){
                     ?>
+                    <div class="myorder-boxbtn">
                         <a href="cancelReason.php?canoid=<?php echo $orow['Order_Id'] ?>">Cancel Order</a>
+                        </div>
                     <?php
                     }
                     ?>

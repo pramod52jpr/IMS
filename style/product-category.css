@@ -11,12 +11,12 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-.productCategoryPage .categoryItems .item{
+.productCategoryPage .categoryItems .item {
     width: 31.5%;
     text-decoration: none;
     color: white;
     text-align: center;
-    background-color: #1b4965;
+    background-color: #457b9d;
     padding: 10px;
     border-radius: 5px;
     margin: 10px;

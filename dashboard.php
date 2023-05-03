@@ -199,8 +199,10 @@ if($adminRow['Admin_Type']==1){
             while($aorow=mysqli_fetch_assoc($aoresult)){
         ?>
                 <div class="order">
+                 <div class="order-box">
                     <img src="./uploadImages/<?php echo $aorow['Product_Img'] ?>" alt="">
-                    <div class="about">
+                   </div>
+                    <div class="order-box">
                         <h2>Order Details : </h2>
                         <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
@@ -227,7 +229,7 @@ if($adminRow['Admin_Type']==1){
                     }
                     ?>
                     </div>
-                    <div class="about">
+                    <div class="order-box">
                         <h2>Company Details : </h2>
                         <div><span>Company : </span><span><?php echo $aorow['Company_Name'] ?></span></div>
                         <div><span>Contact : </span><span><?php echo $aorow['Company_Phone'] ?></span></div>
@@ -237,7 +239,7 @@ if($adminRow['Admin_Type']==1){
                     <?php
                     if(!isset($_SESSION['User_Id'])){
                     ?>
-                    <div class="about">
+                    <div class="order-box">
                         <h2>Price Approval : </h2>
                         <form action="dashboard.php" method="post">
                             <?php
@@ -248,14 +250,14 @@ if($adminRow['Admin_Type']==1){
                             }
                             ?>
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
-                            <input type="submit" value="Approve" <?php echo $disable ?>>
+                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
+                            <input class="order-btn" type="submit" value="Approve" <?php echo $disable ?>>
                         </form>
                     </div>
                     <?php
                     }
                     ?>
-                    <div class="about">
+                    <div class="order-box2">
                         <form action="dashboard.php" method="post">
                             <?php
                             if($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5){
@@ -265,7 +267,7 @@ if($adminRow['Admin_Type']==1){
                             }
                             ?>
                             <input type="hidden" name="orderId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <select name="delivery" <?php echo $disabledAgain ?>>
+                            <select class="select-b" name="delivery" <?php echo $disabledAgain ?>>
                                 <option value="" selected disabled>Select Delivery Mode</option>
                                 <?php
                                 $delModeSql="select * from deliverymode";
@@ -284,9 +286,9 @@ if($adminRow['Admin_Type']==1){
                                 }
                                 ?>
                             </select>
-                            <input type="submit" value="save" <?php echo $disabledAgain ?>>
+                            <input class="sub-b" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
-                        <form action="dashboard.php" method="post">
+                        <form style="margin-top:5px;" action="dashboard.php" method="post">
                             <?php
                             if($aorow['Docket_No']!==""){
                                 $disables="disabled";
@@ -295,8 +297,8 @@ if($adminRow['Admin_Type']==1){
                             }
                             ?>
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
-                            <input type="submit" value="save" <?php echo $disables ?>>
+                            <input class="order-input" type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
+                            <input class="order-btn" type="submit" value="save" <?php echo $disables ?>>
                         </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";
@@ -317,7 +319,7 @@ if($adminRow['Admin_Type']==1){
                                     }
                                 }
                         ?>
-                                <a href="dashboard.php?oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
+                                <a class="order-button" href="dashboard.php?oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
                         <?php
                                 if((($aorow['Order_Status']==$orderstatusRow['Status_Id'])) and ($aorow['Order_Status']>=4)){
                                     break;
