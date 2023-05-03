@@ -73,14 +73,21 @@ if(isset($_POST['orderId']) and isset($_POST['delivery'])){
     }
 }
 if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
+    $billProcess=$_POST['billProcess'];
     $odrId=$_POST['odrId'];
     $docketNo=$_POST['docketNo'];
-    $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
-    $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
-    if($docketUpdateResult){
-        echo "<script>alert('Docket No. Added')</script>";
+    if($billProcess<=2){
+        echo "<script>alert('Stay for Approvel of billing')</script>";
+    }elseif($docketNo==""){
+        echo "<script>alert('Please Enter Docket No.')</script>";
     }else{
-        echo "<script>alert('Docket No. not Added')</script>";
+        $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
+        $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
+        if($docketUpdateResult){
+            echo "<script>alert('Docket No. Added')</script>";
+        }else{
+            echo "<script>alert('Docket No. not Added')</script>";
+        }
     }
 }
 if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
@@ -295,9 +302,15 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                                 $disables="";
                             }
                             ?>
+                            <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
+<<<<<<< HEAD
                             <input class="order-input" type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
                             <input class="order-btn" type="submit" value="save" <?php echo $disables ?>>
+=======
+                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" placeholder="Docket No." <?php echo $disables ?>>
+                            <input type="submit" value="save" <?php echo $disables ?>>
+>>>>>>> 93aeacc92b603480d74680a7f2dda50c7d332280
                         </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";
