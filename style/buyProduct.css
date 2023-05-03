@@ -1,19 +1,21 @@
 body {
     background: #e7e6e6;
 }
-.buyProductPage{
-    font-family: 'Montserrat', sans-serif; 
+
+.buyProductPage {
+    font-family: 'Montserrat', sans-serif;
     width: 100%;
     min-height: 750px;
     padding: 10px;
 }
-.buyProductPage .bpitems{
+
+.buyProductPage .bpitems {
     display: flex;
     flex-wrap: wrap;
 }
 
- .buyProductPage .bpitems .item img{
-    height: 120px;
+.buyProductPage .bpitems .item img {
+    height: 150px;
 }
 
 
@@ -21,7 +23,7 @@ body {
 .buyProductPage .bpitems .item {
     width: 31%;
     text-align: center;
-    background-color: #457b9d;;
+    background-color: #457b9d;
     margin: 10px;
     padding: 20px;
     font-size: 20px;
@@ -38,45 +40,23 @@ body {
 
 .item-img {
     display: flex;
-    /* border: 2px solid red; */
     justify-content: center;
     align-items: center;
-     display: flex;
+    display: flex;
     flex-direction: column;
     width: 100%;
     font-size: 28px;
-   
 }
-
-/* .item-img img{
-    width: 100%;
-    height: auto;
-}  */
-
-
-.item-innerdiv {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    color: white;
-    margin-top: -10px;
-    font-size: 20px;
-    font-weight: bolder;
-    margin-bottom: 10px;
-}
-
 .pname {
-   
     width: 100%;
     height: 56px;
-    /* text-align: center; */
     justify-content: center;
     display: flex;
     align-items: center;
     color: white;
     text-transform: uppercase;
-   
 }
+
 .pModal {
     width: 100%;
     height: 56px;
@@ -88,25 +68,32 @@ body {
     font-size: 16px;
     text-transform: uppercase;
 }
-.pPrice {
+.item-innerdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
+    color: white;
+    margin-top: -10px;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+.pPrice {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 10px;
 }
-.p-button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-
 
 form.buyProductAddForm {
     display: flex;
     font-size: 15px;
     align-items: center;
+}
+label {
+    width: 100%;
 }
 input#piece {
     width: 100px;
@@ -116,7 +103,6 @@ input#piece {
     outline: none;
     border: none;
 }
-
 .item form input.btn {
     height: 26px;
     border: none;
@@ -124,81 +110,22 @@ input#piece {
     background: darkslateblue;
     transition: 0.2s;
 }
-.item form input.btn:hover{
-    background: rgb(22, 6, 128);
-}
 /* ---------------------media qurey-------------------------- */
 
-@media (max-width: 920px)
-{
+@media (max-width: 920px) {
     .buyProductPage .bpitems .item {
-<<<<<<< HEAD
-        width: 100%;
-       height: 200px;
+        width: 47%;
     }
     .item-img {
        font-size: 20px;
     }
-    .buyProductPage .bpitems .item img {
-        height: 100px;
-=======
-        width: 30%;
-        
-    }
     .item-img {
         font-size: 18px;
->>>>>>> 93aeacc92b603480d74680a7f2dda50c7d332280
     }
+
     .pModal {
         margin-top: -34px;
         font-size: 11px;
-<<<<<<< HEAD
-        text-transform: uppercase;
-    }
-    .item-innerdiv {
-        font-size: 17px;
-    }
-    form.buyProductAddForm {
-        display: flex;
-        font-size: 13px;
-        align-items: center;
-    }
-}
-@media (max-width: 420px){
-    .buyProductPage .bpitems .item {
-        width: 100%;
-       height: 200px;
-    }
-    .item-img {
-       font-size: 20px;
-    }
-    .buyProductPage .bpitems .item img {
-        height: 100px;
-=======
-    }
-    .item-innerdiv {
-        margin-top: -20px;
-        font-size: 15px;
-    }
-    a.p-button {
-        width: 100%;
-       
-    }
-}
-@media (max-width: 820px)
-{
-    .buyProductPage .bpitems .item {
-        width: 50%;
-        
-    }
-    .item-img {
-        font-size: 18px;
->>>>>>> 93aeacc92b603480d74680a7f2dda50c7d332280
-    }
-    .pModal {
-        margin-top: -34px;
-        font-size: 11px;
-<<<<<<< HEAD
         text-transform: uppercase;
     }
     .item-innerdiv {
@@ -211,7 +138,7 @@ input#piece {
     }
 }
 
-@media (max-width: 820px){
+@media (max-width: 690px){
     .buyProductPage .bpitems .item {
         width: 100%;
         text-align: center;
@@ -226,73 +153,50 @@ input#piece {
         justify-content: center;
         align-items: center;
         position: relative;
-        min-height: 270px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     }
     .buyProductPage .bpitems {
         display: flex;
         flex-wrap: wrap;
-        padding: 50px;
     }
 }
-
-=======
+@media (max-width: 420px){
+    .buyProductPage .bpitems .item {
+        width: 100%;
     }
+    .item-img {
+       font-size: 20px;
+    }
+
     .item-innerdiv {
         margin-top: -20px;
         font-size: 15px;
     }
+
     a.p-button {
         width: 100%;
-        
+
     }
 }
-@media (max-width: 414px){
-    .buyProductPage .bpitems .item {
-        width: 100%;
-        min-height: 200px;
-    }
+
+@media (max-width: 380px) {
+
     .item-img {
-        font-size: 25px;
-    }
-    .buyProductPage .bpitems .item img {
-        height: 150px;
-    }
-    .pModal {
-        margin-top: -25px;
-        font-size: 15px;
-    }
-    .item-innerdiv {
-        margin-top: -10px; 
         font-size: 20px;
     }
+
+    .pModal {
+        margin-top: -31px;
+        font-size: 11px;
+    }
+
+    .item-innerdiv {
+        margin-top: -16px;
+        font-size: 16px;
+    }
+
     a.p-button {
         width: 100%;
         margin-left: 0;
     }
 }
-@media (max-width: 380px){
-    .buyProductPage .bpitems .item {
-        width: 100%;
-        min-height: 150px;
-    }
-    .item-img {
-        font-size: 20px;
-    }
-    .buyProductPage .bpitems .item img {
-        height: 111px;
-    }
-    .pModal {
-        margin-top: -31px;
-        font-size: 11px;
-    }
-    .item-innerdiv {
-        margin-top: -16px; 
-        font-size: 16px;
-    }
-    a.p-button {
-        width: 100%;
-      margin-left: 0;
-    }
-}
->>>>>>> 93aeacc92b603480d74680a7f2dda50c7d332280
