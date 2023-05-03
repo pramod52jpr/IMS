@@ -13,13 +13,14 @@
     align-items: flex-start;
 }
 
-.dashboardPage h1{
-    font-size: 30px;
+.dashboardPage h1 {
+    font-size: 43px;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
     margin-top: 20px;
-    text-shadow: 2px 2px 3px blueviolet;
+    /* text-shadow: 2px 2px 3px blueviolet; */
+    color: #ffc300;
 }
 .dashboardPage .todayOrdersContainer .order{
     display: flex;
@@ -47,18 +48,18 @@
     font-size: 15px;
     margin: 10px;
 }
-.dashboardPage .todayOrdersContainer .order a{
+.dashboardPage .todayOrdersContainer .order a {
     display: inline-block;
     margin: 5px;
     text-decoration: none;
-    color: white;
-    background-color: brown;
+    color: black;
+   
     padding: 5px 20px;
     border-radius: 5px;
     transition-duration: 0.1s;
 }
 .dashboardPage .todayOrdersContainer .order a:hover{
-    background-color: rgb(128, 28, 28);
+    background-color: #457b9d;
 }
 
 /* distributer  */
@@ -102,15 +103,16 @@ form select,form input{
 /* ----------------------------------style css----------------------------------------------- */
 
 .dashboardPage .adminSection .items {
-   background:#457b9d;
-    color: white;
+ 
+    color: #457b9d;
     /* padding: 10px; */
     border-radius: 10px;
     width: 25%;
     min-height: 190px;
     overflow: hidden;
     margin: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
+    box-shadow: 2px 4px 10px gray;
     display: flex;
     margin: 30px 5px;
 }
@@ -166,36 +168,23 @@ i.fa-solid.fa-cart-shopping {
     font-size: 86px;
     text-align: center;
     align-items: center;
-    /* display: flex; */
-    color: white;
     position: relative;
     line-height: 1px;
-    
-   
 }
-
 
 i.fa-solid.fa-building{
     font-size: 86px;
     text-align: center;
     align-items: center;
-    /* display: flex; */
-    color: white;
-    /* position: relative; */
     line-height: 1px;
 }
-
-
 .inner-item2 a {
     transition: 0.3s;
-    
     display: block;
     position: relative;
     text-decoration: none;
-    color: white;
+    color: #457b9d;
 }
-
-
 span.title {
     position: relative;
     top: 100;

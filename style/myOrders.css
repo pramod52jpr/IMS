@@ -1,6 +1,8 @@
+body {
+    background: #e7e6e6;
+}
 .myOrdersPage{
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(220, 255, 255);
     width: 100%;
     min-height: 750px;
     padding: 10px;
@@ -53,29 +55,53 @@
 
 .myorder-box{
     width: 30%;
-    margin: 0px 5px;
-    padding: 10px;
-    line-height: 28px;
+    text-align: center;
+    /* background-color: #457b9d; */
+    margin: 5px;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    font-weight: bold;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    background: #457b9d;
-    color: white;
-    justify-content: flex-start;
+   color: rgb(0, 0, 0);
+   font-weight: 700;
+    align-items: flex-start;
+    position: relative;
+    min-height: 270px;
+    line-height: 37px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
 }
 .myorder-box img {
     /* height: 150px; */
     width: 80%;
 }
-.myorder-boxbtn{
+.myorder-box h2{
+    
+        color: #457b9d;
+        font-family: 'Fjalla One', sans-serif;
+        font-family: 'Ubuntu', sans-serif;
+    
+}
+.myorder-boxbtn {
     width: 30%;
-    margin: 0px 5px;
-    padding: 10px;
-    line-height: 28px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    /* background: #457b9d; */
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.myorder-boxbtn a {
+    text-decoration: none;
     color: white;
-    justify-content: flex-start;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    background: #e63946;
+    transition: 0.2s ease-in;
+}
+
+
+.myorder-boxbtn a:hover{
+    background: #e40013;
 }

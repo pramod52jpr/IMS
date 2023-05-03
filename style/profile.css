@@ -1,29 +1,27 @@
 .profilePage{
     font-family: 'Montserrat', sans-serif;
-    background-color: rgb(220, 255, 255);
     width: 100%;
-    min-height: 750px;
+   min-height: 750px;
+    padding: 20px;
 }
 .profilePage h2{
     font-size: 30px;
-    color: rgb(32, 32, 32);
+    color: #457b9d;
     padding: 10px;
+    font-weight: 700;
 }
 .profilePage .profileForm{
     display: flex;
     flex-direction: column;
-    background-color: white;
-    margin: 10px 30px;
+    background-color: #457b9d;
+    color: white;
     border-radius: 10px;
     padding: 20px;
 }
 .profilePage .profileForm h4{
     margin-bottom: 10px;
 }
-.profilePage .profileForm label{
-    font-size: 15px;
-    margin: 5px 0px;
-}
+
 .profilePage .profileForm input{
     padding: 8px 10px;
     outline: 0;
@@ -54,4 +52,18 @@
 }
 .profilePage .profileForm .profileBtn a.btn:hover{
     background-color: rgb(255, 98, 98);
+}
+
+
+
+/* -------------------------new style------------------------------- */
+input.profileForm {
+    width: 100%;
+}
+
+
+
+.profilePage .profileForm label{
+    font-size: 15px;
+    margin: 5px 13px;
 }

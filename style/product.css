@@ -55,13 +55,13 @@ body {
     position: absolute;
     right: 0;
 }
-.machinePage .machineContainer table td form input{
+.machinePage .machineContainer table td form input {
     padding: 2px 5px;
     font-size: 15px;
     outline: none;
     border: 1px solid grey;
     border-radius: 5px;
-    width: 128px;
+    width: 80px;
 }
 .machinePage .machineContainer table td a{
     margin: 0px 5px;
@@ -73,6 +73,11 @@ body {
 
 
 
+.machinePage .machineContainer table thead :nth-child(7) {
+    width: 210px;
+}
+
+
 
 
 
@@ -80,6 +85,6 @@ body {
 
 .machinePage .machineContainer table td form  input[type="submit"] {
     height: 26px;
-    width: 106px;
+    width: 62px;
     margin-top: -1px;
 }

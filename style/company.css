@@ -13,7 +13,8 @@ body {
 .companyPage h2 {
     font-size: 30px;
     margin: 10px 0px;
-    color: rgb(32, 32, 32);
+    color: #457b9d;
+    font-weight: 700;
 }
 
 .companyPage .crudBtn {

@@ -1,5 +1,5 @@
 body {
-    background: #e7e6e6;
+    background: #ffffff;
 }
 .productCategoryPage{
     font-family: 'Montserrat', sans-serif;
@@ -14,14 +14,20 @@ body {
 .productCategoryPage .categoryItems .item {
     width: 31.5%;
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
-    background-color: #457b9d;
     padding: 10px;
     border-radius: 5px;
     margin: 10px;
     font-weight: bold;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    box-shadow: 2px 4px 10px gray;
+}
+.item img{
+    transition: 0.3s;
+
+}
+.productCategoryPage .categoryItems .item img:hover{
+    transform: scale(1.1);
 }
 .productCategoryPage .categoryItems .item img{
     width: 200px;

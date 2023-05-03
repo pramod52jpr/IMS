@@ -6,15 +6,17 @@
     background-color: rgb(220, 255, 255);
     align-items: flex-start;
 }
-.UpdatePCategoryFormContainer .PCategoryUpdateForm{
+.UpdateCategoryFormContainer .categoryUpdateForm {
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: white;
-    width: 50%;
+    background-color: #457b9d;
+    color: white;
+    width: 70%;
     margin-top: 100px;
     border-radius: 10px;
+    font-weight: bold;
 }
 .UpdatePCategoryFormContainer .PCategoryUpdateForm label{
     font-size: 25px;
