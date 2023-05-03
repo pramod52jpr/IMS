@@ -305,13 +305,8 @@ if($adminRow['Admin_Type']==1){
                             ?>
                             <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-<<<<<<< HEAD
-                            <input class="order-input" type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
+                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
                             <input class="order-btn" type="submit" value="save" <?php echo $disables ?>>
-=======
-                            <input type="text" name="docketNo" value="<?php echo $aorow['Docket_No'] ?>" placeholder="Docket No." <?php echo $disables ?>>
-                            <input type="submit" value="save" <?php echo $disables ?>>
->>>>>>> 93aeacc92b603480d74680a7f2dda50c7d332280
                         </form>
                     <?php
                         $orderstatusSql="select * from orderstatus";
