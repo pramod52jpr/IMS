@@ -36,3 +36,46 @@
 .myOrdersPage .myOrdersContainer .myOrder a:hover{
     background-color: rgb(128, 28, 28);
 }
+
+
+
+
+/* -----------------------new style---------------------------------------- */
+.Morder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
+    padding: 20px;
+    align-items: stretch;
+}
+
+
+.myorder-box{
+    width: 30%;
+    margin: 0px 5px;
+    padding: 10px;
+    line-height: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #457b9d;
+    color: white;
+    justify-content: flex-start;
+}
+.myorder-box img {
+    /* height: 150px; */
+    width: 80%;
+}
+.myorder-boxbtn{
+    width: 30%;
+    margin: 0px 5px;
+    padding: 10px;
+    line-height: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background: #457b9d; */
+    color: white;
+    justify-content: flex-start;
+}

@@ -23,15 +23,15 @@
 }
 .dashboardPage .todayOrdersContainer .order{
     display: flex;
-    align-items: center;
+   
     justify-content: space-evenly;
     border-bottom: 1px solid lightgrey;
     padding: 20px;
 }
-.dashboardPage .todayOrdersContainer .order img{
-    height: 150px;
+.dashboardPage .todayOrdersContainer .order img {
+   
+    width: 100%;
 }
-
 /* admin */
 
 .dashboardPage .todayOrdersContainer .order .about{
@@ -60,9 +60,7 @@
 .dashboardPage .todayOrdersContainer .order a:hover{
     background-color: rgb(128, 28, 28);
 }
-.dashboardPage .todayOrdersContainer h2{
-    margin-top: 50px;
-}
+
 /* distributer  */
 
 .dashboardPage .todayOrdersContainer .order .distributerAbout{
@@ -243,39 +241,26 @@ span.company {
     }
 }
 
-
-
-
 @media (max-width: 414px){
-    .dashboardPage .adminSection {
-        
+    .dashboardPage .adminSection {   
         width: 100%;
         flex-direction: column;
     }
     .dashboardPage .adminSection .items {
-       
         width: 100%;
-       
         margin: 3px;
-       
     }
 }
 
-
-
 @media (max-width: 825px){
     .dashboardPage .adminSection {
-        
-        align-items: flex-start;
+         align-items: flex-start;
         flex-wrap: wrap;
     }
     .dashboardPage .adminSection .items {
-       
-       
         width: 49%;
         overflow: hidden;
         margin: 4px;
-       
     }
 }
 
@@ -286,32 +271,23 @@ span.company {
         flex-wrap: wrap;
     }
     .dashboardPage .adminSection .items {
-       
-       
         width: 48%;
         overflow: hidden;
         margin: 4px;
-       
     }
 }
-
-
 @media (max-width: 915px){
     .dashboardPage .adminSection {
-        
         align-items: flex-start;
         flex-wrap: wrap;
     }
     .dashboardPage .adminSection .items {
-       
-       
         width: 49%;
         overflow: hidden;
         margin: 3px;
        
     }
 }
-
 
 
 
