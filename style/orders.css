@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
+<<<<<<< HEAD
 .allOrdersPage {
+=======
+.allOrdersPage{
+>>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
     font-family: 'Ubuntu', sans-serif;
     width: 100%;
     min-height: 750px;
+<<<<<<< HEAD
     padding: 1px 1px;
+=======
+    /* padding: 10px; */
+>>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
 }
 .allOrdersPage .filterBtnContainer {
     display: flex;
@@ -13,7 +21,11 @@
     margin-bottom: 10px;
     background: #457b9d;
     color: white;
+<<<<<<< HEAD
     box-shadow: 3px 5px 11px black;
+=======
+    /* margin: -9px 25px 0px 25px; */
+>>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
 }
 .allOrdersPage .filterBtnContainer form input,.allOrdersPage .filterBtnContainer form select{
     font-family: 'Ubuntu', sans-serif;
@@ -59,8 +71,8 @@
     padding: 20px;
 }
 .allOrdersPage .allOrdersContainer .order img {
-    /* height: 150px; */
-    width: 100%;
+    height: 150px;
+    /* width: 100%; */
 }
 .allOrdersPage .allOrdersContainer .order .about{
     font-size: 15px;
@@ -159,11 +171,19 @@ input[type="date"] {
     line-height: 28px;
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     justify-content: center;
     /* background: #457b9d; */
     color: black;
     justify-content: flex-start;
     font-weight: 600;
+=======
+    /* justify-content: center; */
+    background: #457b9d;
+    color: white;
+    justify-content: flex-start;
+    align-items: center;
+>>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
 }
 
 .order-box2 {
@@ -356,18 +376,18 @@ input.sub-b {
     }
     .allOrdersPage .filterBtnContainer {
         display: flex;
-       flex-direction: column;
+       /* flex-direction: column; */
         padding: 15px 40px;
         box-shadow: 0px 10px 30px -15px rgba(0, 0, 0, 0.6);
         margin: -0px;
         margin-bottom: 0px;
     }  
-     form.orform {
+     /* form.orform {
          width: 100%;
      }
      form.orform2 {
         width: 100%;
-    }
+    } */
      .allOrdersPage .filterBtnContainer .statusBtn {
         text-align: center;
      }

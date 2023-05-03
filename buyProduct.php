@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="item-innerdiv">
-                            <div class="pPrice" style="text-decoration:line-through;color:red;">Rs.
+                            <div class="pPrice" style="text-decoration:line-through;color:tan;">Rs.
                                 <?php echo $row['Normal_Price'] ?>
                             </div>
                             <div class="pPrice">Rs.
