@@ -1,18 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
-<<<<<<< HEAD
-.allOrdersPage {
-=======
 .allOrdersPage{
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
     font-family: 'Ubuntu', sans-serif;
     width: 100%;
     min-height: 750px;
-<<<<<<< HEAD
     padding: 1px 1px;
-=======
     /* padding: 10px; */
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
 }
 .allOrdersPage .filterBtnContainer {
     display: flex;
@@ -21,11 +14,8 @@
     margin-bottom: 10px;
     background: #457b9d;
     color: white;
-<<<<<<< HEAD
     box-shadow: 3px 5px 11px black;
-=======
     /* margin: -9px 25px 0px 25px; */
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
 }
 .allOrdersPage .filterBtnContainer form input,.allOrdersPage .filterBtnContainer form select{
     font-family: 'Ubuntu', sans-serif;
@@ -35,12 +25,6 @@
     padding: 2px 7px;
     border-radius: 5px;
 }
-/* .allOrdersPage .filterBtnContainer .statusBtn{
-    width: 40%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-} */
 .allOrdersPage .filterBtnContainer .statusBtn a{
     display: inline-block;
     text-decoration: none;
@@ -125,18 +109,11 @@ input[type="submit"] {
     height: 40px;
 }
 
-input[type="submit"] {
-    height: 40px;
-}
 input[type="date"] {
     margin: 5px 0px;
-}
-
-input[type="date"] {
     height: 40px;
     border: none;
     outline: none;
-   
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 .allOrdersPage .filterBtnContainer .statusBtn {
@@ -171,19 +148,10 @@ input[type="date"] {
     line-height: 28px;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    justify-content: center;
-    /* background: #457b9d; */
     color: black;
     justify-content: flex-start;
-    font-weight: 600;
-=======
-    /* justify-content: center; */
-    background: #457b9d;
-    color: white;
-    justify-content: flex-start;
-    align-items: center;
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
+    font-weight: 700;
+  align-items: stretch;
 }
 
 .order-box2 {

@@ -119,11 +119,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="company.php">
-<<<<<<< HEAD
                                     <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass fa-flip"></i></span>
-=======
-                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building fa-flip advanceClass"></i></span>
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
                                     <span class="Title">All Companies</span>
                                 </a>
                             </li>
@@ -178,11 +174,7 @@ include "conn.php";
                                 ?>
                                 <li>
                                     <a href="PCategory.php">
-<<<<<<< HEAD
                                         <span class="h-icons"><i class="fa-solid fa-bucket fa-flip"></i></span>
-=======
-                                        <span class="h-icons"><i class="fa-solid fa-clipboard fa-flip"></i></span>
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
                                         Product Category</a>
                                 </li>
                                 <?php
@@ -191,11 +183,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="PCategory.php">
-<<<<<<< HEAD
                                     <span class="h-icons"><i class="fa-solid fa-bucket fa-flip"></i></span>
-=======
-                                    <span class="h-icons"><i class="fa-solid fa-clipboard fa-flip"></i></span>
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
                                     Product Category</a>
                             </li>
                             <?php
@@ -207,11 +195,7 @@ include "conn.php";
                                 ?>
                                 <li>
                                     <a href="product.php">
-<<<<<<< HEAD
                                         <span class="h-icons"><i class="fa-solid fa-bucket fa-flip"></i></span>
-=======
-                                        <span class="h-icons"><i class="fa-solid fa-file fa-flip"></i></span>
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
                                         Products</a>
                                 </li>
                                 <?php
@@ -241,11 +225,7 @@ include "conn.php";
                             ?>
                             <li>
                                 <a href="orders.php">
-<<<<<<< HEAD
                                     <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass fa-flip"></i></span>
-=======
-                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
                                     All Orders</a>
                             </li>
                             <?php
@@ -273,11 +253,7 @@ include "conn.php";
                     ?>
                     <li>
                         <a href="myBranch.php">
-<<<<<<< HEAD
                             <span class="h-icons"><i class="fa-solid fa-briefcase "></i></span>
-=======
-                            <span class="h-icons"><i class="fa-solid fa-briefcase fa-flip"></i></span>
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
                             <span class="Title"> My Branch</span>
                         </a>
                     </li>
@@ -295,11 +271,7 @@ include "conn.php";
                     ?>
                     <li>
                         <a href="stock-report.php">
-<<<<<<< HEAD
                             <span class="h-icons"><i class="fa-solid fa-notes-medical fa-flip" style="color: #fcfcfc;"></i></span>
-=======
-                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
->>>>>>> d3f98924383aa77bcb599666df0d24a864e79a39
                             <span class="Title"> Reports</span>
                         </a>
                     </li>
