@@ -3,7 +3,7 @@
     display: flex;
     min-height: 750px;
     justify-content: center;
-    background-color: rgb(220, 255, 255);
+   
     align-items: flex-start;
 }
 .UpdateMachineFormContainer .machineUpdateForm{
@@ -11,8 +11,10 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: white;
-    width: 50%;
+    background-color:#457b9d;
+    color: white;
+    font-weight: bold;
+    width: 100%;
     margin-top: 100px;
     border-radius: 10px;
 }
@@ -29,6 +31,7 @@
     border: 1px solid rgb(196, 196, 196);
     border-radius: 5px;
     font-size: 20px;
+    width: 100%;
 }
 .UpdateMachineFormContainer .machineUpdateForm .updateMachineFormBtn{
     align-self: center;

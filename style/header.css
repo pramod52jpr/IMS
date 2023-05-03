@@ -120,11 +120,14 @@
 
 .mainContainer .navbar .itemDropdown {
     display: flex;
-    flex-direction: column;
-    text-indent: 0.5cm;
-   
+    flex-direction: column; 
 }
-
+.mainContainer .navbar .itemDropdown ul{
+    margin-left: 50px;
+}
+ul{
+    list-style-type: none;
+}
 .mainContainer .sideSection {
     transition-duration: 0.1s;
 }

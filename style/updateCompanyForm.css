@@ -10,15 +10,16 @@ body {
 
 .updateCompanyPage h2 {
     font-size: 30px;
-    color: rgb(32, 32, 32);
+    color: #457b9d;
     padding: 10px;
+    font-weight: 700;
 }
 
 .updateCompanyPage .updateCompanyForm {
     display: flex;
     flex-direction: column;
-    background-color: #1b4965;
-   color: white;
+    background-color: #457b9d;
+    color: white;
     border-radius: 10px;
     padding: 20px;
 }

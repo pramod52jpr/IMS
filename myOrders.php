@@ -58,6 +58,7 @@
                     <img src="./uploadImages/<?php echo $orow['Product_Img'] ?>" alt="">
                 </div>
                 <div class="myorder-box">
+                    <h2>Order Details</h2>
                         <div><span>Product : </span><span><?php echo $orow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $orow['Order_Pieces'] ?></span></div>
                     <?php

@@ -32,30 +32,90 @@
     <h2>Company Master</h2>
     <form class="profileForm" action="profile.php" method="post">
         <h4>Company Details</h4>
+        <div class="row">
+        <div class= "col-25">
         <label for="companyCode">Company Code</label>
+        </div>
+        <div class= "col-25">
         <input type="text" value="<?php echo $conRow['Company_Code'] ?>" name="companyCode" id="companyCode" disabled required>
+        </div>
+        <div class= "col-25">
         <label for="companyName">Company Name</label>
+        </div>
+        <div class= "col-25">
         <input type="text" value="<?php echo $conRow['Company_Name'] ?>" name="companyName" id="companyName" required>
+        </div>
+        </div>
+        <div class="row2">
+        <div class= "col-25">
         <label for="companyContact">Contact No.</label>
+        </div>
+        <div class= "col-25">
         <input type="tel"  value="<?php echo $conRow['Company_Phone'] ?>" name="companyContact" id="companyContact" required>
+        </div>
+        <div class= "col-25">
         <label for="companyEmail">Email Id</label>
+        </div>
+        <div class= "col-25">
         <input type="email"  value="<?php echo $conRow['Company_Email'] ?>" name="companyEmail" id="companyEmail" required>
+        </div>
+        </div>
+        <div class="row3">
+        <div class="col-25">
         <label for="companyAddress">Address</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_Address'] ?>" name="companyAddress" id="companyAddress" required>
+        </div>
+        <div class="col-25">
         <label for="companyUsername">Username</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_Username'] ?>" name="companyUsername" id="companyUsername" required>
+        </div>
+        </div>
+        <div class="row3">
+        <div class="col-25">
         <label for="companyPassword">Password</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_Password'] ?>" name="companyPassword" id="companyPassword" required>
+        </div>
+        <div class="col-25">
         <label for="companyGst">GST Number</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_GST'] ?>" name="companyGst" id="companyGst">
+        </div>
+        </div>
+        <div class="row3">
+        <div class="col-25">
         <label for="companyPan">PAN Number</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_PAN'] ?>" name="companyPan" id="companyPan">
+        </div>
+        <div class="col-25">
         <label for="companyTan">TAN Number</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_TAN'] ?>" name="companyTan" id="companyTan">
+        </div>
+        </div>
+        <div class="row3">
+        <div class="col-25">
         <label for="companyLicence">Licence Number</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_Licence'] ?>" name="companyLicence" id="companyLicence">
+        </div>
+        <div class="col-25">
         <label for="companyRgNo">Registration Number</label>
+        </div>
+        <div class="col-25">
         <input type="text"  value="<?php echo $conRow['Company_Registration'] ?>" name="companyRgNo" id="companyRgNo">
+        </div>
+        </div>
         <div class="profileBtn">
             <input class="btn" type="submit" value="Save">
             <a class="btn" href="dashboard.php">Cancel</a>

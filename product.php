@@ -116,7 +116,7 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
                     <td><?php echo $row['Normal_Price'] ?>/-</td>
                     <td><?php echo $row['Discounted_Price'] ?>/-</td>
                     <td><?php echo implode("/",array_reverse(explode("-",$row['Latest_Stock_Date']))) ?></td>
-                    <td width="300px" style="position:relative  ">
+                    <td style="position:relative  ">
                         <?php echo $row['Quantity'] ?>
                         <form action="product.php" method="post">
                             <input type="hidden" name="proId" value="<?php echo $row['Product_Id'] ?>">

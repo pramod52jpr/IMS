@@ -9,15 +9,16 @@ body {
    
     align-items: flex-start;
 }
-.addCategoryFormContainer .categoryAddForm{
+.addCategoryFormContainer .categoryAddForm {
     font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: #1b4965;;
+    background-color: #457b9d;
     color: white;
     width: 70%;
     margin-top: 100px;
+    font-weight: bold;
     border-radius: 10px;
 }
 .addCategoryFormContainer .categoryAddForm label{
