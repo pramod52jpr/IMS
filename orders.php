@@ -278,7 +278,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         <form style="margin-top:5px;" action="orders.php" method="post">
                             <?php
                             if($aorow['Approved']==1 or $aorow['Order_Status']==5){
-                                $disable="disabled";
+                                $disable="style='background-color:lightgrey' disabled";
                             }else{
                                 $disable="";
                             }
@@ -300,7 +300,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         <form action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
                             if($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5){
-                                $disabledAgain="disabled";
+                                $disabledAgain="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabledAgain="";
                             }
@@ -330,7 +330,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         <form style="margin-top:5px;" action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
                             if($aorow['Docket_No']!==""){
-                                $disables="disabled";
+                                $disables="style='background-color:lightgrey' disabled";
                             }else{
                                 $disables="";
                             }
@@ -343,7 +343,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         <form style="margin-top:5px;" action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
                             if($aorow['Delivery_Date']!==""){
-                                $disabling="disabled";
+                                $disabling="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabling="";
                             }
@@ -360,7 +360,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         if(mysqli_num_rows($orderstatusResult)>0){
                             while($orderstatusRow=mysqli_fetch_assoc($orderstatusResult)){
                                 if($aorow['Order_Status']>=$orderstatusRow['Status_Id']){
-                                    $disabled="style='background-color:grey;pointer-events:none'";
+                                    $disabled="style='background-color:lightgrey;pointer-events:none'";
                                 }else{
                                     $disabled="";
                                 }

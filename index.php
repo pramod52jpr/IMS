@@ -39,7 +39,7 @@
                                 session_start();
                                 $_SESSION['Company_Id']=$lgRow['Company_Id'];
                                 $_SESSION['Company_Code']=$lgRow['Company_Code'];
-                                Header("Location: $secure://$domain$lDomain/dashboard.php");
+                                Header("Location: dashboard.php");
                             }else{
                                 $lgUserSql="select * from users where `Company_Code`=$lgCode and `Username`='$lgUsername' and `User_Password`='$lgPassword'";
                                 $lgUserResult=mysqli_query($conn,$lgUserSql);
@@ -48,7 +48,7 @@
                                     session_start();
                                     $_SESSION['User_Id']=$lgUserRow['User_Id'];
                                     $_SESSION['Company_Code']=$lgRow['Company_Code'];
-                                    Header("Location: $secure://$domain$lDomain/dashboard.php");
+                                    Header("Location: dashboard.php");
                                 }else{
                                     echo "<script>alert('Wrong Username or Password')</script>";
                                 }
@@ -56,11 +56,11 @@
                         }
                     ?>
                     <label for="lgCode">Company Code</label>
-                    <input type="text" name="lgCode" id="lgCode">
+                    <input type="number" name="lgCode" id="lgCode" required>
                     <label for="lgUsername">Username</label>
-                    <input type="text" name="lgUsername" id="lgUsername">
+                    <input type="text" name="lgUsername" id="lgUsername" required>
                     <label for="lgPassword">Password</label>
-                    <input type="password" name="lgPassword" id="lgPassword">
+                    <input type="password" name="lgPassword" id="lgPassword" required>
                     <input class="button" type="submit" value="Log In">
                     <a href="#">Forgot Password?</a>
                 </form>

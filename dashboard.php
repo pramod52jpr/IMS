@@ -284,7 +284,7 @@ if($adminRow['Admin_Type']==1){
                         <form action="dashboard.php" method="post">
                             <?php
                             if($aorow['Approved']==1 or $aorow['Order_Status']==5){
-                                $disable="disabled";
+                                $disable="style='background-color:lightgrey' disabled";
                             }else{
                                 $disable="";
                             }
@@ -301,7 +301,7 @@ if($adminRow['Admin_Type']==1){
                         <form action="dashboard.php" method="post">
                             <?php
                             if($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5){
-                                $disabledAgain="disabled";
+                                $disabledAgain="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabledAgain="";
                             }
@@ -331,7 +331,7 @@ if($adminRow['Admin_Type']==1){
                         <form style="margin-top:5px;" action="dashboard.php" method="post">
                             <?php
                             if($aorow['Docket_No']!==""){
-                                $disables="disabled";
+                                $disables="style='background-color:lightgrey' disabled";
                             }else{
                                 $disables="";
                             }
@@ -344,7 +344,7 @@ if($adminRow['Admin_Type']==1){
                         <form style="margin-top:5px;" action="dashboard.php" method="post">
                             <?php
                             if($aorow['Delivery_Date']!==""){
-                                $disabling="disabled";
+                                $disabling="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabling="";
                             }
@@ -361,7 +361,7 @@ if($adminRow['Admin_Type']==1){
                         if(mysqli_num_rows($orderstatusResult)>0){
                             while($orderstatusRow=mysqli_fetch_assoc($orderstatusResult)){
                                 if($aorow['Order_Status']>=$orderstatusRow['Status_Id']){
-                                    $disabled="style='background-color:grey;pointer-events:none'";
+                                    $disabled="style='background-color:lightgrey;pointer-events:none'";
                                 }else{
                                     $disabled="";
                                 }
