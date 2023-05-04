@@ -3,6 +3,6 @@ include "conn.php";
 session_start();
 session_unset();
 session_destroy();
-Header("Location: $secure://$domain$lDomain");
+Header("Location: $lDomain");
 
 ?>
