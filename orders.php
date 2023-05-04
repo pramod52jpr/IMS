@@ -237,7 +237,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                     </div>
                     <div class="order-box">
                         <h2>Order Details</h2>
-                        <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
+                        <div class="span-p"><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
                     <?php
                     if($aorow['Approved']==1){

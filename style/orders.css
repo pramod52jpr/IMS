@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Ubuntu:wght@500&display=swap');
 
+
+.span-p span{
+    font-family: 'Fjalla One', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+}
 .allOrdersPage{
     font-family: 'Ubuntu', sans-serif;
     width: 100%;
@@ -145,13 +151,12 @@ input[type="date"] {
     width: 100%;
     margin: 0px 5px;
     padding: 10px;
-    line-height: 28px;
+    line-height: 34px;
     display: flex;
     flex-direction: column;
-    font-weight: 700;
+    font-weight: 600;
     color: black;
     justify-content: flex-start;
-    font-weight: 700;
   align-items: flex-start;
 }
 

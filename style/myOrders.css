@@ -7,9 +7,7 @@ body {
     min-height: 750px;
     padding: 10px;
 }
-.myOrdersPage .myOrdersContainer h2{
-    margin-top: 50px;
-}
+
 .myOrdersPage .myOrdersContainer .myOrder{
     display: flex;
     align-items: center;

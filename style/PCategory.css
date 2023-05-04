@@ -10,7 +10,9 @@ body {
 }
 .PCategoryPage h2{
     font-size: 30px;
-    color: rgb(32, 32, 32);
+    margin: 10px 0px;
+    color: #457b9d;
+    font-weight: 700;
 }
 .PCategoryPage .crudBtn{
     display: flex;

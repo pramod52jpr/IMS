@@ -351,7 +351,7 @@ if($adminRow['Admin_Type']==1){
                             ?>
                             <input type="hidden" name="oderStatus" value="<?php echo $aorow['Order_Status'] ?>">
                             <input type="hidden" name="oderId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <label for="deliveryDate">Delivery Date</label>
+                            <label for="deliveryDate" style="color:green">Delivery Date</label>
                             <input class="order-input" type="date" max="<?php echo date("Y-m-d") ?>" name="deliveryDate" id="deliveryDate" value="<?php echo $aorow['Delivery_Date'] ?>" <?php echo $disabling ?>>
                             <input class="order-btn" type="submit" value="save" <?php echo $disabling ?>>
                         </form>
@@ -449,28 +449,56 @@ if($adminRow['Admin_Type']==1){
     ?>
         <div class="adminSection">
         <div class="items">
+        <div class="inner-item1">
             <h3>Last 2 Days Orders</h3>
             <h2><?php echo mysqli_num_rows($last2DaysOrderResult) ?></h2>
             <p>Items Ordered</p>
-            <a href="myOrders.php?twoDaysDate=<?php echo $last2DaysDate ?>">View Orders</a>
+        </div>
+        <div class="inner-item2">
+            <a href="myOrders.php?twoDaysDate=<?php echo $last2DaysDate ?>">
+            <span class="title">View Order</span>
+            <i class="fa-solid fa-cart-shopping"></i></a>
+        </a>
+        </div>
         </div>
         <div class="items">
+        <div class="inner-item1">
             <h3>Last Week Orders</h3>
             <h2><?php echo mysqli_num_rows($lastWeekDaysOrderResult) ?></h2>
             <p>Items Ordered</p>
-            <a href="myOrders.php?weekDate=<?php echo $lastWeekDaysDate ?>">View Orders</a>
+        </div>
+        <div class="inner-item2">
+            <a href="myOrders.php?weekDate=<?php echo $lastWeekDaysDate ?>">
+            <span class="title">View Order</span>
+            <i class="fa-solid fa-cart-shopping"></i></a>
+        </a>
+        </div>
         </div>
         <div class="items">
+        <div class="inner-item1">
             <h3>Last Month Orders</h3>
             <h2><?php echo mysqli_num_rows($lastMonthOrderResult) ?></h2>
             <p>Items Ordered</p>
-            <a href="myOrders.php?monthDate=<?php echo $lastMonthDate ?>">View Orders</a>
+        </div>
+        <div class="inner-item2">
+            <a href="myOrders.php?monthDate=<?php echo $lastMonthDate ?>">
+            <span class="title">View Order</span>
+            <i class="fa-solid fa-cart-shopping"></i></a>
+        </a>
+        </div>
         </div>
         <div class="items">
+        <div class="inner-item1">
             <h3>Order Recieved</h3>
             <h2><?php echo mysqli_num_rows($recievedResult) ?></h2>
             <p>Items Recieved</p>
-            <a href="myOrders.php?status=4">View Orders</a>
+        </div>
+        <div class="inner-item2">
+            <a href="myOrders.php?status=4">
+            <span class="title">View Order</span>
+  <i class="fa-solid fa-cart-shopping"></i></a>
+            </a>
+        </div>
         </div>
     </div>
     <h1>Today Orders</h1>
@@ -491,9 +519,11 @@ if($adminRow['Admin_Type']==1){
         if(mysqli_num_rows($aoresult)>0){
             while($aorow=mysqli_fetch_assoc($aoresult)){
         ?>
-                <div class="order">
+                <div class="Morder">
+                <div class="myorder-box">
                     <img src="./uploadImages/<?php echo $aorow['Product_Img'] ?>" alt="">
-                    <div class="distributerAbout">
+                </div>
+                <div class="myorder-box">
                         <h2>Order Details : </h2>
                         <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
@@ -518,7 +548,9 @@ if($adminRow['Admin_Type']==1){
                     <?php
                     if($aorow['Order_Status']<4){
                     ?>
+                   <div class="myorder-boxbtn">
                         <a href="cancelReason.php?canoid=<?php echo $aorow['Order_Id'] ?>">Cancel</a>
+                    </div>
                     <?php
                     }
                     ?>
