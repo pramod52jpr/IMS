@@ -21,15 +21,17 @@
                             </div>
                         </div>
                         <div class="item-innerdiv">
-                            <div class="pPrice" style="text-decoration:line-through;color:tan;">Rs.
+                            <div class="pPrice" style="text-decoration:line-through;color:tan;">MRP.
                                 <?php echo $row['Normal_Price'] ?>
                             </div>
-                            <div class="pPrice">Rs.
+                            <div class="pPrice">MRP.
                                 <?php echo $row['Discounted_Price'] ?>
                             </div>
                         </div>
                         <form class="buyProductAddForm" action="myOrders.php" method="post">
                             <input type="hidden" name="pid" value="<?php echo $row['Product_Id'] ?>">
+                            <label for="salePrice">Sale Rs.</label>
+                            <input type="number" name="salePrice" id="salePrice" placeholder="Enter Sale Rs." required>
                             <label for="piece">Quantity</label>
                             <input type="number" name="piece" id="piece" value="1" required>
                             <input class="btn" type="submit" value="Buy Now">

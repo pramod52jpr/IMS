@@ -9,13 +9,15 @@
         if(isset($_POST['pid']) and isset($_POST['piece'])){
             $pid=$_POST['pid'];
             $piece=$_POST['piece'];
+            $salePrice=$_POST['salePrice'];
 
             $orderPriceSql="select `Discounted_Price` from product where `Product_Id`=$pid";
             $orderPriceResult=mysqli_query($conn,$orderPriceSql);
             $orderPriceRow=mysqli_fetch_assoc($orderPriceResult);
             $orderPrice=$orderPriceRow['Discounted_Price'];
+            $orderDate=date("Y-m-d");
 
-            $sql="insert into orders(`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`) values($orderPrice,$piece,1,$pid,$id)";
+            $sql="insert into orders(`Sale_Price`,`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`,`Order_Date`) values($salePrice,$orderPrice,$piece,1,$pid,$id,'$orderDate')";
             $result=mysqli_query($conn,$sql);
             if($result){
                 echo "<script>alert('Order Placed Successfully')</script>";
