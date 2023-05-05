@@ -51,10 +51,9 @@ body {
 }
 
 
-.myorder-box{
+.myorder-box {
     width: 30%;
     text-align: center;
-    /* background-color: #457b9d; */
     margin: 5px;
     padding: 20px;
     font-size: 20px;
@@ -62,24 +61,20 @@ body {
     font-weight: bold;
     display: flex;
     flex-direction: column;
-   color: rgb(0, 0, 0);
-   font-weight: 700;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
     align-items: flex-start;
     position: relative;
     min-height: 270px;
-    line-height: 37px;
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+    line-height: 30px;
 }
 .myorder-box img {
-    /* height: 150px; */
-    width: 80%;
+    height: 250px;
 }
 .myorder-box h2{
-    
         color: #457b9d;
         font-family: 'Fjalla One', sans-serif;
         font-family: 'Ubuntu', sans-serif;
-    
 }
 .myorder-boxbtn {
     width: 30%;

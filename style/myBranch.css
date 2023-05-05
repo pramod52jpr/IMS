@@ -33,9 +33,10 @@ body {
 .myBranchPage .crudBtn .add a:hover{
     background-color: rgb(0, 99, 0);
 }
-.myBranchPage .myBranchContainer{
+.myBranchPage .myBranchContainer {
     background-color: white;
     border-radius: 10px;
+    overflow: auto;
 }
 .myBranchPage .myBranchContainer table{
     width: 100%;

@@ -32,9 +32,10 @@ body {
 .categoryPage .crudBtn .add a:hover{
     background-color: rgb(0, 99, 0);
 }
-.categoryPage .categoryContainer{
+.categoryPage .categoryContainer {
     background-color: white;
     border-radius: 10px;
+    overflow: auto;
 }
 .categoryPage .categoryContainer table{
     width: 100%;

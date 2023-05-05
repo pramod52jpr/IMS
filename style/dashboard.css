@@ -212,9 +212,103 @@ span.company {
 
 
 /* ---------------------------media qurrey------------------------------------- */
+@media (max-width: 915px){
+    .dashboardPage .adminSection {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .dashboardPage .adminSection .items {
+        width: 49%;
+        overflow: hidden;
+        margin: 3px;
+       
+    }
+    .dashboardPage .todayOrdersContainer .order {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .dashboardPage .todayOrdersContainer .order-box{
+        width: 30%;
+    }
+    .dashboardPage{
+        padding: 0;
+    }
+    .dashboardPage .todayOrdersContainer .order-box2 {
+        width: 30%;
+    }
+}
+@media (max-width: 825px){
+    .dashboardPage .adminSection {
+        flex-wrap: wrap;
+    }
+    .dashboardPage .adminSection .items {
+        width: 48%;
+        overflow: hidden;
+        margin: 4px;
+    }
+    .dashboardPage .todayOrdersContainer .order {
+  margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+}
+.dashboardPage{
+    padding: 0;
+}
+}
+@media (max-width: 500px){
+    .dashboardPage .adminSection {
+        width: 100%;
+        flex-direction: column;
+    }
+    .dashboardPage .adminSection .items {
+        width: 100%;
+        margin: 3px;
+    }
+    .dashboardPage .todayOrdersContainer .order{
+        flex-wrap: wrap;
+    }
+    .dashboardPage .todayOrdersContainer .order-box{
+        width: 90%;
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .dashboardPage .todayOrdersContainer .order-box2 {
+        width: 90%;
+    }
+    .dashboardPage{
+        padding: 0;
+    }
+    form.orform {
+        width: 100%;
+    }
 
-
-
+    form.orform2 {
+        width: 100%;
+    }
+}
+@media (max-width: 414px){
+    .dashboardPage .adminSection {   
+        width: 100%;
+        flex-direction: column;
+    }
+    .dashboardPage .adminSection .items {
+        width: 100%;
+        margin: 3px;
+    }
+    .dashboardPage .todayOrdersContainer .order{
+        flex-wrap: wrap;
+    }
+    .dashboardPage .todayOrdersContainer .order-box {
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .dashboardPage{
+        padding: 0;
+    }
+}
+/* 
 @media (max-width: 380px){
     .dashboardPage .adminSection {
         width: 100%;
@@ -227,69 +321,6 @@ span.company {
     .dashboardPage .todayOrdersContainer .order {
         flex-direction: column;
     }
-}
-
-@media (max-width: 414px){
-    .dashboardPage .adminSection {   
-        width: 100%;
-        flex-direction: column;
-    }
-    .dashboardPage .adminSection .items {
-        width: 100%;
-        margin: 3px;
-    }
-}
-
-@media (max-width: 825px){
-    .dashboardPage .adminSection {
-         align-items: flex-start;
-        flex-wrap: wrap;
-    }
-    .dashboardPage .adminSection .items {
-        width: 49%;
-        overflow: hidden;
-        margin: 4px;
-    }
-}
-
-@media (max-width: 825px){
-    .dashboardPage .adminSection {
-        
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-    .dashboardPage .adminSection .items {
-        width: 48%;
-        overflow: hidden;
-        margin: 4px;
-    }
-}
-@media (max-width: 915px){
-    .dashboardPage .adminSection {
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-    .dashboardPage .adminSection .items {
-        width: 49%;
-        overflow: hidden;
-        margin: 3px;
-       
-    }
-}
+} */
 
 
-
-@media (max-width: 540px){
-    .dashboardPage .adminSection {
-        
-        width: 100%;
-        flex-direction: column;
-    }
-    .dashboardPage .adminSection .items {
-       
-        width: 100%;
-       
-        margin: 3px;
-       
-    }
-}
