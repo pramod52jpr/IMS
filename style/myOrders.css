@@ -103,3 +103,20 @@ body {
 .myorder-boxbtn a:hover{
     background: #e40013;
 }
+
+
+
+/* ---------------------media querry-------------------- */
+@media(max-width:936px){
+    .Morder {
+        flex-direction: column;
+        align-items: start;
+    }
+    .myorder-box {
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+        color: rgb(0, 0, 0);
+       
+    }
+}

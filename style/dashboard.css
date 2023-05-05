@@ -217,16 +217,15 @@ span.company {
 
 @media (max-width: 380px){
     .dashboardPage .adminSection {
-        
         width: 100%;
         flex-direction: column;
     }
     .dashboardPage .adminSection .items {
-       
         width: 100%;
-       
         margin: 3px;
-       
+    }
+    .dashboardPage .todayOrdersContainer .order {
+        flex-direction: column;
     }
 }
 
