@@ -537,6 +537,16 @@ if($adminRow['Admin_Type']==1){
                         <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
                     <?php
+                        if($aorow['Delivery_Date']!=""){
+                    ?>
+                        <div><span>Delivery Date : </span><span><?php echo $aorow['Delivery_Date'] ?></span></div>
+                    <?php
+                    }
+                    ?>
+                        <div><span>Order Date : </span><span><?php echo $aorow['Order_Date'] ?></span></div>
+                        <div><span>Normal Price : </span><span><?php echo $aorow['Normal_Price'] ?></span></div>
+                        <div><span>Discounted Price : </span><span><?php echo $aorow['Discounted_Price'] ?></span></div>
+                    <?php
                     if($aorow['Approved']==1){
                     ?>
                         <div><span>Price Approved : </span><span><?php echo $aorow['Approved_Price'] ?></span></div>
@@ -554,15 +564,15 @@ if($adminRow['Admin_Type']==1){
                     }
                     ?>
                     </div>
+                   <div class="myorder-boxbtn">
                     <?php
                     if($aorow['Order_Status']<4){
                     ?>
-                   <div class="myorder-boxbtn">
                         <a href="cancelReason.php?canoid=<?php echo $aorow['Order_Id'] ?>">Cancel</a>
-                    </div>
                     <?php
                     }
                     ?>
+                    </div>
                 </div>
         <?php
             }
