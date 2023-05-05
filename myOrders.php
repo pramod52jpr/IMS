@@ -9,13 +9,15 @@
         if(isset($_POST['pid']) and isset($_POST['piece'])){
             $pid=$_POST['pid'];
             $piece=$_POST['piece'];
+            $salePrice=$_POST['salePrice'];
 
             $orderPriceSql="select `Discounted_Price` from product where `Product_Id`=$pid";
             $orderPriceResult=mysqli_query($conn,$orderPriceSql);
             $orderPriceRow=mysqli_fetch_assoc($orderPriceResult);
             $orderPrice=$orderPriceRow['Discounted_Price'];
+            $orderDate=date("Y-m-d");
 
-            $sql="insert into orders(`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`) values($orderPrice,$piece,1,$pid,$id)";
+            $sql="insert into orders(`Sale_Price`,`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`,`Order_Date`) values($salePrice,$orderPrice,$piece,1,$pid,$id,'$orderDate')";
             $result=mysqli_query($conn,$sql);
             if($result){
                 echo "<script>alert('Order Placed Successfully')</script>";
@@ -62,6 +64,16 @@
                         <div><span>Product : </span><span><?php echo $orow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $orow['Order_Pieces'] ?></span></div>
                     <?php
+                        if($orow['Delivery_Date']!=""){
+                    ?>
+                        <div><span>Delivery Date : </span><span><?php echo $orow['Delivery_Date'] ?></span></div>
+                    <?php
+                    }
+                    ?>
+                        <div><span>Order Date : </span><span><?php echo $orow['Order_Date'] ?></span></div>
+                        <div><span>Normal Price : </span><span><?php echo $orow['Normal_Price'] ?></span></div>
+                        <div><span>Discounted Price : </span><span><?php echo $orow['Discounted_Price'] ?></span></div>
+                    <?php
                     if($orow['Approved']==1){
                     ?>
                         <div><span>Price Approved : </span><span><?php echo $orow['Approved_Price'] ?></span></div>
@@ -79,15 +91,15 @@
                     }
                     ?>
                     </div>
-                    <?php
-                    if($orow['Order_Status']!=mysqli_num_rows($cancelReasonResult)){
-                    ?>
                     <div class="myorder-boxbtn">
+                    <?php
+                    if($orow['Order_Status']<4){
+                    ?>
                         <a href="cancelReason.php?canoid=<?php echo $orow['Order_Id'] ?>">Cancel Order</a>
-                        </div>
                     <?php
                     }
                     ?>
+                        </div>
                 </div>
         <?php
             }

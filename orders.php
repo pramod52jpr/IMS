@@ -152,15 +152,39 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
         <!-- </div> -->
         <!-- <div class="innerbtnbox"> -->
             <form class="orform2" action="orders.php" method="get">
-                <select class="margin-top" name="comId">
+                <select class="margin-top" name="comId" required>
                     <option value="" disabled selected>Select Company</option>
                     <?php
                     $comSearchSql="select `Company_Id`,`Company_Name` from company";
                     $comSearchResult=mysqli_query($conn,$comSearchSql);
                     if(mysqli_num_rows($comSearchResult)>0){
                         while($comSearchRow=mysqli_fetch_assoc($comSearchResult)){
+                            if(isset($_GET['comId']) and ($_GET['comId']==$comSearchRow['Company_Id'])){
+                                $select="selected";
+                            }else{
+                                $select="";
+                            }
                     ?>
-                        <option value="<?php echo $comSearchRow['Company_Id'] ?>"><?php echo $comSearchRow['Company_Name'] ?></option>
+                        <option value="<?php echo $comSearchRow['Company_Id'] ?>" <?php echo $select ?>><?php echo $comSearchRow['Company_Name'] ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+                <select name="proId">
+                    <option value="" disabled selected>Select Product</option>
+                    <?php
+                    $proSearchSql="select `Product_Id`,`Product_Modal_No` from product";
+                    $proSearchResult=mysqli_query($conn,$proSearchSql);
+                    if(mysqli_num_rows($proSearchResult)>0){
+                        while($proSearchRow=mysqli_fetch_assoc($proSearchResult)){
+                            if(isset($_GET['proId']) and $_GET['proId']==$proSearchRow['Product_Id']){
+                                $selects="selected";
+                            }else{
+                                $selects="";
+                            }
+                    ?>
+                        <option value="<?php echo $proSearchRow['Product_Id'] ?>" <?php echo $selects ?>><?php echo $proSearchRow['Product_Modal_No'] ?></option>
                     <?php
                         }
                     }
@@ -216,9 +240,18 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
             $monthDate=$_GET['monthDate'];
             $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$monthDate'";
             echo "<h3>Last Month Orders</h3>";
+        }elseif(isset($_GET['comId']) and isset($_GET['proId'])){
+            $comId=$_GET['comId'];
+            $proId=$_GET['proId'];
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`Product_Id`=$proId";
+
+            $headSqlAgain="select `Company_Name` from company where `Company_Id`=$comId";
+            $headResultAgain=mysqli_query($conn,$headSqlAgain);
+            $headRowAgain=mysqli_fetch_assoc($headResultAgain);
+            echo "<h3>".$headRowAgain['Company_Name']." Orders</h3>";
         }elseif(isset($_GET['comId'])){
             $comId=$_GET['comId'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= '$comId'";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId";
 
             $headSqlAgain="select `Company_Name` from company where `Company_Id`=$comId";
             $headResultAgain=mysqli_query($conn,$headSqlAgain);
@@ -239,6 +272,18 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         <h2>Order Details</h2>
                         <div class="span-p"><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
                         <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
+                        <div><span>Modal No. : </span><span><?php echo $aorow['Product_Modal_No'] ?></span></div>
+                        <div><span>Status : </span><span><?php echo $aorow['Status_Name'] ?></span></div>
+                    <?php
+                    if($aorow['Delivery_Date']!=""){
+                    ?>
+                        <div><span>Delivery Date : </span><span><?php echo $aorow['Delivery_Date'] ?></span></div>
+                    <?php
+                    }
+                    ?>
+                        <div><span>Order Date : </span><span><?php echo $aorow['Order_Date'] ?></span></div>
+                        <div><span>Normal Price : </span><span><?php echo $aorow['Normal_Price'] ?></span></div>
+                        <div><span>Discounted Price : </span><span><?php echo $aorow['Discounted_Price'] ?></span></div>
                     <?php
                     if($aorow['Approved']==1){
                     ?>
@@ -246,13 +291,9 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                     <?php
                     }
                     ?>
-                        <div><span>Modal No. : </span><span><?php echo $aorow['Product_Modal_No'] ?></span></div>
-                        <div><span>Status : </span><span><?php echo $aorow['Status_Name'] ?></span></div>
-                        <div><span>Date : </span><span><?php echo $aorow['Order_Date'] ?></span></div>
                     <?php
                     if($aorow['Order_Status']>=3 and $aorow['Order_Status']!=5){
                     ?>
-                   
                         <div><span>Delivery Mode : </span><span><?php echo $aorow['Delivery_Type'] ?></span></div>
                     <?php
                     }
@@ -284,7 +325,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             }
                             ?>
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
+                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Sale_Price'] ?>" <?php echo $disable ?>>
                             <input class="order-btn" type="submit" value="Approve" <?php echo $disable ?>>
                         </form>
                     </div>
