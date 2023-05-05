@@ -273,7 +273,7 @@ img {
 /* --------------------------------media qurry-------------------------------- */
 
 @media (max-width: 920px) {
-    .allOrdersPage .allOrdersContainer .order {
+   .order {
         flex-wrap: wrap;
         justify-content: flex-start;
     }
@@ -288,7 +288,6 @@ img {
     .order-box2 {
         width: 30%;
     }
-
     .allOrdersPage {
         padding: 0px;
     }
@@ -311,7 +310,6 @@ img {
     .allOrdersPage .allOrdersContainer .order {
         flex-wrap: wrap;
     }
-
     .order-box {
         margin-bottom: 10px;
         margin-left: 0;
@@ -330,15 +328,6 @@ img {
         margin: -0px;
         margin-bottom: 0px;
     }
-
-    form.orform {
-        /* width: 100%; */
-    }
-
-    form.orform2 {
-        /* width: 100%; */
-    }
-
     .allOrdersPage .filterBtnContainer .statusBtn {
         text-align: center;
     }
@@ -348,18 +337,15 @@ img {
     .allOrdersPage .allOrdersContainer .order {
         flex-wrap: wrap;
     }
-
     .order-box {
         width: 90%;
         margin-bottom: 10px;
         margin-left: 0;
         margin-right: 0;
     }
-
-    .order-box2 {
+     .order-box2 {
         width: 90%;
     }
-
     .allOrdersPage {
         padding: 0px;
     }
@@ -418,26 +404,3 @@ img {
 
 
 
-
-/* @media (max-width: 900px){
-.order {
-        flex-direction: column;
-    }
- .order img {
-        width: 30%;
-    }
-}
-
-@media (max-width: 530px){
-  .order {
-        flex-direction: column;
-    }
- .order img {
-        width: 55%;
-    }
-}
-@media (max-width: 380px){
-    .order img {
-        width: 100%;
-    }
-} */
