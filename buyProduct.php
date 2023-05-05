@@ -28,14 +28,24 @@
                                 <?php echo $row['Discounted_Price'] ?>
                             </div>
                         </div>
+                       
                         <form class="buyProductAddForm" action="myOrders.php" method="post">
+                            <div class="form-p">
                             <input type="hidden" name="pid" value="<?php echo $row['Product_Id'] ?>">
+                            <div class="formi-p">
                             <label for="salePrice">Sale Rs.</label>
-                            <input type="number" name="salePrice" id="salePrice" placeholder="Enter Sale Rs." required>
+                          <input type="number" name="salePrice" id="salePrice" placeholder="Enter Sale Rs." required>
+                          </div>
+                          <div class="formi-p">
                             <label for="piece">Quantity</label>
                             <input type="number" name="piece" id="piece" value="1" required>
+                          </div>
+                            <div class="formi-p">
                             <input class="btn" type="submit" value="Buy Now">
+                            </div>
+                            </div>
                         </form>
+                       
                     </div>
                     <?php
                 }

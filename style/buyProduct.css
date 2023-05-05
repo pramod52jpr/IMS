@@ -109,6 +109,37 @@ input#piece {
     background: darkslateblue;
     transition: 0.2s;
 }
+
+
+
+.form-p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.formi-p {
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+input#salePrice {
+        width: 100px;
+        margin: 0px 5px 0px 20px;
+        height: 26px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid gray;
+    
+}
+
+form .form-p .formi-p label {
+    width: 74px;
+    display: inline-block;
+}
 /* ---------------------media qurey-------------------------- */
 
 @media (max-width: 920px) {
@@ -141,7 +172,6 @@ input#piece {
     .buyProductPage .bpitems .item {
         width: 100%;
         text-align: center;
-        background-color: #457b9d;
         margin: 10px;
         padding: 20px;
         font-size: 20px;
@@ -152,7 +182,7 @@ input#piece {
         justify-content: center;
         align-items: center;
         /* position: relative; */
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      
     }
     .buyProductPage .bpitems {
         display: flex;
