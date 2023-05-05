@@ -245,10 +245,15 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
             $proId=$_GET['proId'];
             $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`Product_Id`=$proId";
 
+            $modalSql="select `Product_Modal_No` from product where `Product_Id`=$proId";
+            $modalResult=mysqli_query($conn,$modalSql);
+            $modalRow=mysqli_fetch_assoc($modalResult);
+
             $headSqlAgain="select `Company_Name` from company where `Company_Id`=$comId";
             $headResultAgain=mysqli_query($conn,$headSqlAgain);
             $headRowAgain=mysqli_fetch_assoc($headResultAgain);
             echo "<h3>".$headRowAgain['Company_Name']." Orders</h3>";
+            echo "<h3>Modal No. : ".$modalRow['Product_Modal_No']."</h3>";
         }elseif(isset($_GET['comId'])){
             $comId=$_GET['comId'];
             $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId";
