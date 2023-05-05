@@ -253,11 +253,7 @@ include "conn.php";
                     ?>
                     <li>
                         <a href="myBranch.php">
-<<<<<<< HEAD
-                            <span class="h-icons"><i class="fa-solid fa-briefcase fa-flip "></i></span>
-=======
                             <span class="h-icons"><i class="fa-solid fa-briefcase fa-flip"></i></span>
->>>>>>> 32545a9599ca9444a0e55c569845af2b3a140135
                             <span class="Title"> My Branch</span>
                         </a>
                     </li>
