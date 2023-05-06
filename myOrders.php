@@ -56,8 +56,7 @@
             while($orow=mysqli_fetch_assoc($oresult)){
         ?>
             <div class="Morder">
-                <div class="myorder-box">
-                    <img src="./uploadImages/<?php echo $orow['Product_Img'] ?>" alt="">
+                <div class="myorder-box image" style="background-image:url('./uploadImages/<?php echo $orow['Product_Img'] ?>')">
                 </div>
                 <div class="myorder-box">
                     <h2>Order Details</h2>

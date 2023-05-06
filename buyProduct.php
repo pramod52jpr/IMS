@@ -12,7 +12,8 @@
                     ?>
                     <div class="item">
                         <div class="item-img">
-                            <img src="./uploadImages/<?php echo $row['Product_Img'] ?>" alt="product">
+                            <div class="image" style="background-image:url('./uploadImages/<?php echo $row['Product_Img'] ?>')">
+                            </div>
                             <div class="pname">
                                 <?php echo $row['Product_Name'] ?>
                             </div>

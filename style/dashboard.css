@@ -29,9 +29,12 @@
     border-bottom: 1px solid lightgrey;
     padding: 20px;
 }
-.dashboardPage .todayOrdersContainer .order img {
-   
+.dashboardPage .todayOrdersContainer .order .image {
+    height: 250px;
     width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 /* admin */
 
@@ -93,12 +96,13 @@ form select,form input{
     padding: 3px 5px;
     font-size: 15px;
 }
-
-
-
-
-
-
+.dashboardPage .todayOrdersContainer .Morder .image{
+    height: 250px;
+    width: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 /* ----------------------------------style css----------------------------------------------- */
 

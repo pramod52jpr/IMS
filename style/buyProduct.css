@@ -13,9 +13,12 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-
-.buyProductPage .bpitems .item img {
-    height: 150px;
+.buyProductPage .bpitems .item .item-img .image{
+    height: 250px;
+    width: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
@@ -144,7 +147,7 @@ form .form-p .formi-p label {
 
 @media (max-width: 920px) {
     .buyProductPage .bpitems .item {
-        width: 47%;
+        width: 46%;
     }
     .item-img {
        font-size: 20px;
@@ -168,7 +171,7 @@ form .form-p .formi-p label {
     }
 }
 
-@media (max-width: 690px){
+@media (max-width: 600px){
     .buyProductPage .bpitems .item {
         width: 100%;
         text-align: center;

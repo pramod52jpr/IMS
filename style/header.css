@@ -242,3 +242,12 @@ a i.fa-sharp.fa-solid.fa-cart-shopping.advanceClass {
     margin-top: -10px;
     width: 100%;
 }
+
+
+
+@media (max-width: 870px) {
+    .mainContainer .navbar {
+        position: absolute;
+        height: 100%;
+    }
+}

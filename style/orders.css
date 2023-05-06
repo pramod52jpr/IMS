@@ -186,7 +186,13 @@ input[type="date"] {
     justify-content: flex-start;
     font-weight: 600;
 }
-
+.allOrdersPage .allOrdersContainer .order .image{
+    height: 250px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 a.order-button {
     margin: 3px 0px;
@@ -328,10 +334,6 @@ img {
         margin: -0px;
         margin-bottom: 0px;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 33eb7899c3fb3d61fb0f0197e67d6dae11cc620d
     .allOrdersPage .filterBtnContainer .statusBtn {
         text-align: center;
     }

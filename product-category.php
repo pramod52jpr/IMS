@@ -9,7 +9,8 @@
             while($row=mysqli_fetch_assoc($result)){
         ?>
                 <a href="buyProduct.php?cid=<?php echo $row['P_Category_Id'] ?>" class="item">
-                    <img src="./uploadImages/<?php echo $row['P_Category_Image'] ?>" alt="">
+                    <div class="image" style="background-image:url('./uploadImages/<?php echo $row['P_Category_Image'] ?>')">
+                    </div>
                     <div><?php echo $row['P_Category_Name'] ?></div>
                 </a>
         <?php

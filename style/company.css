@@ -93,12 +93,3 @@ tr:nth-child(odd) {
 }
 
 
-
-
-/* --------------------media querry------------------------------ */
-
-@media (max-width: 870px) {
-    .mainContainer .navbar {
-        position: absolute;
-    }
-}

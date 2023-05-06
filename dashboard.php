@@ -118,6 +118,7 @@ if($adminRow['Admin_Type']==1){
         if(isset($_GET['oid']) and isset($_GET['osid'])){
             $oid=$_GET['oid'];
             $osid=$_GET['osid'];
+            $productId=$_GET['productId'];
 
             $seriesOrderStatusSql="select `Order_Status` from orders where `Order_Id`=$oid";
             $seriesOrderStatusResult=mysqli_query($conn,$seriesOrderStatusSql);
@@ -169,7 +170,23 @@ if($adminRow['Admin_Type']==1){
                     }else{
                         $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
                         $oresult=mysqli_query($conn,$osql);
-                        if($oresult){
+                    
+                        $availableQuantitySql="select `Quantity` from product where `Product_Id`=$productId";
+                        $availableQuantityResult=mysqli_query($conn,$availableQuantitySql);
+                        $availableQuantityRow=mysqli_fetch_assoc($availableQuantityResult);
+                        $availableQuantity=$availableQuantityRow['Quantity'];
+
+                        $deliveredQuantitySql="select `Order_Pieces` from orders where `Order_Id`=$oid";
+                        $deliveredQuantityResult=mysqli_query($conn,$deliveredQuantitySql);
+                        $deliveredQuantityRow=mysqli_fetch_assoc($deliveredQuantityResult);
+                        $deliveredQuantity=$deliveredQuantityRow['Order_Pieces'];
+
+                        $remainingQuantity=$availableQuantity-$deliveredQuantity;
+
+                        $updateQuantitySql="update product set `Quantity`=$remainingQuantity where `Product_Id`=$productId";
+                        $updateQuantityResult=mysqli_query($conn,$updateQuantitySql);
+
+                        if($oresult and $updateQuantityResult){
                             echo "<script>alert('Order Status Updated Successfully')</script>";
                         }else{
                             echo "<script>alert('Order status not Updated')</script>";
@@ -239,9 +256,8 @@ if($adminRow['Admin_Type']==1){
             while($aorow=mysqli_fetch_assoc($aoresult)){
         ?>
                 <div class="order">
-                 <div class="order-box">
-                    <img src="./uploadImages/<?php echo $aorow['Product_Img'] ?>" alt="">
-                   </div>
+                    <div class="order-box image" style="background-image:url('./uploadImages/<?php echo $aorow['Product_Img'] ?>')">
+                    </div>
                     <div class="order-box">
                         <h2>Order Details : </h2>
                         <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
@@ -383,7 +399,7 @@ if($adminRow['Admin_Type']==1){
                                     }
                                 }
                         ?>
-                                <a class="order-button" href="dashboard.php?oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
+                                <a class="order-button" href="dashboard.php?oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>&productId=<?php echo $aorow['Product_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
                         <?php
                                 if((($aorow['Order_Status']==$orderstatusRow['Status_Id'])) and ($aorow['Order_Status']>=4)){
                                     break;
@@ -529,8 +545,7 @@ if($adminRow['Admin_Type']==1){
             while($aorow=mysqli_fetch_assoc($aoresult)){
         ?>
                 <div class="Morder">
-                <div class="myorder-box">
-                    <img src="./uploadImages/<?php echo $aorow['Product_Img'] ?>" alt="">
+                <div class="myorder-box image" style="background-image:url('./uploadImages/<?php echo $aorow['Product_Img'] ?>')">
                 </div>
                 <div class="myorder-box">
                         <h2>Order Details : </h2>

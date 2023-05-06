@@ -49,7 +49,13 @@ body {
     padding: 20px;
     align-items: stretch;
 }
-
+.myOrdersPage .myOrdersContainer .Morder .image{
+    height: 250px;
+    width: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 .myorder-box {
     width: 30%;
@@ -109,9 +115,16 @@ body {
     }
     .myorder-box {
         width: 100%;
-        text-align: center;
+        text-align: left;
         flex-direction: column;
         color: rgb(0, 0, 0);
-       
+        
     }
+}
+
+@media(max-width:600px){
+    .myorder-box {
+        padding: 0;
+    }
+    
 }
