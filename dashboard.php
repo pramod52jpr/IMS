@@ -15,17 +15,17 @@ if($adminRow['Admin_Type']==1){
 // last week sql code
     $todayDate=date("Y-m-d");
     if((intval(date("d"))-7)<1){
-        $Lastweek=30+(intval(date("d"))-7);
-        $lastWeekMonth=intval(date("m"))-1;
+        $Lastweek=30+(intval(date("d"))-7)<10?"0".(30+(intval(date("d"))-7)):(30+(intval(date("d"))-7));
+        $lastWeekMonth=(intval(date("m"))-1)<10?"0".(intval(date("m"))-1):(intval(date("m"))-1);
         if($lastWeekMonth<1){
-            $lastWeekMonth=12+$lastWeekMonth;
+            $lastWeekMonth=(12+$lastWeekMonth)<10?"0".(12+$lastWeekMonth):(12+$lastWeekMonth);
             $lastWeekYear=intval(date("Y"))-1;
         }else{
             $lastWeekYear=intval(date("Y"));
         }
     }else{
-        $Lastweek=intval(date("d"))-7;
-        $lastWeekMonth=intval(date("m"));
+        $Lastweek=intval(date("d"))-7<10?"0".intval(date("d"))-7:intval(date("d"))-7;
+        $lastWeekMonth=intval(date("m"))<10?"0".intval(date("m")):intval(date("m"));
         $lastWeekYear=intval(date("Y"));
     }
     $lastweekDate=date("$lastWeekYear-$lastWeekMonth-$Lastweek");
@@ -33,10 +33,10 @@ if($adminRow['Admin_Type']==1){
     $lastWeekOrderResult=mysqli_query($conn,$last2DaysOrderSql);
 // last month sql code
     if((intval(date("m"))-1)<1){
-        $LastMonth=12+(intval(date("m"))-1);
+        $LastMonth=(12+(intval(date("m"))-1))<10?"0".(12+(intval(date("m"))-1)):(12+(intval(date("m"))-1));
         $LastMonthYear=intval(date("Y"))-1;
     }else{
-        $LastMonth=intval(date("m"))-1;
+        $LastMonth=(intval(date("m"))-1)<10?"0".(intval(date("m"))-1):(intval(date("m"))-1);
         $LastMonthYear=intval(date("Y"));
     }
     $lastMonthDate=date("$LastMonthYear-$LastMonth-d");
@@ -423,17 +423,17 @@ if($adminRow['Admin_Type']==1){
     // last 2 days sql code
         $todayDate=date("Y-m-d");
         if((intval(date("d"))-2)<1){
-            $Last2Days=30+(intval(date("d"))-2);
-            $last2DaysMonth=intval(date("m"))-1;
+            $Last2Days=(30+(intval(date("d"))-2))<10?"0".(30+(intval(date("d"))-2)):(30+(intval(date("d"))-2));
+            $last2DaysMonth=(intval(date("m"))-1)<10?"0".(intval(date("m"))-1):(intval(date("m"))-1);
             if($last2DaysMonth<1){
-                $last2DaysMonth=12+$last2DaysMonth;
+                $last2DaysMonth=(12+$last2DaysMonth)?"0".(12+$last2DaysMonth):(12+$last2DaysMonth);
                 $last2DaysYear=intval(date("Y"))-1;
             }else{
                 $last2DaysYear=intval(date("Y"));
             }
         }else{
-            $Last2Days=intval(date("d"))-2;
-            $last2DaysMonth=intval(date("m"));
+            $Last2Days=(intval(date("d"))-2)<10?"0".(intval(date("d"))-2):(intval(date("d"))-2);
+            $last2DaysMonth=intval(date("m"))<10?"0".intval(date("m")):intval(date("m"));
             $last2DaysYear=intval(date("Y"));
         }
         $last2DaysDate=date("$last2DaysYear-$last2DaysMonth-$Last2Days");
@@ -441,17 +441,17 @@ if($adminRow['Admin_Type']==1){
         $last2DaysOrderResult=mysqli_query($conn,$last2DaysOrderSql);
     // last One week sql code
         if((intval(date("d"))-7)<1){
-            $LastWeekDays=30+(intval(date("d"))-7);
-            $lastWeekDaysMonth=intval(date("m"))-1;
+            $LastWeekDays=(30+(intval(date("d"))-7))<10?"0".(30+(intval(date("d"))-7)):(30+(intval(date("d"))-7));
+            $lastWeekDaysMonth=(intval(date("m"))-1)<10?"0".(intval(date("m"))-1):(intval(date("m"))-1);
             if($lastWeekDaysMonth<1){
-                $lastWeekDaysMonth=12+$lastWeekDaysMonth;
+                $lastWeekDaysMonth=(12+$lastWeekDaysMonth)<10?"0".(12+$lastWeekDaysMonth):(12+$lastWeekDaysMonth);
                 $lastWeekDaysYear=intval(date("Y"))-1;
             }else{
                 $lastWeekDaysYear=intval(date("Y"));
             }
         }else{
-            $LastWeekDays=intval(date("d"))-7;
-            $lastWeekDaysMonth=intval(date("m"));
+            $LastWeekDays=(intval(date("d"))-7)<10?"0".(intval(date("d"))-7):(intval(date("d"))-7);
+            $lastWeekDaysMonth=intval(date("m"))<10?"0".intval(date("m")):intval(date("m"));
             $lastWeekDaysYear=intval(date("Y"));
         }
         $lastWeekDaysDate=date("$lastWeekDaysYear-$lastWeekDaysMonth-$LastWeekDays");
@@ -459,10 +459,10 @@ if($adminRow['Admin_Type']==1){
         $lastWeekDaysOrderResult=mysqli_query($conn,$lastWeekDaysOrderSql);
     // Last One Month sql code
         if((intval(date("m"))-1)<1){
-            $LastMonth=12+(intval(date("m"))-1);
+            $LastMonth=(12+(intval(date("m"))-1))<10?"0".(12+(intval(date("m"))-1)):(12+(intval(date("m"))-1));
             $LastMonthYear=intval(date("Y"))-1;
         }else{
-            $LastMonth=intval(date("m"))-1;
+            $LastMonth=(intval(date("m"))-1)<10?"0".(intval(date("m"))-1):(intval(date("m"))-1);
             $LastMonthYear=intval(date("Y"));
         }
         $lastMonthDate=date("$LastMonthYear-$LastMonth-d");
