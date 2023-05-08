@@ -56,15 +56,15 @@
                         }
                     ?>
                     <label for="lgCode">Company Code</label>
-                    <input type="number" name="lgCode" id="lgCode" required>
+                    <input type="number" name="lgCode" id="lgCode" value="<?php echo isset($_POST['lgCode'])?$_POST['lgCode']:'' ?>" required>
                     <label for="lgUsername">Username</label>
-                    <input type="text" name="lgUsername" id="lgUsername" required>
+                    <input type="text" name="lgUsername" id="lgUsername" value="<?php echo isset($_POST['lgUsername'])?$_POST['lgUsername']:'' ?>" required>
                     <label for="lgPassword">Password</label>
-                    <input type="password" name="lgPassword" id="lgPassword" required>
+                    <input type="password" name="lgPassword" id="lgPassword" value="<?php echo isset($_POST['lgPassword'])?$_POST['lgPassword']:'' ?>" required>
                     <input class="button" type="submit" value="Log In">
                     <a href="#">Forgot Password?</a>
                 </form>
-                <form id="form2" action="index.php" method="post">
+                <form id="form2" action="" method="post">
                     <?php
                         if(isset($_POST['rgUsername']) and isset($_POST['rgPassword'])){
                             $rgName=$_POST['rgName'];
@@ -75,12 +75,12 @@
                             $rgAddress=$_POST['rgAddress'];
                             $companyRgCode=mt_rand(111,999);
 
-                            $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername' or `Company_Code`=$companyRgCode";
+                            $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername'";
                             $rgConfirmResult=mysqli_query($conn,$rgConfirmSql);
                             if(mysqli_num_rows($rgConfirmResult)>0){
                                 echo "<script>alert('This Username is already Registered! Please try different One')</script>";
                             }else{
-                                $rgSql="insert into company(`Company_Name`,`Company_Phone`,`Company_Email`,`Company_Username`,`Company_Password`,`Company_Address`,`Company_Code`) values('$rgName','$rgMobile','$rgEmail','$rgUsername','$rgPassword','$rgAddress','$companyRgCode')";
+                                $rgSql="insert into company(`Company_Name`,`Company_Phone`,`Company_Email`,`Company_Username`,`Company_Password`,`Company_Address`,`Company_Code`) values('$rgName','$rgMobile','$rgEmail','$rgUsername','$rgPassword','$rgAddress',$companyRgCode)";
                                 $rgResult=mysqli_query($conn,$rgSql);
                                 if($rgResult){
                                     echo "<script>alert('Registration Successful! Your Company Code is $companyRgCode')</script>";
@@ -91,18 +91,18 @@
                         }
                     ?>
                     <label for="rgName">Company Name</label>
-                    <input type="text" name="rgName" id="rgName" required>
+                    <input type="text" name="rgName" id="rgName" value="<?php echo isset($_POST['rgName'])?$_POST['rgName']:'' ?>" required>
                     <label for="rgEmail">Company Email</label>
-                    <input type="email" name="rgEmail" id="rgEmail" required>
+                    <input type="email" name="rgEmail" id="rgEmail" value="<?php echo isset($_POST['rgEmail'])?$_POST['rgEmail']:'' ?>" required>
                     <label for="rgMobile">Company Mobile</label>
-                    <input type="tel" name="rgMobile" id="rgMobile" maxlength="10" required>
+                    <input type="tel" name="rgMobile" id="rgMobile" value="<?php echo isset($_POST['rgMobile'])?$_POST['rgMobile']:'' ?>" maxlength="10" required>
                     <label for="rgUsername">Username</label>
-                    <input type="text" name="rgUsername" id="rgUsername" required>
+                    <input type="text" name="rgUsername" id="rgUsername" value="<?php echo isset($_POST['rgUsername'])?$_POST['rgUsername']:'' ?>" required>
                     <label for="rgPassword">Password</label>
-                    <input type="password" name="rgPassword" id="rgPassword" required>
+                    <input type="password" name="rgPassword" id="rgPassword" value="<?php echo isset($_POST['rgPassword'])?$_POST['rgPassword']:'' ?>" required>
                     <label for="rgAddress">Company Address</label>
-                    <input type="text" name="rgAddress" id="rgAddress" required>
-                    <input class="button" type="submit" value="Registration">
+                    <input type="text" name="rgAddress" id="rgAddress" value="<?php echo isset($_POST['rgAddress'])?$_POST['rgAddress']:'' ?>" required>
+                    <input class="button" name="rgSubmit" type="submit" value="Registration">
                 </form>
             </div>
         </div>
