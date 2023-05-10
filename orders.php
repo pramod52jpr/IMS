@@ -1,3 +1,7 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+?>
 <?php include "conn.php" ?>
 <?php include "./components/header.php" ?>
 <?php
@@ -44,6 +48,51 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
                 $oresult=mysqli_query($conn,$osql);
                 if($oresult){
                     echo "<script>alert('Order Status Updated Successfully')</script>";
+                    $mailOrderSql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join company on orders.`Company_Id`=company.`Company_Id` where orders.`Order_Id`=$oid";
+                    $mailOrderResult=mysqli_query($conn,$mailOrderSql);
+                    $mailOrderRow=mysqli_fetch_assoc($mailOrderResult);
+
+                    require './dbbackup/PHPMailer/src/Exception.php';
+                    require './dbbackup/PHPMailer/src/PHPMailer.php';
+                    require './dbbackup/PHPMailer/src/SMTP.php';
+
+                    $mail = new PHPMailer(true);
+
+                   //Enable verbose debug output
+                    try{
+                        $mail->isSMTP();                                
+                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'pramodbioroles@gmail.com';
+                        $mail->Password   = 'mgqjozmdwayfmcby';
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                        $mail->Port       = 465;
+
+                        //Recipients
+                        $mail->setFrom('pramodbioroles@gmail.com', 'Pramod Pandit');
+                        $mail->addAddress('pramod52jpr@gmail.com', 'Pramod Pandit');
+
+                        //Attachments
+                        $mail->addAttachment("./uploadImages/".$mailOrderRow['Product_Img'], 'Product-Image.jpg');    //Optional name
+
+                        //Content
+                        $mail->isHTML(true);                                  //Set email format to HTML
+                        $mail->Subject = "Ready for Billing";
+                        $mail->Body    = "<h2>Order Details</h2>".
+                                        "Product Name : ".$mailOrderRow['Product_Name']."<br>".
+                                        "Modal No. : ".$mailOrderRow['Product_Modal_No']."<br>".
+                                        "Approved Price : ".$mailOrderRow['Approved_Price']."<br>".
+                                        "Quantity : ".$mailOrderRow['Order_Pieces']."<br>".
+                                        "<h2>Company Details</h2>".
+                                        "Company Name : ".$mailOrderRow['Company_Name']."<br>".
+                                        "Contact No. : ".$mailOrderRow['Company_Phone']."<br>".
+                                        "Email : ".$mailOrderRow['Company_Email']."<br>".
+                                        "Address : ".$mailOrderRow['Company_Address'];
+
+                        $mail->send();
+                    }catch(Exception $e){
+                        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    }
                 }else{
                     echo "<script>alert('Order status not Updated')</script>";
                 }
