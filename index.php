@@ -1,4 +1,11 @@
 <?php include "conn.php" ?>
+<?php
+session_start();
+if(isset($_SESSION['Company_Id']) or isset($_SESSION['User_Id'])){
+    Header("Location: dashboard.php");
+}
+session_abort();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

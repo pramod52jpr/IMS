@@ -1,5 +1,12 @@
 <?php include "conn.php" ?>
 <?php
+session_start();
+if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
+    Header("Location: $lDomain");
+}
+session_abort();
+?>
+<?php
 if(isset($_POST['companyName']) and $_POST['companyUsername']){
     $comId=$_POST['comId'];
     $companyName=$_POST['companyName'];
