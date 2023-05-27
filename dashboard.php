@@ -383,7 +383,7 @@ if($adminRow['Admin_Type']==1){
                             ?>
                             <input type="hidden" name="oderStatus" value="<?php echo $aorow['Order_Status'] ?>">
                             <input type="hidden" name="oderId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <label for="deliveryDate" style="color:green">Delivery Date</label>
+                            <label for="deliveryDate" style="color:green">Delivery Date</label><br>
                             <input class="order-input" type="date" max="<?php echo date("Y-m-d") ?>" name="deliveryDate" id="deliveryDate" value="<?php echo $aorow['Delivery_Date'] ?>" <?php echo $disabling ?>>
                             <input class="order-btn" type="submit" value="save" <?php echo $disabling ?>>
                         </form>
