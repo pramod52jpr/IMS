@@ -58,12 +58,12 @@
     transition-duration: 0.2s;
     font-family: 'Montserrat', sans-serif;
     display: none;
-    background: #ffffff;
+    background: rgb(74, 167, 224);
 }
 
 .hellocompanyDropdown a {
     text-decoration: none;
-    color: #000000;
+    color: white;
     width: 100%;
     display: block;
     text-align: center;

@@ -40,11 +40,32 @@ if(isset($_GET['dcomId'])){
         echo "<script>alert('Company not Deleted')</script>";
     }
 }
-
+if(isset($_GET['comactive'])){
+    $comactive=$_GET['comactive'];
+    $comactiveSql="update company set `Active_Status`=0 where `Company_Id`=$comactive";
+    $comactiveResult=mysqli_query($conn,$comactiveSql);
+    if($comactiveResult){
+        echo "<script>alert('Company Deactivated Successfully')</script>";
+    }else{
+        echo "<script>alert('Company not Deactivated')</script>";
+    }
+}
+if(isset($_GET['comdeactive'])){
+    $comdeactive=$_GET['comdeactive'];
+    $comdeactiveSql="update company set `Active_Status`=1 where `Company_Id`=$comdeactive";
+    $comdeactiveResult=mysqli_query($conn,$comdeactiveSql);
+    if($comdeactiveResult){
+        echo "<script>alert('Company Activated Successfully')</script>";
+    }else{
+        echo "<script>alert('Company not Activated')</script>";
+    }
+}
 ?>
 <?php include "./components/header.php" ?>
 <section class="companyPage">
-    <h2>Company Master</h2>
+    <div class="heading">
+        <h2>Company Master</h2>
+    </div>
     <div class="companyContainer">
         <table>
             <thead>
@@ -54,6 +75,7 @@ if(isset($_GET['dcomId'])){
                     <th>Contact No.</th>
                     <th>Email</th>
                     <th>Address</th>
+                    <th>Active</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -70,14 +92,37 @@ if(isset($_GET['dcomId'])){
                     <td><?php echo $row['Company_Phone'] ?></td>
                     <td><?php echo $row['Company_Email'] ?></td>
                     <td><?php echo $row['Company_Address'] ?></td>
-                    <td><a href="updateCompanyForm.php?comId=<?php echo $row['Company_Id'] ?>">Edit</a><a href="company.php?dcomId=<?php echo $row['Company_Id'] ?>">Delete</Button></a>
+                    <td>
+                    <?php
+                    if($row['Active_Status']==1){   
+                    ?>
+                        <a href="?comactive=<?php echo $row['Company_Id'] ?>" style="background-color:blue"><?php echo "Active" ?></a>
+                    <?php
+                    }else{
+                    ?>
+                        <a href="?comdeactive=<?php echo $row['Company_Id'] ?>" style="background-color:grey"><?php echo "Deactive" ?></a>
+                    <?php
+                    }
+                    ?>
+                    </td>
+                    <td>
+                        <?php
+                        if($row['Admin_Type']==1){
+                            $disable="style='pointer-events:none;background:grey'";
+                        }else{
+                            $disable="";
+                        }
+                        ?>
+                        <a href="updateCompanyForm.php?comId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?>>Edit</a>
+                        <a href="company.php?dcomId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?> style="background-color:red">Delete</Button>
+                    </a>
                 </tr>
                 <?php
                     }
                 }else{
                 ?>
                 <tr>
-                    <td colspan="5" style="text-align:center;font-size:20px">No Machines Added</td>
+                    <td colspan="10" style="text-align:center;font-size:20px">No Machines Added</td>
                 </tr>
                 <?php
                 }

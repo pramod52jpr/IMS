@@ -77,7 +77,7 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
     $addQuantitySql="update product set `Quantity`=$newQuantity,`Latest_Stock_Date`='$newDate' where `Product_Id`=$proId";
     $addQuantityResult=mysqli_query($conn,$addQuantitySql);
 
-    $stockSql="insert into stockreport (`Added_Quantity`,`Product_Id`) values($quantity,$proId)";
+    $stockSql="insert into stockreport (`Added_Quantity`,`Product_Id`,`Stock_Date`) values($quantity,$proId,'$newDate')";
     $stockResult=mysqli_query($conn,$stockSql);
     if($addQuantityResult and $stockResult){
         echo "<script>alert('Quantity added Successfully')</script>";

@@ -96,7 +96,7 @@ if($adminRow['Admin_Type']==1){
         </div>
         <div class="items">
             <div class="inner-item1">
-                <h3>Companies</h3>
+                <h3>Company</h3>
                 <h2><?php echo mysqli_num_rows($allCompanyResult) ?></h2>
                 <p>Company Registered</p>
             </div>
@@ -420,7 +420,7 @@ if($adminRow['Admin_Type']==1){
             }
         }else{
         ?>
-        <h2 align="center">No Orders Today</h2>
+            <h2 align="center">No Orders Today</h2>
         <?php
         }
         ?>
@@ -536,17 +536,17 @@ if($adminRow['Admin_Type']==1){
     <h1>Today Orders</h1>
     <div class="todayOrdersContainer">
         <?php
-        if(isset($_GET['canoid'])){
-            $canoid=$_GET['canoid'];
-            $canoidSql="update orders set `Order_Status`=5 where `Order_Id`=$canoid";
-            $canoidResult=mysqli_query($conn,$canoidSql);
-            if($canoidResult){
-                echo "<script>alert('Order Cancelled Successfully')</script>";
+        if(isset($_GET['canretoid'])){
+            $canretoid=$_GET['canretoid'];
+            $canretsql="update orders set `Return_Status`=0 where `Order_Id`=$canretoid";
+            $canretresult=mysqli_query($conn,$canretsql);
+            if($canretresult){
+                echo "<script>alert('Returning Order Application Cancelled Successfully')</script>";
             }else{
-                echo "<script>alert('Order not Cancelled')</script>";
+                echo "<script>alert('Could not Cancel Returning Order Application. Try Again Later!')</script>";
             }
         }
-        $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` where orders.`Company_Id`=$companyId and `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
+        $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$companyId and `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
         $aoresult=mysqli_query($conn,$aosql);
         if(mysqli_num_rows($aoresult)>0){
             while($aorow=mysqli_fetch_assoc($aoresult)){
@@ -585,15 +585,37 @@ if($adminRow['Admin_Type']==1){
                     <?php
                     }
                     ?>
-                    </div>
-                   <div class="myorder-boxbtn">
                     <?php
-                    if($aorow['Order_Status']<4){
+                    if($aorow['Return_Status']>0){
                     ?>
-                        <a href="cancelReason.php?canoid=<?php echo $aorow['Order_Id'] ?>">Cancel</a>
+                        <div><span>Return Status : </span><span><?php echo $aorow['Return_Mode'] ?></span></div>
+                        <div><span>Return Reason : </span><span><?php echo $aorow['Return_Reason'] ?></span></div>
                     <?php
                     }
                     ?>
+                    </div>
+                    <div class="myorder-boxbtn">
+                        <?php
+                        if($aorow['Order_Status']<4){
+                        ?>
+                            <a href="cancelReason.php?canoid=<?php echo $aorow['Order_Id'] ?>">Cancel Order</a>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        if($aorow['Order_Status']==4 and $aorow['Return_Status']==0){
+                        ?>
+                            <a href="returnReason.php?retoid=<?php echo $aorow['Order_Id'] ?>">Return Order</a>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        if($aorow['Order_Status']==4 and $aorow['Return_Status']>0){
+                        ?>
+                            <a href="dashboard.php?canretoid=<?php echo $aorow['Order_Id'] ?>">Cancel Return</a>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
         <?php

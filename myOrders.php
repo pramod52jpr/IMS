@@ -43,20 +43,42 @@ session_abort();
                 echo "<script>alert('Order not Cancelled')</script>";
             }
         }
+        if(isset($_POST['retoid'])){
+            $retoid=$_POST['retoid'];
+            $returnPieces=$_POST['returnPieces'];
+            $returnReason=$_POST['returnReason'];
+            $retsql="update orders set `Return_Status`=1,`Return_Pieces`=$returnPieces,`Return_Reason`='$returnReason' where `Order_Id`=$retoid";
+            $retresult=mysqli_query($conn,$retsql);
+            if($retresult){
+                echo "<script>alert('Applied For Return Successfully')</script>";
+            }else{
+                echo "<script>alert('Could not Applied For Return. Try Again Later!')</script>";
+            }
+        }
+        if(isset($_GET['canretoid'])){
+            $canretoid=$_GET['canretoid'];
+            $canretsql="update orders set `Return_Status`=0 where `Order_Id`=$canretoid";
+            $canretresult=mysqli_query($conn,$canretsql);
+            if($canretresult){
+                echo "<script>alert('Returning Order Application Cancelled Successfully')</script>";
+            }else{
+                echo "<script>alert('Could not Cancel Returning Order Application. Try Again Later!')</script>";
+            }
+        }
         if(isset($_GET['twoDaysDate'])){
             $twoDaysDate=$_GET['twoDaysDate'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$twoDaysDate' order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$twoDaysDate' order by `Order_Id` desc";
         }elseif(isset($_GET['weekDate'])){
             $weekDate=$_GET['weekDate'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$weekDate' order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$weekDate' order by `Order_Id` desc";
         }elseif(isset($_GET['monthDate'])){
             $monthDate=$_GET['monthDate'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$monthDate' order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$monthDate' order by `Order_Id` desc";
         }elseif(isset($_GET['status'])){
             $status=$_GET['status'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` where orders.`Company_Id`=$id and Orders.`Order_Status`=$status order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Status`=$status order by `Order_Id` desc";
         }else{
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` where orders.`Company_Id`=$id order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id order by `Order_Id` desc";
         }
         $oresult=mysqli_query($conn,$osql);
         if(mysqli_num_rows($oresult)>0){
@@ -87,25 +109,47 @@ session_abort();
                     }
                     ?>
                         <div><span>Modal No. : </span><span><?php echo $orow['Product_Modal_No'] ?></span></div>
-                        <div><span>Status : </span><span><?php echo $orow['Status_Name'] ?></span></div>
+                        <div><span> Order Status : </span><span><?php echo $orow['Status_Name'] ?></span></div>
                         <div><span>Date : </span><span><?php echo $orow['Order_Date'] ?></span></div>
                     <?php
-                    if($orow['Order_Status']==mysqli_num_rows($cancelReasonResult)){
+                    if($orow['Order_Status']==5){
                     ?>
                         <div><span>Cancel Reason : </span><span><?php echo $orow['Cancel_Reason'] ?></span></div>
                     <?php
                     }
                     ?>
-                    </div>
-                    <div class="myorder-boxbtn">
                     <?php
-                    if($orow['Order_Status']<4){
+                    if($orow['Return_Status']>0){
                     ?>
-                        <a href="cancelReason.php?canoid=<?php echo $orow['Order_Id'] ?>">Cancel Order</a>
+                        <div><span>Return Status : </span><span><?php echo $orow['Return_Mode'] ?></span></div>
+                        <div><span>Return Reason : </span><span><?php echo $orow['Return_Reason'] ?></span></div>
                     <?php
                     }
                     ?>
-                        </div>
+                    </div>
+                    <div class="myorder-boxbtn">
+                        <?php
+                        if($orow['Order_Status']<4){
+                        ?>
+                            <a href="cancelReason.php?canoid=<?php echo $orow['Order_Id'] ?>">Cancel Order</a>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        if($orow['Order_Status']==4 and $orow['Return_Status']==0){
+                        ?>
+                            <a href="returnReason.php?retoid=<?php echo $orow['Order_Id'] ?>">Return Order</a>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        if($orow['Order_Status']==4 and $orow['Return_Status']>0){
+                        ?>
+                            <a href="myOrders.php?canretoid=<?php echo $orow['Order_Id'] ?>">Cancel Return</a>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </div>
         <?php
             }

@@ -77,7 +77,7 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
 
                         //Recipients
                         $mail->setFrom('pramodbioroles@gmail.com', 'Pramod Pandit');
-                        $mail->addAddress('pramod52jpr@gmail.com', 'Pramod Pandit');
+                        $mail->addAddress('sushil@bioroles.com', 'Sushil Kumar Karma');
 
                         //Attachments
                         $mail->addAttachment("./uploadImages/".$mailOrderRow['Product_Img'], 'Product-Image.jpg');    //Optional name
@@ -211,7 +211,6 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
 <section class="allOrdersPage">
     <div class="filterBtnContainer">
         <!-- <div class="innerbtnbox"> -->
-        
         <?php
         if(!isset($_GET['weekDate'])and !isset($_GET['monthDate'])){
             ?>
@@ -287,6 +286,9 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
         <?php
         }
         ?>
+    </div>
+    <div class="heading">
+        <a href="exportData.php?export=orders" style="margin-left:4%;margin-top:30px">Export</a>
     </div>
     <div class="allOrdersContainer">
         <?php

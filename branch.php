@@ -35,7 +35,9 @@ if(isset($_GET['dbid'])){
 
 ?>
 <section class="branchPage">
-    <h2>Branch</h2>
+    <div class="heading">
+        <h2>Branch</h2>
+    </div>
     <div class="branchContainer">
         <table>
             <thead>

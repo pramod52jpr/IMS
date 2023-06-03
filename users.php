@@ -21,7 +21,8 @@ if(isset($_POST['username']) and isset($_POST['userPassword'])){
     $product=isset($_POST['product'])?$_POST['product']:"";
     $orders=isset($_POST['orders'])?$_POST['orders']:"";
     $branches=isset($_POST['branches'])?$_POST['branches']:"";
-    $userPermit=$AdminCategory.$productCategory.$product.$orders.$branches;
+    $returnOrders=isset($_POST['returnOrders'])?$_POST['returnOrders']:"";
+    $userPermit=$AdminCategory.$productCategory.$product.$orders.$branches.$returnOrders;
 
     $addSql="insert into users(`Company_Code`,`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values($companyCode,'$username','$userPassword','$userPhone','$userEmail','$userPermit')";
     $addResult=mysqli_query($conn,$addSql);
@@ -43,7 +44,8 @@ if(isset($_POST['updatedUsername']) and isset($_POST['updateuid'])){
     $updatedproduct=isset($_POST['updatedproduct'])?$_POST['updatedproduct']:"";
     $updatedorders=isset($_POST['updatedorders'])?$_POST['updatedorders']:"";
     $updatedbranches=isset($_POST['updatedbranches'])?$_POST['updatedbranches']:"";
-    $updatedUserPermit=$updatedAdminCategory.$updatedproductCategory.$updatedproduct.$updatedorders.$updatedbranches;
+    $updatedreturnOrders=isset($_POST['updatedreturnOrders'])?$_POST['updatedreturnOrders']:"";
+    $updatedUserPermit=$updatedAdminCategory.$updatedproductCategory.$updatedproduct.$updatedorders.$updatedbranches.$updatedreturnOrders;
 
     $updateSql="update users set `Username`='$updatedUsername',`User_Password`='$updatedUserPassword',`User_Phone`='$updatedUserPhone',`User_Email`='$updatedUserEmail',`User_Permission`='$updatedUserPermit' where `User_Id`=$updateuid";
     $updateResult=mysqli_query($conn,$updateSql);
@@ -63,6 +65,26 @@ if(isset($_GET['duid'])){
         echo "<script>alert('User not Deleted')</script>";
     }
 }
+if(isset($_GET['useractive'])){
+    $useractive=$_GET['useractive'];
+    $useractiveSql="update users set `Active_Status`=0 where `User_Id`=$useractive";
+    $useractiveResult=mysqli_query($conn,$useractiveSql);
+    if($useractiveResult){
+        echo "<script>alert('User Deactivated Successfully')</script>";
+    }else{
+        echo "<script>alert('User not Deactivated')</script>";
+    }
+}
+if(isset($_GET['userdeactive'])){
+    $userdeactive=$_GET['userdeactive'];
+    $userdeactiveSql="update users set `Active_Status`=1 where `User_Id`=$userdeactive";
+    $userdeactiveResult=mysqli_query($conn,$userdeactiveSql);
+    if($userdeactiveResult){
+        echo "<script>alert('User Activated Successfully')</script>";
+    }else{
+        echo "<script>alert('User not Activated')</script>";
+    }
+}
 
 ?>
 <section class="myBranchPage">
@@ -79,6 +101,7 @@ if(isset($_GET['duid'])){
                     <th>Username</th>
                     <th>Contact No.</th>
                     <th>Email</th>
+                    <th>Active</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -93,7 +116,20 @@ if(isset($_GET['duid'])){
                     <td><?php echo $row['Username'] ?></td>
                     <td><?php echo $row['User_Phone'] ?></td>
                     <td><?php echo $row['User_Email'] ?></td>
-                    <td><a href="updateUserForm.php?uid=<?php echo $row['User_Id'] ?>">Edit</a><a href="users.php?duid=<?php echo $row['User_Id'] ?>">Delete</Button></a>
+                    <td>
+                    <?php
+                    if($row['Active_Status']==1){   
+                    ?>
+                        <a href="?useractive=<?php echo $row['User_Id'] ?>" style="background-color:blue"><?php echo "Active" ?></a>
+                    <?php
+                    }else{
+                    ?>
+                        <a href="?userdeactive=<?php echo $row['User_Id'] ?>" style="background-color:grey"><?php echo "Deactive" ?></a>
+                    <?php
+                    }
+                    ?>
+                    </td>
+                    <td><a href="updateUserForm.php?uid=<?php echo $row['User_Id'] ?>">Edit</a><a href="users.php?duid=<?php echo $row['User_Id'] ?>" style="background-color:red">Delete</Button></a>
                 </tr>
                 <?php
                     }

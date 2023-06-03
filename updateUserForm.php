@@ -48,26 +48,43 @@ session_abort();
                     name="updatedUserEmail" id="updatedUserEmail" placeholder="Enter Email">
             </div>
         </div>
-        <div class="row2">
+        <hr></hr>
+            <h2 style="margin:20px 0px;">Give Access<hr class="hrline"></hr></h2>
+        <div class="row6">
             <?php
             $AdminCategoryChecked=str_contains($UpdateRow['User_Permission'],"AdminCategory")?"checked":"";
             $productCategoryChecked=str_contains($UpdateRow['User_Permission'],"productCategory")?"checked":"";
             $productChecked=str_contains($UpdateRow['User_Permission'],"product")?"checked":"";
             $ordersChecked=str_contains($UpdateRow['User_Permission'],"orders")?"checked":"";
             $branchesChecked=str_contains($UpdateRow['User_Permission'],"branches")?"checked":"";
+            $returnOrdersChecked=str_contains($UpdateRow['User_Permission'],"returnOrders")?"checked":"";
             ?>
-            <h2>Give Access</h2>
-            <input type="checkbox"  name="updatedAdminCategory" id="updatedAdminCategory" value="AdminCategory" <?php echo $AdminCategoryChecked ?>>
-            <label for="updatedAdminCategory">Admin Category</label>
-            <input type="checkbox" name="updatedproductCategory" id="updatedproductCategory" value="productCategory"<?php echo $productCategoryChecked ?>>
-            <label for="updatedproductCategory">Product Category</label>
-            <input type="checkbox" name="updatedproduct" id="updatedproduct" value="product"<?php echo $productChecked ?>>
-            <label for="updatedproduct">Products</label>
-            <input type="checkbox" name="updatedorders" id="updatedorders" value="orders"<?php echo $ordersChecked ?>>
-            <label for="updatedorders">Orders</label>
-            <input type="checkbox" name="updatedbranches" id="updatedbranches" value="branches"<?php echo $branchesChecked ?>>
-            <label for="updatedbranches">Branches</label>
+            <div class="col-28">
+                <input type="checkbox"  name="updatedAdminCategory" id="updatedAdminCategory" value="AdminCategory" <?php echo $AdminCategoryChecked ?>>
+                <label for="updatedAdminCategory">Admin Category</label>
+            </div>
+            <div class="col-28">
+                <input type="checkbox" name="updatedproductCategory" id="updatedproductCategory" value="productCategory"<?php echo $productCategoryChecked ?>>
+                <label for="updatedproductCategory">Product Category</label>
+            </div>
+            <div class="col-28">
+                <input type="checkbox" name="updatedproduct" id="updatedproduct" value="product"<?php echo $productChecked ?>>
+                <label for="updatedproduct">Products</label>
+            </div>
+            <div class="col-28">
+                <input type="checkbox" name="updatedorders" id="updatedorders" value="orders"<?php echo $ordersChecked ?>>
+                <label for="updatedorders">Orders</label>
+            </div>
+            <div class="col-28">
+                <input type="checkbox" name="updatedbranches" id="updatedbranches" value="branches"<?php echo $branchesChecked ?>>
+                <label for="updatedbranches">Branches</label>
+            </div>
+            <div class="col-28">
+                <input type="checkbox" name="updatedreturnOrders" id="updatedreturnOrders" value="returnOrders"<?php echo $returnOrdersChecked ?>>
+                <label for="updatedreturnOrders">Return Orders</label>
+            </div>
         </div>
+        <hr></hr>
         <div class="updateMyBbranchFormBtn">
             <input class="btn" type="submit" value="Update">
             <a class="btn" href="users.php">Cancel</a>

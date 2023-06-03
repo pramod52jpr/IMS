@@ -12,7 +12,7 @@ session_abort();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioComplaints</title>
+    <title>Bioroles Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@ session_abort();
         <div class="loginContainer">
             <div class="loginHeader">
                 <div class="headerContent">
-                    <h2>Cloud TA</h2>
-                    <div>Time Attendence & Payroll System</div>
+                    <h2>BIOROLES</h2>
+                    <div>Inventory Management System</div>
                 </div>
                 <div class="LoginPg">Log in to start your session</div>
             </div>
@@ -43,19 +43,27 @@ session_abort();
                             $lgResult=mysqli_query($conn,$lgSql);
                             if(mysqli_num_rows($lgResult)>0){
                                 $lgRow=mysqli_fetch_assoc($lgResult);
-                                session_start();
-                                $_SESSION['Company_Id']=$lgRow['Company_Id'];
-                                $_SESSION['Company_Code']=$lgRow['Company_Code'];
-                                Header("Location: dashboard.php");
+                                if($lgRow['Active_Status']==1){
+                                    session_start();
+                                    $_SESSION['Company_Id']=$lgRow['Company_Id'];
+                                    $_SESSION['Company_Code']=$lgRow['Company_Code'];
+                                    Header("Location: dashboard.php");
+                                }else{
+                                    echo "<script>alert('You are Deactiveted By the Owner')</script>";
+                                }
                             }else{
                                 $lgUserSql="select * from users where `Company_Code`=$lgCode and `Username`='$lgUsername' and `User_Password`='$lgPassword'";
                                 $lgUserResult=mysqli_query($conn,$lgUserSql);
                                 if(mysqli_num_rows($lgUserResult)>0){
                                     $lgUserRow=mysqli_fetch_assoc($lgUserResult);
-                                    session_start();
-                                    $_SESSION['User_Id']=$lgUserRow['User_Id'];
-                                    $_SESSION['Company_Code']=$lgRow['Company_Code'];
-                                    Header("Location: dashboard.php");
+                                    if($lgUserRow['Active_Status']==1){
+                                        session_start();
+                                        $_SESSION['User_Id']=$lgUserRow['User_Id'];
+                                        $_SESSION['Company_Code']=$lgRow['Company_Code'];
+                                        Header("Location: dashboard.php");
+                                    }else{
+                                        echo "<script>alert('You are Deactiveted By the Owner')</script>";
+                                    }
                                 }else{
                                     echo "<script>alert('Wrong Username or Password')</script>";
                                 }
@@ -82,10 +90,10 @@ session_abort();
                             $rgAddress=$_POST['rgAddress'];
                             $companyRgCode=mt_rand(111,999);
 
-                            $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername'";
+                            $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername' or `Company_Email`='$rgEmail'";
                             $rgConfirmResult=mysqli_query($conn,$rgConfirmSql);
                             if(mysqli_num_rows($rgConfirmResult)>0){
-                                echo "<script>alert('This Username is already Registered! Please try different One')</script>";
+                                echo "<script>alert('This Username or Email is already Registered! Please try different One')</script>";
                             }else{
                                 $rgSql="insert into company(`Company_Name`,`Company_Phone`,`Company_Email`,`Company_Username`,`Company_Password`,`Company_Address`,`Company_Code`) values('$rgName','$rgMobile','$rgEmail','$rgUsername','$rgPassword','$rgAddress',$companyRgCode)";
                                 $rgResult=mysqli_query($conn,$rgSql);

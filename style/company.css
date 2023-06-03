@@ -17,6 +17,22 @@ body {
     font-weight: 700;
 }
 
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.heading a{
+    font-size: 20px;
+    background-color: green;
+    padding: 5px 10px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
 .companyPage .crudBtn {
     display: flex;
     justify-content: space-between;
@@ -62,8 +78,16 @@ body {
 
 }
 
-.companyPage .companyContainer table td a {
+table td a {
     margin: 0px 5px;
+    background-color: blue;
+    color: white;
+    padding: 1px 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    width: 50%;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
 .companyPage .companyContainer table td:last-child,

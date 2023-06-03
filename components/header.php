@@ -9,7 +9,7 @@ include "conn.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioComplaints/Dashboard</title>
+    <title>Bioroles Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -232,6 +232,27 @@ include "conn.php";
                         }
                         ?>
                         <?php
+                        if (isset($huRow['User_Permission'])) {
+                            if (str_contains($huRow['User_Permission'], "returnOrders")) {
+                                ?>
+                                <li>
+                                    <a href="returnOrders.php">
+                                        <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass fa-flip"></i></span>
+                                        Return Orders</a>
+                                </li>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                            <li>
+                                <a href="returnOrders.php">
+                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass fa-flip"></i></span>
+                                    Return Orders</a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                        <?php
                         if (!isset($huRow['User_Permission'])) {
                             ?>
                             <li>
@@ -272,7 +293,19 @@ include "conn.php";
                     <li>
                         <a href="stock-report.php">
                             <span class="h-icons"><i class="fa-solid fa-notes-medical fa-flip" style="color: #fcfcfc;"></i></span>
-                            <span class="Title"> Reports</span>
+                            <span class="Title">Stock Reports</span>
+                        </a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (isset($hcRow['Admin_Type']) and $hcRow['Admin_Type'] == 1) {
+                    ?>
+                    <li>
+                        <a href="return-report.php">
+                            <span class="h-icons"><i class="fa-solid fa-notes-medical fa-flip" style="color: #fcfcfc;"></i></span>
+                            <span class="Title">Return Reports</span>
                         </a>
                     </li>
                     <?php

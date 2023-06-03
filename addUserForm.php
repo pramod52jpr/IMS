@@ -65,7 +65,12 @@ session_abort();
                 <input type="checkbox" name="branches" id="branches" value="branches">
                 <label for="branches">Branches</label>
             </div>
-        </div><hr></hr>
+            <div class="col-28">
+                <input type="checkbox" name="returnOrders" id="returnOrders" value="returnOrders">
+                <label for="returnOrders">Return Orders</label>
+            </div>
+        </div>
+        <hr></hr>
         <div class="updateMyBbranchFormBtn">
             <input class="btn" type="submit" value="Add">
             <a class="btn" href="users.php">Cancel</a>
