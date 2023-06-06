@@ -43,13 +43,15 @@ session_abort();
                             $lgResult=mysqli_query($conn,$lgSql);
                             if(mysqli_num_rows($lgResult)>0){
                                 $lgRow=mysqli_fetch_assoc($lgResult);
-                                if($lgRow['Active_Status']==1){
+                                if($lgRow['Approvel']==0){
+                                    echo "<script>alert('Stay For Approved By the Owner')</script>";
+                                }elseif($lgRow['Active_Status']==0){
+                                    echo "<script>alert('You are Deactiveted By the Owner')</script>";
+                                }else{
                                     session_start();
                                     $_SESSION['Company_Id']=$lgRow['Company_Id'];
                                     $_SESSION['Company_Code']=$lgRow['Company_Code'];
                                     Header("Location: dashboard.php");
-                                }else{
-                                    echo "<script>alert('You are Deactiveted By the Owner')</script>";
                                 }
                             }else{
                                 $lgUserSql="select * from users where `Company_Code`=$lgCode and `Username`='$lgUsername' and `User_Password`='$lgPassword'";
@@ -77,7 +79,7 @@ session_abort();
                     <label for="lgPassword">Password</label>
                     <input type="password" name="lgPassword" id="lgPassword" value="<?php echo isset($_POST['lgPassword'])?$_POST['lgPassword']:'' ?>" required>
                     <input class="button" type="submit" value="Log In">
-                    <a href="#">Forgot Password?</a>
+                    <!-- <a href="#">Forgot Password?</a> -->
                 </form>
                 <form id="form2" action="" method="post">
                     <?php
@@ -88,7 +90,12 @@ session_abort();
                             $rgUsername=$_POST['rgUsername'];
                             $rgPassword=$_POST['rgPassword'];
                             $rgAddress=$_POST['rgAddress'];
-                            $companyRgCode=mt_rand(111,999);
+
+                                $rgCodeSql="select `Company_Code` from company Order By `Company_Code` desc limit 1";
+                                $rgCodeResult=mysqli_query($conn,$rgCodeSql);
+                                $rgCodeRow=mysqli_fetch_assoc($rgCodeResult);
+
+                            $companyRgCode=$rgCodeRow['Company_Code']+1;
 
                             $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername' or `Company_Email`='$rgEmail'";
                             $rgConfirmResult=mysqli_query($conn,$rgConfirmSql);

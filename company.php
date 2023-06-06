@@ -3,6 +3,8 @@
 session_start();
 if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
+}elseif(isset($_SESSION['User_Id'])){
+    Header("Location: dashboard.php");
 }
 session_abort();
 ?>
@@ -81,7 +83,7 @@ if(isset($_GET['comdeactive'])){
             </thead>
             <tbody>
                 <?php
-                $sql="select * from company join category on company.`Admin_Type`=category.`Category_Id`";
+                $sql="select * from company join category on company.`Admin_Type`=category.`Category_Id` where `Approvel`=1";
                 $result=mysqli_query($conn,$sql);
                 if(mysqli_num_rows($result)>0){
                     while($row=mysqli_fetch_assoc($result)){
@@ -113,7 +115,7 @@ if(isset($_GET['comdeactive'])){
                             $disable="";
                         }
                         ?>
-                        <a href="updateCompanyForm.php?comId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?>>Edit</a>
+                        <a href="updateCompanyForm.php?comId=<?php echo $row['Company_Id'] ?>">Edit</a>
                         <a href="company.php?dcomId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?> style="background-color:red">Delete</Button>
                     </a>
                 </tr>
@@ -122,7 +124,7 @@ if(isset($_GET['comdeactive'])){
                 }else{
                 ?>
                 <tr>
-                    <td colspan="10" style="text-align:center;font-size:20px">No Machines Added</td>
+                    <td colspan="10" style="text-align:center;font-size:20px">No Company Added</td>
                 </tr>
                 <?php
                 }

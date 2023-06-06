@@ -123,6 +123,17 @@ include "conn.php";
                                     <span class="Title">All Companies</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="approvalCompanies.php">
+                                    <span class="h-icons"><i class="fa-sharp fa-solid fa-building advanceClass fa-flip"></i></span>
+                                    <?php
+                                    $newCompanySql="select `Company_Id` from company where `Approvel`=0";
+                                    $newCompanyResult=mysqli_query($conn,$newCompanySql);
+                                    $newCompanies=mysqli_num_rows($newCompanyResult);
+                                    ?>
+                                    <span class="Title">New Companies(<?php echo $newCompanies ?>)</span>
+                                </a>
+                            </li>
                             <?php
                         }
                         ?>

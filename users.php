@@ -22,6 +22,7 @@ if(isset($_POST['username']) and isset($_POST['userPassword'])){
     $orders=isset($_POST['orders'])?$_POST['orders']:"";
     $branches=isset($_POST['branches'])?$_POST['branches']:"";
     $returnOrders=isset($_POST['returnOrders'])?$_POST['returnOrders']:"";
+    
     $userPermit=$AdminCategory.$productCategory.$product.$orders.$branches.$returnOrders;
 
     $addSql="insert into users(`Company_Code`,`Username`,`User_Password`,`User_Phone`,`User_Email`,`User_Permission`) values($companyCode,'$username','$userPassword','$userPhone','$userEmail','$userPermit')";

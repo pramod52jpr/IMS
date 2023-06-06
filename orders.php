@@ -7,6 +7,14 @@ use PHPMailer\PHPMailer\Exception;
 session_start();
 if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
+}elseif(isset($_SESSION['User_Id'])){
+    $huid = $_SESSION['User_Id'];
+    $huSql = "select `Username`,`User_Permission` from users where `User_Id`=$huid";
+    $huResult = mysqli_query($conn, $huSql);
+    $huRow = mysqli_fetch_assoc($huResult);
+    if(!str_contains($huRow['User_Permission'], "orders")){
+        Header("Location: dashboard.php");
+    }
 }
 session_abort();
 ?>
@@ -288,7 +296,13 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
         ?>
     </div>
     <div class="heading">
-        <a href="exportData.php?export=orders" style="margin-left:4%;margin-top:30px">Export</a>
+        <?php
+        if(!isset($_GET['fromDate']) and !isset($_GET['status']) and !isset($_GET['weekDate']) and !isset($_GET['monthDate']) and !isset($_GET['comId'])){
+        ?>
+            <a href="exportData.php?export=orders" style="margin-left:4%;margin-top:30px">Export</a>
+        <?php
+        }
+        ?>
     </div>
     <div class="allOrdersContainer">
         <?php
