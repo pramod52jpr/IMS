@@ -17,6 +17,7 @@ session_abort();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style/login.css">
+    <link rel="shortcut icon" href="https://www.freeiconspng.com/uploads/blue-shopping-cart-icon-4.jpg" type="image/x-icon">
 </head>
 <body>
     <section class="loginPage">
