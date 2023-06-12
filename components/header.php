@@ -104,10 +104,9 @@ include "conn.php";
                 <div class="items">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="#" style="pointer-events:none">
                                 <span class="h-icons"><i class="fa-solid fa-layer-group fa-flip"></i></span>
                                 <span class="Title">MasterForms</span>
-
                                 <span class="Title"><i class="fa-solid fa-caret-down" style="color: #fcfcfc;"></i></span>
                             </a>
                         </li>
