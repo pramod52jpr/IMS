@@ -17,6 +17,7 @@ session_abort();
             $pid=$_POST['pid'];
             $piece=$_POST['piece'];
             $salePrice=$_POST['salePrice'];
+            $shippingMode=isset($_POST['shippingMode'])?$_POST['shippingMode']:0;
 
             $orderPriceSql="select `Discounted_Price` from product where `Product_Id`=$pid";
             $orderPriceResult=mysqli_query($conn,$orderPriceSql);
@@ -24,7 +25,7 @@ session_abort();
             $orderPrice=$orderPriceRow['Discounted_Price'];
             $orderDate=date("Y-m-d");
 
-            $sql="insert into orders(`Sale_Price`,`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`,`Order_Date`) values($salePrice,$orderPrice,$piece,1,$pid,$id,'$orderDate')";
+            $sql="insert into orders(`Sale_Price`,`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`,`Delievery_Mode`,`Order_Date`) values($salePrice,$orderPrice,$piece,1,$pid,$id,$shippingMode,'$orderDate')";
             $result=mysqli_query($conn,$sql);
             if($result){
                 echo "<script>alert('Order Placed Successfully')</script>";
@@ -105,6 +106,7 @@ session_abort();
                     if($orow['Approved']==1){
                     ?>
                         <div><span>Price Approved : </span><span><?php echo $orow['Approved_Price'] ?></span></div>
+                        <div><span>Total Price : </span><span><?php echo $orow['Approved_Price']*$orow['Order_Pieces'] ?></span></div>
                     <?php
                     }
                     ?>

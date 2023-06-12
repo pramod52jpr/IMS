@@ -40,90 +40,15 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
             $canReason="";
         }
         if($osid==3){
-            $deliveryModeSql="select `Delievery_Mode` from orders where `Order_Id`=$oid";
+            $deliveryModeSql="select `Delievery_Mode`,`Docket_No` from orders where `Order_Id`=$oid";
             $deliveryModeResult=mysqli_query($conn,$deliveryModeSql);
             $deliveryModeRow=mysqli_fetch_assoc($deliveryModeResult);
-            if($deliveryModeRow['Delievery_Mode']==0){
-                echo "<script>alert('Please Choose any Delivery Mode!')</script>";
+            if($deliveryModeRow['Delievery_Mode']==0 or $deliveryModeRow['Docket_No']==""){
+                echo "<script>alert('Please Choose any Delivery Mode Or Enter Docket No. !')</script>";
             }else{
                 $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
                 $oresult=mysqli_query($conn,$osql);
-                if($oresult){
-                    echo "<script>alert('Order Status Updated Successfully')</script>";
-                }else{
-                    echo "<script>alert('Order status not Updated')</script>";
-                }
-            }
-        }elseif($osid==2){
-            $priceSql="select `Approved` from orders where `Order_Id`=$oid";
-            $priceResult=mysqli_query($conn,$priceSql);
-            $priceRow=mysqli_fetch_assoc($priceResult);
-            if($priceRow['Approved']==1){
-                $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
-                $oresult=mysqli_query($conn,$osql);
-                if($oresult){
-                    echo "<script>alert('Order Status Updated Successfully')</script>";
-                    $mailOrderSql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join company on orders.`Company_Id`=company.`Company_Id` where orders.`Order_Id`=$oid";
-                    $mailOrderResult=mysqli_query($conn,$mailOrderSql);
-                    $mailOrderRow=mysqli_fetch_assoc($mailOrderResult);
-
-                    require './dbbackup/PHPMailer/src/Exception.php';
-                    require './dbbackup/PHPMailer/src/PHPMailer.php';
-                    require './dbbackup/PHPMailer/src/SMTP.php';
-
-                    $mail = new PHPMailer(true);
-
-                   //Enable verbose debug output
-                    try{
-                        $mail->isSMTP();                                
-                        $mail->Host       = 'smtp.gmail.com';
-                        $mail->SMTPAuth   = true;
-                        $mail->Username   = 'pramodbioroles@gmail.com';
-                        $mail->Password   = 'mgqjozmdwayfmcby';
-                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                        $mail->Port       = 465;
-
-                        //Recipients
-                        $mail->setFrom('pramodbioroles@gmail.com', 'Pramod Pandit');
-                        $mail->addAddress('sushil@bioroles.com', 'Sushil Kumar Karma');
-
-                        //Attachments
-                        $mail->addAttachment("./uploadImages/".$mailOrderRow['Product_Img'], 'Product-Image.jpg');    //Optional name
-
-                        //Content
-                        $mail->isHTML(true);                                  //Set email format to HTML
-                        $mail->Subject = "Ready for Billing";
-                        $mail->Body    = "<h2>Order Details</h2>".
-                                        "Product Name : ".$mailOrderRow['Product_Name']."<br>".
-                                        "Modal No. : ".$mailOrderRow['Product_Modal_No']."<br>".
-                                        "Approved Price : ".$mailOrderRow['Approved_Price']."<br>".
-                                        "Quantity : ".$mailOrderRow['Order_Pieces']."<br>".
-                                        "<h2>Company Details</h2>".
-                                        "Company Name : ".$mailOrderRow['Company_Name']."<br>".
-                                        "Contact No. : ".$mailOrderRow['Company_Phone']."<br>".
-                                        "Email : ".$mailOrderRow['Company_Email']."<br>".
-                                        "Address : ".$mailOrderRow['Company_Address'];
-
-                        $mail->send();
-                    }catch(Exception $e){
-                        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                    }
-                }else{
-                    echo "<script>alert('Order status not Updated')</script>";
-                }
-            }else{
-                echo "<script>alert('Please Approve the Price')</script>";
-            }
-        }elseif($osid==4){
-            $DeliverySql="select `Delivery_Date` from orders where `Order_Id`=$oid";
-            $DeliveryResult=mysqli_query($conn,$DeliverySql);
-            $DeliveryRow=mysqli_fetch_assoc($DeliveryResult);
-            if($DeliveryRow['Delivery_Date']==""){
-                echo "<script>alert('Please Fill the Delivery Date')</script>";
-            }else{
-                $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
-                $oresult=mysqli_query($conn,$osql);
-
+                
                 $availableQuantitySql="select `Quantity` from product where `Product_Id`=$productId";
                 $availableQuantityResult=mysqli_query($conn,$availableQuantitySql);
                 $availableQuantityRow=mysqli_fetch_assoc($availableQuantityResult);
@@ -145,9 +70,86 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
                     echo "<script>alert('Order status not Updated')</script>";
                 }
             }
+        }elseif($osid==2){
+            $priceSql="select `Approved` from orders where `Order_Id`=$oid";
+            $priceResult=mysqli_query($conn,$priceSql);
+            $priceRow=mysqli_fetch_assoc($priceResult);
+            if($priceRow['Approved']==1){
+                $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
+                $oresult=mysqli_query($conn,$osql);
+                if($oresult){
+                    echo "<script>alert('Order Status Updated Successfully')</script>";
+                    $mailOrderSql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join company on orders.`Company_Id`=company.`Company_Id` where orders.`Order_Id`=$oid";
+                    $mailOrderResult=mysqli_query($conn,$mailOrderSql);
+                    $mailOrderRow=mysqli_fetch_assoc($mailOrderResult);
+
+                //     require './dbbackup/PHPMailer/src/Exception.php';
+                //     require './dbbackup/PHPMailer/src/PHPMailer.php';
+                //     require './dbbackup/PHPMailer/src/SMTP.php';
+
+                //     $mail = new PHPMailer(true);
+
+                //    //Enable verbose debug output
+                //     try{
+                //         $mail->isSMTP();                                
+                //         $mail->Host       = 'smtp.gmail.com';
+                //         $mail->SMTPAuth   = true;
+                //         $mail->Username   = 'pramodbioroles@gmail.com';
+                //         $mail->Password   = 'mgqjozmdwayfmcby';
+                //         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                //         $mail->Port       = 465;
+
+                //         //Recipients
+                //         $mail->setFrom('pramodbioroles@gmail.com', 'Pramod Pandit');
+                //         $mail->addAddress('sushil@bioroles.com', 'Sushil Kumar Karma');
+
+                //         //Attachments
+                //         $mail->addAttachment("./uploadImages/".$mailOrderRow['Product_Img'], 'Product-Image.jpg');    //Optional name
+
+                //         //Content
+                //         $mail->isHTML(true);                                  //Set email format to HTML
+                //         $mail->Subject = "Ready for Billing";
+                //         $mail->Body    = "<h2>Order Details</h2>".
+                //                         "Product Name : ".$mailOrderRow['Product_Name']."<br>".
+                //                         "Modal No. : ".$mailOrderRow['Product_Modal_No']."<br>".
+                //                         "Approved Price : ".$mailOrderRow['Approved_Price']."<br>".
+                //                         "Quantity : ".$mailOrderRow['Order_Pieces']."<br>".
+                //                         "<h2>Company Details</h2>".
+                //                         "Company Name : ".$mailOrderRow['Company_Name']."<br>".
+                //                         "Contact No. : ".$mailOrderRow['Company_Phone']."<br>".
+                //                         "Email : ".$mailOrderRow['Company_Email']."<br>".
+                //                         "Address : ".$mailOrderRow['Company_Address'];
+
+                //         $mail->send();
+                //     }catch(Exception $e){
+                //         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                //     }
+                }else{
+                    echo "<script>alert('Order status not Updated')</script>";
+                }
+            }else{
+                echo "<script>alert('Please Approve the Price')</script>";
+            }
+        }elseif($osid==4){
+            $DeliverySql="select `Delivery_Date` from orders where `Order_Id`=$oid";
+            $DeliveryResult=mysqli_query($conn,$DeliverySql);
+            $DeliveryRow=mysqli_fetch_assoc($DeliveryResult);
+            if($DeliveryRow['Delivery_Date']==""){
+                echo "<script>alert('Please Fill the Delivery Date')</script>";
+            }else{
+                $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
+                $oresult=mysqli_query($conn,$osql);
+
+                if($oresult){
+                    echo "<script>alert('Order Status Updated Successfully')</script>";
+                }else{
+                    echo "<script>alert('Order status not Updated')</script>";
+                }
+            }
         }else{
             $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
             $oresult=mysqli_query($conn,$osql);
+            
             if($oresult){
                 echo "<script>alert('Order Status Updated Successfully')</script>";
             }else{
@@ -157,32 +159,20 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
         
     }
 }
-if(isset($_POST['orderId']) and isset($_POST['delivery'])){
-    $orderId=$_POST['orderId'];
-    $delivery=$_POST['delivery'];
-    $deliveryUpdateSql="update orders set `Delievery_Mode`=$delivery where `Order_Id`=$orderId";
-    $deliveryUpdateResult=mysqli_query($conn,$deliveryUpdateSql);
-    if($deliveryUpdateResult){
-        echo "<script>alert('Delivery Mode Updated')</script>";
-    }else{
-        echo "<script>alert('OOPS! Delivery Mode not Updated')</script>";
-    }
-}
 if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
     $billProcess=$_POST['billProcess'];
     $odrId=$_POST['odrId'];
     $docketNo=$_POST['docketNo'];
-    if($billProcess<=2){
+    $delivery=$_POST['delivery'];
+    if($billProcess<2){
         echo "<script>alert('Stay for Approvel of billing')</script>";
-    }elseif($docketNo==""){
-        echo "<script>alert('Please Enter Docket No.')</script>";
     }else{
-        $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
+        $docketUpdateSql="update orders set `Delievery_Mode`=$delivery,`Docket_No`='$docketNo' where `Order_Id`=$odrId";
         $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
         if($docketUpdateResult){
-            echo "<script>alert('Docket No. Added')</script>";
+            echo "<script>alert('Delivery Mode and Docket No. Updated')</script>";
         }else{
-            echo "<script>alert('Docket No. not Added')</script>";
+            echo "<script>alert('Delivery Mode and Docket No. not Updated')</script>";
         }
     }
 }
@@ -309,13 +299,13 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
         if(isset($_GET['fromDate']) and isset($_GET['toDate'])){
             $fromDate=$_GET['fromDate'];
             $toDate=$_GET['toDate'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date` between '$fromDate' and '$toDate'";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date` between '$fromDate' and '$toDate'";
             $fromDate=implode("/",array_reverse(explode("-",$_GET['fromDate'])));
             $toDate=implode("/",array_reverse(explode("-",$_GET['toDate'])));
             echo "<h3>From $fromDate To $toDate</h3>";
         }elseif(isset($_GET['status'])){
             $status=$_GET['status'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Status`=$status";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Status`=$status";
 
             $headSql="select * from orderstatus where `Status_Id`=$status";
             $headResult=mysqli_query($conn,$headSql);
@@ -323,16 +313,16 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
             echo "<h3>".$headRow['Status_Name']." Orders</h3>";
         }elseif(isset($_GET['weekDate'])){
             $weekDate=$_GET['weekDate'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$weekDate'";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$weekDate'";
             echo "<h3>Last Week Orders</h3>";
         }elseif(isset($_GET['monthDate'])){
             $monthDate=$_GET['monthDate'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$monthDate'";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$monthDate'";
             echo "<h3>Last Month Orders</h3>";
         }elseif(isset($_GET['comId']) and isset($_GET['proId'])){
             $comId=$_GET['comId'];
             $proId=$_GET['proId'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`Product_Id`=$proId";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`Product_Id`=$proId";
 
             $modalSql="select `Product_Modal_No` from product where `Product_Id`=$proId";
             $modalResult=mysqli_query($conn,$modalSql);
@@ -345,14 +335,14 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
             echo "<h3>Modal No. : ".$modalRow['Product_Modal_No']."</h3>";
         }elseif(isset($_GET['comId'])){
             $comId=$_GET['comId'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId";
 
             $headSqlAgain="select `Company_Name` from company where `Company_Id`=$comId";
             $headResultAgain=mysqli_query($conn,$headSqlAgain);
             $headRowAgain=mysqli_fetch_assoc($headResultAgain);
             echo "<h3>".$headRowAgain['Company_Name']." Orders</h3>";
         }else{
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` order by `Order_Id` desc";
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` order by `Order_Id` desc";
         }
         $aoresult=mysqli_query($conn,$aosql);
         if(mysqli_num_rows($aoresult)>0){
@@ -382,6 +372,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                     if($aorow['Approved']==1){
                     ?>
                         <div><span>Price Approved : </span><span><?php echo $aorow['Approved_Price'] ?></span></div>
+                        <div><span>Total Price : </span><span><?php echo $aorow['Approved_Price']*$aorow['Order_Pieces'] ?></span></div>
                     <?php
                     }
                     ?>
@@ -409,10 +400,10 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                     if(!isset($_SESSION['User_Id'])){
                     ?>
                     <div class="order-box">
-                        <h2>Price Approval</h2>
+                        <h2>Approval</h2>
                         <form style="margin-top:5px;" action="orders.php" method="post">
                             <?php
-                            if($aorow['Approved']==1 or $aorow['Order_Status']==5){
+                            if(($aorow['Approved']==1 or $aorow['Order_Status']==5) or $aorow['Order_Status']==5){
                                 $disable="style='background-color:lightgrey' disabled";
                             }else{
                                 $disable="";
@@ -434,14 +425,15 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                         ?>
                         <form action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
-                            if($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5){
+                            if((($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5) and $aorow['Docket_No']!=="") or $aorow['Order_Status']==5){
                                 $disabledAgain="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabledAgain="";
                             }
                             ?>
-                            <input type="hidden" name="orderId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <select class="select-b" name="delivery" <?php echo $disabledAgain ?>>
+                            <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
+                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
+                            <select class="select-b" name="delivery" <?php echo $disabledAgain ?> required>
                                 <option value="" selected disabled>Select Delivery Mode</option>
                                 <?php
                                 $delModeSql="select * from deliverymode";
@@ -459,25 +451,13 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                                     }
                                 }
                                 ?>
-                            </select>
-                            <input class="sub-b" type="submit" value="save" <?php echo $disabledAgain ?>>
+                            </select><br>
+                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?> required>
+                            <input class="order-btn" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
                         <form style="margin-top:5px;" action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
-                            if($aorow['Docket_No']!==""){
-                                $disables="style='background-color:lightgrey' disabled";
-                            }else{
-                                $disables="";
-                            }
-                            ?>
-                            <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
-                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
-                            <input class="order-btn" type="submit" value="save" <?php echo $disables ?>>
-                        </form>
-                        <form style="margin-top:5px;" action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
-                            <?php
-                            if($aorow['Delivery_Date']!==""){
+                            if($aorow['Delivery_Date']!=="" or $aorow['Order_Status']==5){
                                 $disabling="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabling="";
@@ -505,6 +485,11 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                                 if(isset($_SESSION['User_Id'])){
                                     if($orderstatusRow['Status_Id']<=2){
                                         continue;
+                                    }
+                                }
+                                if($aorow['Order_Status']==3 or $aorow['Order_Status']==4){
+                                    if($orderstatusRow['Status_Id']==5){
+                                        break;
                                     }
                                 }
                     ?>

@@ -51,9 +51,10 @@ body {
 }
 .pname {
     width: 100%;
-    height: 56px;
+    margin: 20px;
     justify-content: center;
     display: flex;
+    font-size: 23px;
     align-items: center;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
@@ -98,7 +99,7 @@ label {
     width: 100%;
 }
 input#piece {
-    width: 100px;
+    width: 150px;
     margin: 0px 5px 0px 20px;
     height: 26px;
     border-radius: 5px;
@@ -129,18 +130,18 @@ input#piece {
     justify-content: center;
     text-align: center;
 }
-input#salePrice {
-        width: 100px;
-        margin: 0px 5px 0px 20px;
-        height: 26px;
-        border-radius: 5px;
-        outline: none;
-        border: 1px solid gray;
+input#salePrice,select#shippingMode {
+    width: 150px;
+    margin: 0px 5px 0px 20px;
+    height: 26px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid gray;
     
 }
 
 form .form-p .formi-p label {
-    width: 74px;
+    width: 120px;
     display: inline-block;
 }
 /* ---------------------media qurey-------------------------- */

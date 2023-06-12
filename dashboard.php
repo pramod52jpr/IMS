@@ -139,11 +139,11 @@ if($adminRow['Admin_Type']==1){
                     $canReason="";
                 }
                 if($osid==3){
-                    $deliveryModeSql="select `Delievery_Mode` from orders where `Order_Id`=$oid";
+                    $deliveryModeSql="select `Delievery_Mode`,`Docket_No` from orders where `Order_Id`=$oid";
                     $deliveryModeResult=mysqli_query($conn,$deliveryModeSql);
                     $deliveryModeRow=mysqli_fetch_assoc($deliveryModeResult);
-                    if($deliveryModeRow['Delievery_Mode']==0){
-                        echo "<script>alert('Please Choose any Delivery Mode!')</script>";
+                    if($deliveryModeRow['Delievery_Mode']==0 or $deliveryModeRow['Docket_No']==""){
+                        echo "<script>alert('Please Choose any Delivery Mode Or Enter Docket No. !')</script>";
                     }else{
                         $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
                         $oresult=mysqli_query($conn,$osql);
@@ -210,32 +210,20 @@ if($adminRow['Admin_Type']==1){
                 }
             }
         }
-        if(isset($_POST['orderId']) and isset($_POST['delivery'])){
-            $orderId=$_POST['orderId'];
-            $delivery=$_POST['delivery'];
-            $deliveryUpdateSql="update orders set `Delievery_Mode`=$delivery where `Order_Id`=$orderId";
-            $deliveryUpdateResult=mysqli_query($conn,$deliveryUpdateSql);
-            if($deliveryUpdateResult){
-                echo "<script>alert('Delivery Mode Updated')</script>";
-            }else{
-                echo "<script>alert('OOPS! Delivery Mode not Updated')</script>";
-            }
-        }
         if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
             $billProcess=$_POST['billProcess'];
             $odrId=$_POST['odrId'];
             $docketNo=$_POST['docketNo'];
-            if($billProcess<=2){
+            $delivery=$_POST['delivery'];
+            if($billProcess<2){
                 echo "<script>alert('Stay for Approvel of billing')</script>";
-            }elseif($docketNo==""){
-                echo "<script>alert('Please Enter Docket No.')</script>";
             }else{
-                $docketUpdateSql="update orders set `Docket_No`='$docketNo' where `Order_Id`=$odrId";
+                $docketUpdateSql="update orders set `Delievery_Mode`=$delivery,`Docket_No`='$docketNo' where `Order_Id`=$odrId";
                 $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
                 if($docketUpdateResult){
-                    echo "<script>alert('Docket No. Added')</script>";
+                    echo "<script>alert('Delivery Mode and Docket No. Updated')</script>";
                 }else{
-                    echo "<script>alert('Docket No. not Added')</script>";
+                    echo "<script>alert('Delivery Mode and Docket No. not Updated')</script>";
                 }
             }
         }
@@ -285,6 +273,7 @@ if($adminRow['Admin_Type']==1){
                     if($aorow['Approved']==1){
                     ?>
                         <div><span>Price Approved : </span><span><?php echo $aorow['Approved_Price'] ?></span></div>
+                        <div><span>Total Price : </span><span><?php echo $aorow['Approved_Price']*$aorow['Order_Pieces'] ?></span></div>
                     <?php
                     }
                     ?>
@@ -312,10 +301,10 @@ if($adminRow['Admin_Type']==1){
                     if(!isset($_SESSION['User_Id'])){
                     ?>
                     <div class="order-box">
-                        <h2>Price Approval : </h2>
+                        <h2>Approval : </h2>
                         <form action="dashboard.php" method="post">
                             <?php
-                            if($aorow['Approved']==1 or $aorow['Order_Status']==5){
+                            if(($aorow['Approved']==1 or $aorow['Order_Status']==5) or $aorow['Order_Status']==5){
                                 $disable="style='background-color:lightgrey' disabled";
                             }else{
                                 $disable="";
@@ -332,14 +321,15 @@ if($adminRow['Admin_Type']==1){
                     <div class="order-box2">
                         <form action="dashboard.php" method="post">
                             <?php
-                            if($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5){
+                            if((($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5) and $aorow['Docket_No']!=="") or $aorow['Order_Status']==5){
                                 $disabledAgain="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabledAgain="";
                             }
                             ?>
-                            <input type="hidden" name="orderId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <select class="select-b" name="delivery" <?php echo $disabledAgain ?>>
+                            <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
+                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
+                            <select class="select-b" name="delivery" <?php echo $disabledAgain ?> required>
                                 <option value="" selected disabled>Select Delivery Mode</option>
                                 <?php
                                 $delModeSql="select * from deliverymode";
@@ -357,25 +347,13 @@ if($adminRow['Admin_Type']==1){
                                     }
                                 }
                                 ?>
-                            </select>
-                            <input class="sub-b" type="submit" value="save" <?php echo $disabledAgain ?>>
+                            </select><br>
+                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?> required>
+                            <input class="order-btn" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
                         <form style="margin-top:5px;" action="dashboard.php" method="post">
                             <?php
-                            if($aorow['Docket_No']!==""){
-                                $disables="style='background-color:lightgrey' disabled";
-                            }else{
-                                $disables="";
-                            }
-                            ?>
-                            <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
-                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disables ?>>
-                            <input class="order-btn" type="submit" value="save" <?php echo $disables ?>>
-                        </form>
-                        <form style="margin-top:5px;" action="dashboard.php" method="post">
-                            <?php
-                            if($aorow['Delivery_Date']!==""){
+                            if($aorow['Delivery_Date']!=="" or $aorow['Order_Status']==5){
                                 $disabling="style='background-color:lightgrey' disabled";
                             }else{
                                 $disabling="";
@@ -403,6 +381,11 @@ if($adminRow['Admin_Type']==1){
                                 if(isset($_SESSION['User_Id'])){
                                     if($orderstatusRow['Status_Id']<=2){
                                         continue;
+                                    }
+                                }
+                                if($aorow['Order_Status']==3 or $aorow['Order_Status']==4){
+                                    if($orderstatusRow['Status_Id']==5){
+                                        break;
                                     }
                                 }
                         ?>
