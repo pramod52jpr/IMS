@@ -60,15 +60,9 @@ body {
     text-align: left;
     width: 15%;
 }
-
-
-
 hr.hrline{
-    /* border: 2px solid black; */
-    width: 171px;
+    width: 116px;
     height: 0;
     margin-top: 7px;
-    /* color: black; */
-    /* font-weight: bold; */
 }
 

@@ -8,11 +8,22 @@ session_abort();
 ?>
 <?php include "./components/header.php" ?>
 <section class="buyProductPage">
+    <div class="search">
+        <form action="" method="post">
+            <input type="text" name="search" placeholder="search item" value="<?php echo isset($_POST['search'])?$_POST['search']:"" ?>">
+            <input type="submit" value="Search">
+        </form>
+    </div>
     <div class="bpitems">
         <?php
         if (isset($_GET['cid'])) {
             $cid = $_GET['cid'];
-            $sql = "select * from product where `P_Category_Id`=$cid";
+            if(isset($_POST['search'])){
+                $search=$_POST['search'];
+                $sql = "select * from product where `P_Category_Id`=$cid and (`Product_Name` like '%$search%' or `Product_Modal_No` like '%$search%')";
+            }else{
+                $sql = "select * from product where `P_Category_Id`=$cid";
+            }
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {

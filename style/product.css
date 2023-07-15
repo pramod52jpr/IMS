@@ -32,6 +32,24 @@ body {
 .machinePage .crudBtn .add a:hover{
     background-color: rgb(0, 99, 0);
 }
+.machinePage .crudBtn .search form{
+    display: flex;
+}
+.machinePage .crudBtn .search form input{
+    margin-right: 5px;
+    height: 30px;
+}
+.machinePage .crudBtn .search form input[Type=text]{
+    width: 150px;
+}
+.machinePage .crudBtn .search form input[Type=submit]{
+    color: white;
+    background-color: blueviolet;
+    border: none;
+}
+.machinePage .crudBtn .search form input[Type=submit]:hover{
+    background-color: rgb(113, 14, 206);
+}
 .machinePage .machineContainer {
     background-color: white;
     border-radius: 10px;

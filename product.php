@@ -94,13 +94,19 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
             <a href="addProductForm.php">Add New</a>
             <hr class="hrline">
         </div>
+        <div class="search">
+            <form action="" method="post">
+                <input type="text" name="search" value="<?php echo isset($_POST['search'])?$_POST['search']:"" ?>" placeholder="search">
+                <input type="submit" value="search">
+            </form>
+        </div>
     </div>
     <div class="machineContainer">
         <table>
             <thead>
                 <tr>
                     <th>Product Name</th>
-                    <th>Modal No.</th>
+                    <th>Model No.</th>
                     <th>Category Name</th>
                     <th>Normal Price</th>
                     <th>Discounted Price</th>
@@ -111,7 +117,12 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
             </thead>
             <tbody>
                 <?php
-                $sql="select * from product join pro_category on product.`P_Category_Id`=pro_category.`P_Category_Id`";
+                if(isset($_POST['search'])){
+                    $search=$_POST['search'];
+                    $sql="select * from product join pro_category on product.`P_Category_Id`=pro_category.`P_Category_Id` where `Product_Name` like '%$search%' or `Product_Modal_No` like '%$search%' order by `Product_Modal_No`";
+                }else{
+                    $sql="select * from product join pro_category on product.`P_Category_Id`=pro_category.`P_Category_Id` order by `Product_Modal_No`";
+                }
                 $result=mysqli_query($conn,$sql);
                 if(mysqli_num_rows($result)>0){
                     while($row=mysqli_fetch_assoc($result)){
@@ -138,7 +149,7 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
                 }else{
                 ?>
                 <tr>
-                    <td colspan="6" style="text-align:center;font-size:20px">No Product Added</td>
+                    <td colspan="10" style="text-align:center;font-size:20px">No Product Added</td>
                 </tr>
                 <?php
                 }
