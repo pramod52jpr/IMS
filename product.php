@@ -8,6 +8,8 @@ session_abort();
 ?>
 <?php include "./components/header.php" ?>
 <?php
+
+$date=date("Y-m-d");
 if(isset($_POST['productName']) and isset($_FILES['productImg'])){
     $productName=$_POST['productName'];
     $productModal=$_POST['productModal'];
@@ -44,8 +46,13 @@ if(isset($_POST['productUpdatedName']) and isset($_POST['updatepid'])){
     $updateImage=$_FILES['productUpdatedImage'];
         $updated_tmp_name=$updateImage['tmp_name'];
         $updated_img_name=$updateImage['name'];
-    move_uploaded_file($updated_tmp_name,"./uploadImages/$updated_img_name");
-    $updateSql="update product set `Product_Name`='$productUpdatedName',`Quantity`=$productUpdatedQuantity,`Normal_Price`=$productUpdatedNormalPrice,`Discounted_Price`=$productUpdatedDiscountedPrice,`Product_Modal_No`='$productUpdatedModal',`Product_Img`='$updated_img_name',`P_Category_Id`='$productUpdatedCategory' where `Product_Id`=$updatepid";
+    if($updated_img_name!=''){
+        $uploadImage=",`Product_Img`='$updated_img_name'";
+        move_uploaded_file($updated_tmp_name,"./uploadImages/$updated_img_name");
+    }else{
+        $uploadImage="";
+    }
+    $updateSql="update product set `Product_Name`='$productUpdatedName',`Quantity`=$productUpdatedQuantity,`Normal_Price`=$productUpdatedNormalPrice,`Discounted_Price`=$productUpdatedDiscountedPrice,`Product_Modal_No`='$productUpdatedModal'$uploadImage,`P_Category_Id`='$productUpdatedCategory' where `Product_Id`=$updatepid";
     $updateResult=mysqli_query($conn,$updateSql);
     if($updateResult){
         echo "<script>alert('Product Updated Successfully')</script>";
@@ -66,6 +73,7 @@ if(isset($_GET['dpid'])){
 if(isset($_POST['quantity']) and isset($_POST['proId'])){
     $proId=$_POST['proId'];
     $quantity=$_POST['quantity'];
+    $newDate=$_POST['newDate'];
 
     $oldQuantitySql="select `Quantity` from product where `Product_Id`=$proId";
     $oldQuantityResult=mysqli_query($conn,$oldQuantitySql);
@@ -73,7 +81,6 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
     $oldQuantity=$oldQuantityRow['Quantity'];
 
     $newQuantity=$oldQuantity+$quantity;
-    $newDate=date("Y-m-d");
     $addQuantitySql="update product set `Quantity`=$newQuantity,`Latest_Stock_Date`='$newDate' where `Product_Id`=$proId";
     $addQuantityResult=mysqli_query($conn,$addQuantitySql);
 
@@ -134,11 +141,12 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
                     <td><?php echo $row['Normal_Price'] ?>/-</td>
                     <td><?php echo $row['Discounted_Price'] ?>/-</td>
                     <td><?php echo implode("/",array_reverse(explode("-",$row['Latest_Stock_Date']))) ?></td>
-                    <td style="position:relative  ">
-                        <?php echo $row['Quantity'] ?>
+                    <td>
+                        <p><?php echo $row['Quantity'] ?></p>
                         <form action="product.php" method="post">
                             <input type="hidden" name="proId" value="<?php echo $row['Product_Id'] ?>">
-                            <input type="number" name="quantity">
+                            <input type="number" name="quantity" min="1" placeholder="Quantity" required>
+                            <input type="date" name="newDate" id="newDate" max="<?php echo $date ?>" required>
                             <input type="submit" value="add">
                         </form>
                     </td>

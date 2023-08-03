@@ -34,7 +34,7 @@ session_abort();
         <label for="productUpdatedImage">Image</label>
         </div>
         <div class="col-25">
-        <input type="file" name="productUpdatedImage" id="productUpdatedImage" accept="image/png,image/jpg,image/jpeg" required>
+        <input type="file" name="productUpdatedImage" id="productUpdatedImage" accept="image/png,image/jpg,image/jpeg">
         </div>
         <div class="col-25">
         <label for="productUpdatedQuantity">Quantity</label>
