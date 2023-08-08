@@ -96,9 +96,16 @@ if(isset($_GET['comdeactive'])){
                     <td><?php echo $row['Company_Address'] ?></td>
                     <td>
                     <?php
+                        if($row['Admin_Type']==1){
+                            $disables="pointer-events:none";
+                        }else{
+                            $disables="";
+                        }
+                    ?>
+                    <?php
                     if($row['Active_Status']==1){   
                     ?>
-                        <a href="?comactive=<?php echo $row['Company_Id'] ?>" style="background-color:blue"><?php echo "Active" ?></a>
+                        <a href="?comactive=<?php echo $row['Company_Id'] ?>" style="background-color:blue;<?php echo $disables ?>"><?php echo "Active" ?></a>
                     <?php
                     }else{
                     ?>

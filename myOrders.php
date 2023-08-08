@@ -1,6 +1,7 @@
 <?php include "conn.php" ?>
 <?php
 session_start();
+$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
 if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
 }
@@ -10,29 +11,8 @@ session_abort();
 <section class="myOrdersPage">
     <div class="myOrdersContainer">
         <?php
-        $id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
         $cancelReasonSql="select * from orderstatus";
         $cancelReasonResult=mysqli_query($conn,$cancelReasonSql);
-        if(isset($_POST['pid']) and isset($_POST['piece'])){
-            $pid=$_POST['pid'];
-            $piece=$_POST['piece'];
-            $salePrice=$_POST['salePrice'];
-            $shippingMode=isset($_POST['shippingMode'])?$_POST['shippingMode']:0;
-
-            $orderPriceSql="select `Discounted_Price` from product where `Product_Id`=$pid";
-            $orderPriceResult=mysqli_query($conn,$orderPriceSql);
-            $orderPriceRow=mysqli_fetch_assoc($orderPriceResult);
-            $orderPrice=$orderPriceRow['Discounted_Price'];
-            $orderDate=date("Y-m-d");
-
-            $sql="insert into orders(`Sale_Price`,`Approved_Price`,`Order_Pieces`,`Order_Status`,`Product_Id`,`Company_Id`,`Delievery_Mode`,`Order_Date`) values($salePrice,$orderPrice,$piece,1,$pid,$id,$shippingMode,'$orderDate')";
-            $result=mysqli_query($conn,$sql);
-            if($result){
-                echo "<script>alert('Order Placed Successfully')</script>";
-            }else{
-                echo "<script>alert('Order not Placed! Please try again')</script>";
-            }
-        }
         if(isset($_POST['canoid'])){
             $canoid=$_POST['canoid'];
             $cancelReason=$_POST['cancelReason'];
@@ -66,20 +46,25 @@ session_abort();
                 echo "<script>alert('Could not Cancel Returning Order Application. Try Again Later!')</script>";
             }
         }
+        if(isset($_GET['orderNo'])){
+            $orderNo= "and orders.`cart_no`=$_GET[orderNo]";
+        }else{
+            $orderNo="";
+        }
         if(isset($_GET['twoDaysDate'])){
             $twoDaysDate=$_GET['twoDaysDate'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$twoDaysDate' order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$twoDaysDate' $orderNo order by `Order_Id` desc";
         }elseif(isset($_GET['weekDate'])){
             $weekDate=$_GET['weekDate'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$weekDate' order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$weekDate' $orderNo order by `Order_Id` desc";
         }elseif(isset($_GET['monthDate'])){
             $monthDate=$_GET['monthDate'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$monthDate' order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Date`>'$monthDate' $orderNo order by `Order_Id` desc";
         }elseif(isset($_GET['status'])){
             $status=$_GET['status'];
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Status`=$status order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id and Orders.`Order_Status`=$status $orderNo order by `Order_Id` desc";
         }else{
-            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id order by `Order_Id` desc";
+            $osql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$id $orderNo order by `Order_Id` desc";
         }
         $oresult=mysqli_query($conn,$osql);
         if(mysqli_num_rows($oresult)>0){

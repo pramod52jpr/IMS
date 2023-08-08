@@ -1,6 +1,7 @@
 <?php include "conn.php" ?>
 <?php
 session_start();
+$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
 if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
 }
@@ -9,8 +10,6 @@ session_abort();
 <?php include "./components/header.php" ?>
 <section class="profilePage">
     <?php
-    $id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
-
     if(isset($_POST['companyName']) and $_POST['companyUsername']){
         $companyName=$_POST['companyName'];
         $companyContact=$_POST['companyContact'];

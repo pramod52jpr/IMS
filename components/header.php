@@ -53,6 +53,7 @@ include "conn.php";
             <i class="fa-solid fa-bars"></i>
         </div>
         <?php
+        $id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
         if (isset($_SESSION['Company_Id'])) {
             $hcid = $_SESSION['Company_Id'];
             $hcSql = "select `Company_Name`,`Admin_Type` from company where `Company_Id`=$hcid";
@@ -63,6 +64,19 @@ include "conn.php";
             $huSql = "select `Username`,`User_Permission` from users where `User_Id`=$huid";
             $huResult = mysqli_query($conn, $huSql);
             $huRow = mysqli_fetch_assoc($huResult);
+        }
+        ?>
+        <?php
+        if(isset($_SESSION['Company_Id']) and ($hcRow['Admin_Type']!=1)){
+            $cartCountSql="select * from mycart where `comp_id`=$id";
+            $cartCountResult=mysqli_query($conn,$cartCountSql);
+            $cartCount=mysqli_num_rows($cartCountResult);
+            ?>
+            <div class="cartIcon">
+                <div class="cartCount"><?php echo $cartCount ?></div>
+                <a href="cart.php"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass" style="color: #fcfcfc;"></i></a>
+            </div>
+            <?php
         }
         ?>
         <div class="helloCompany" id="helloCompany">
@@ -226,7 +240,7 @@ include "conn.php";
                             if (str_contains($huRow['User_Permission'], "orders")) {
                                 ?>
                                 <li>
-                                    <a href="orders.php">
+                                    <a href="allOrders.php">
                                         <span class="h-icons"><img src="img/product.png"></span>
                                         All Orders</a>
                                 </li>
@@ -235,7 +249,7 @@ include "conn.php";
                         } else {
                             ?>
                             <li>
-                                <a href="orders.php">
+                                <a href="allOrders.php">
                                     <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping advanceClass fa-flip"></i></span>
                                     All Orders</a>
                             </li>
@@ -290,7 +304,7 @@ include "conn.php";
                         </a>
                     </li>
                     <li>
-                        <a href="myOrders.php">
+                        <a href="myOrderNo.php">
                             <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
                             <span class="Title"> My Orders</span>
                         </a>
@@ -317,6 +331,18 @@ include "conn.php";
                         <a href="return-report.php">
                             <span class="h-icons"><i class="fa-solid fa-notes-medical fa-flip" style="color: #fcfcfc;"></i></span>
                             <span class="Title">Return Reports</span>
+                        </a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (isset($hcRow['Admin_Type']) and $hcRow['Admin_Type'] != 1) {
+                    ?>
+                    <li>
+                        <a href="cart.php">
+                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass" style="color: #fcfcfc;"></i></span>
+                            <span class="Title">My Cart</span>
                         </a>
                     </li>
                     <?php

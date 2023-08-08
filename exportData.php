@@ -1,10 +1,18 @@
 <?php
 include "conn.php";
+session_start();
+if(isset($_SESSION['User_Id'])){
+    $huid = $_SESSION['User_Id'];
+}
 if(isset($_GET['export'])){
     $date=date("d-m-Y");
     header('Content-Type:application/xls');
     if($_GET['export']=='orders'){
-        $sql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id`";
+        if(isset($_SESSION['User_Id'])){
+            $sql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where company.`userId`=$huid";
+        }else{
+            $sql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id`";
+        }
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)>0){
             $quantity=0;
@@ -20,7 +28,11 @@ if(isset($_GET['export'])){
         }
     }
     if($_GET['export']=='returnOrders'){
-        $sql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` join returnmode on orders.`Return_Status`=returnmode.`Returnmode_Id` where orders.`Return_Status`>0";
+        if(isset($_SESSION['User_Id'])){
+            $sql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` join returnmode on orders.`Return_Status`=returnmode.`Returnmode_Id` where orders.`Return_Status`>0 and company.`userId`=$huid";
+        }else{
+            $sql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` join returnmode on orders.`Return_Status`=returnmode.`Returnmode_Id` where orders.`Return_Status`>0";
+        }
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)>0){
             $quantity=0;
@@ -36,5 +48,5 @@ if(isset($_GET['export'])){
         }
     }
 }
-
+session_abort();
 ?>

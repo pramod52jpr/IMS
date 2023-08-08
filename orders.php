@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 <?php include "conn.php" ?>
 <?php
 session_start();
+$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
 if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
 }elseif(isset($_SESSION['User_Id'])){
@@ -20,7 +21,6 @@ session_abort();
 ?>
 <?php include "./components/header.php" ?>
 <?php
-$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
 $btnSql="select * from orderstatus";
 $btnResult=mysqli_query($conn,$btnSql);
 if(isset($_GET['oid']) and isset($_GET['osid'])){
@@ -213,6 +213,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
         if(!isset($_GET['weekDate'])and !isset($_GET['monthDate'])){
             ?>
             <form class="orform" action="orders.php" method="get">
+                <input type="hidden" name="orderNo" value="<?php echo $_GET['orderNo'] ?>">
                 From
                 <input type="date" name="fromDate" id="" required>
                 To
@@ -222,10 +223,40 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
         <!-- </div> -->
         <!-- <div class="innerbtnbox"> -->
             <form class="orform2" action="orders.php" method="get">
-                <select class="margin-top" name="comId" required>
+                <input type="hidden" name="orderNo" value="<?php echo $_GET['orderNo'] ?>">
+                <?php
+                if(!isset($_SESSION['User_Id'])){
+                    ?>
+                    <select class="margin-top" name="userId" required>
+                        <option value="" disabled selected>Select User</option>
+                        <?php
+                        $userSearchSql="select `User_Id`,`Username` from users";
+                        $userSearchResult=mysqli_query($conn,$userSearchSql);
+                        if(mysqli_num_rows($userSearchResult)>0){
+                            while($userSearchRow=mysqli_fetch_assoc($userSearchResult)){
+                                if(isset($_GET['userId']) and ($_GET['userId']==$userSearchRow['User_Id'])){
+                                    $select="selected";
+                                }else{
+                                    $select="";
+                                }
+                        ?>
+                            <option value="<?php echo $userSearchRow['User_Id'] ?>" <?php echo $select ?>><?php echo $userSearchRow['Username'] ?></option>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                    <?php
+                }
+                ?>
+                <select name="comId">
                     <option value="" disabled selected>Select Company</option>
                     <?php
-                    $comSearchSql="select `Company_Id`,`Company_Name` from company";
+                    if(isset($_SESSION['User_Id'])){
+                        $comSearchSql="select `Company_Id`,`Company_Name` from company where `userId`=$huid";
+                    }else{
+                        $comSearchSql="select `Company_Id`,`Company_Name` from company";
+                    }
                     $comSearchResult=mysqli_query($conn,$comSearchSql);
                     if(mysqli_num_rows($comSearchResult)>0){
                         while($comSearchRow=mysqli_fetch_assoc($comSearchResult)){
@@ -265,17 +296,25 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
             <!-- </div> -->
             <div class="statusBtn">
                 <?php
-                $allSql="select `Order_Id` as count from orders";
+                if(isset($_SESSION['User_Id'])){
+                    $allSql="select `Order_Id` as count from orders join company on orders.`Company_Id`=company.`Company_Id` where company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+                }else{
+                    $allSql="select `Order_Id` as count from orders join company on orders.`Company_Id`=company.`Company_Id` where orders.`cart_no`=$_GET[orderNo]";
+                }
                 $allResult=mysqli_query($conn,$allSql);
                 ?>
-                <a href="orders.php">All (<?php echo mysqli_num_rows($allResult) ?>)</a>
+                <a href="orders.php?orderNo=<?php echo $_GET['orderNo'] ?>">All (<?php echo mysqli_num_rows($allResult) ?>)</a>
                 <?php
                 if(mysqli_num_rows($btnResult)>0){
                     while($btnRow=mysqli_fetch_assoc($btnResult)){
-                        $newSql="select * from orders where `Order_Status`=".$btnRow['Status_Id'];
+                        if(isset($_SESSION['User_Id'])){
+                            $newSql="select * from orders join company on orders.`Company_Id`=company.`Company_Id` where `Order_Status`=".$btnRow['Status_Id']." and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+                        }else{
+                            $newSql="select * from orders join company on orders.`Company_Id`=company.`Company_Id` where `Order_Status`=".$btnRow['Status_Id']." and orders.`cart_no`=$_GET[orderNo]";
+                        }
                         $newResult=mysqli_query($conn,$newSql);
                 ?>
-                    <a href="orders.php?status=<?php echo $btnRow['Status_Id'] ?>"><?php echo $btnRow['Status_Name'] ?> (<?php echo mysqli_num_rows($newResult) ?>)</a>
+                    <a href="orders.php?orderNo=<?php echo $_GET['orderNo'] ?>&status=<?php echo $btnRow['Status_Id'] ?>"><?php echo $btnRow['Status_Name'] ?> (<?php echo mysqli_num_rows($newResult) ?>)</a>
                 <?php
                     }
                 }
@@ -299,30 +338,61 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
         if(isset($_GET['fromDate']) and isset($_GET['toDate'])){
             $fromDate=$_GET['fromDate'];
             $toDate=$_GET['toDate'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date` between '$fromDate' and '$toDate'";
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where (`Order_Date` between '$fromDate' and '$toDate') and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date` between '$fromDate' and '$toDate' and orders.`cart_no`=$_GET[orderNo]";
+            }
             $fromDate=implode("/",array_reverse(explode("-",$_GET['fromDate'])));
             $toDate=implode("/",array_reverse(explode("-",$_GET['toDate'])));
             echo "<h3>From $fromDate To $toDate</h3>";
         }elseif(isset($_GET['status'])){
             $status=$_GET['status'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Status`=$status";
-
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Status`=$status and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Status`=$status and orders.`cart_no`=$_GET[orderNo]";
+            }
             $headSql="select * from orderstatus where `Status_Id`=$status";
             $headResult=mysqli_query($conn,$headSql);
             $headRow=mysqli_fetch_assoc($headResult);
             echo "<h3>".$headRow['Status_Name']." Orders</h3>";
         }elseif(isset($_GET['weekDate'])){
             $weekDate=$_GET['weekDate'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$weekDate'";
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$weekDate' and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$weekDate' and orders.`cart_no`=$_GET[orderNo]";
+            }
             echo "<h3>Last Week Orders</h3>";
         }elseif(isset($_GET['monthDate'])){
             $monthDate=$_GET['monthDate'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$monthDate'";
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$monthDate' and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`>'$monthDate' and orders.`cart_no`=$_GET[orderNo]";
+            }
             echo "<h3>Last Month Orders</h3>";
+        }elseif(isset($_GET['userId'])){
+            $userId=$_GET['userId'];
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where company.`userId`= $userId and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where company.`userId`= $userId and orders.`cart_no`=$_GET[orderNo]";
+            }
+
+            $modalSql="select `Username` from users where `User_Id`=$userId";
+            $modalResult=mysqli_query($conn,$modalSql);
+            $modalRow=mysqli_fetch_assoc($modalResult);
+            echo "<h3>User Name : ".$modalRow['Username']."</h3>";
         }elseif(isset($_GET['comId']) and isset($_GET['proId'])){
             $comId=$_GET['comId'];
             $proId=$_GET['proId'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`Product_Id`=$proId";
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`Product_Id`=$proId and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`Product_Id`=$proId and orders.`cart_no`=$_GET[orderNo]";
+            }
 
             $modalSql="select `Product_Modal_No` from product where `Product_Id`=$proId";
             $modalResult=mysqli_query($conn,$modalSql);
@@ -335,14 +405,21 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
             echo "<h3>Modal No. : ".$modalRow['Product_Modal_No']."</h3>";
         }elseif(isset($_GET['comId'])){
             $comId=$_GET['comId'];
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId";
-
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo]";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`Company_Id`= $comId and orders.`cart_no`=$_GET[orderNo]";
+            }
             $headSqlAgain="select `Company_Name` from company where `Company_Id`=$comId";
             $headResultAgain=mysqli_query($conn,$headSqlAgain);
             $headRowAgain=mysqli_fetch_assoc($headResultAgain);
             echo "<h3>".$headRowAgain['Company_Name']." Orders</h3>";
         }else{
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` order by `Order_Id` desc";
+            if(isset($_SESSION['User_Id'])){
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where company.`userId`=$huid and orders.`cart_no`=$_GET[orderNo] order by `Order_Id` desc";
+            }else{
+                $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` left join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where orders.`cart_no`=$_GET[orderNo] order by `Order_Id` desc";
+            }
         }
         $aoresult=mysqli_query($conn,$aosql);
         if(mysqli_num_rows($aoresult)>0){
@@ -401,7 +478,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                     ?>
                     <div class="order-box">
                         <h2>Approval</h2>
-                        <form style="margin-top:5px;" action="orders.php" method="post">
+                        <form style="margin-top:5px;" action="orders.php?orderNo=<?php echo $_GET['orderNo'] ?>" method="post">
                             <?php
                             if(($aorow['Approved']==1 or $aorow['Order_Status']==5) or $aorow['Order_Status']==5){
                                 $disable="style='background-color:lightgrey' disabled";
@@ -423,7 +500,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             $dateId=isset($_GET['fromDate']) && isset($_GET['toDate'])?"fromDate=".$_GET['fromDate']."&toDate=".$_GET['toDate']."&":"";
                             $compId=isset($_GET['comId'])?"comId=".$_GET['comId']."&":"";
                         ?>
-                        <form action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
+                        <form action="orders.php?orderNo=<?php echo $_GET['orderNo'] ?>&<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
                             if((($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5) and $aorow['Docket_No']!=="") or $aorow['Order_Status']==5){
                                 $disabledAgain="style='background-color:lightgrey' disabled";
@@ -455,7 +532,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?> required>
                             <input class="order-btn" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
-                        <form style="margin-top:5px;" action="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
+                        <form style="margin-top:5px;" action="orders.php?orderNo=<?php echo $_GET['orderNo'] ?>&<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">
                             <?php
                             if($aorow['Delivery_Date']!=="" or $aorow['Order_Status']==5){
                                 $disabling="style='background-color:lightgrey' disabled";
@@ -493,7 +570,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                                     }
                                 }
                     ?>
-                        <a class="order-button" href="orders.php?<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>&productId=<?php echo $aorow['Product_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
+                        <a class="order-button" href="orders.php?orderNo=<?php echo $_GET['orderNo'] ?>&<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>&productId=<?php echo $aorow['Product_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
                     <?php
                         if((($aorow['Order_Status']==$orderstatusRow['Status_Id'])) and ($aorow['Order_Status']>=mysqli_num_rows($orderstatusResult)-1)){
                             break;

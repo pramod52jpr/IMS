@@ -1,6 +1,7 @@
 <?php include "conn.php" ?>
 <?php
 session_start();
+$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
 if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
 }
@@ -8,7 +9,6 @@ session_abort();
 ?>
 <?php include "./components/header.php" ?>
 <?php
-$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
 if(isset($_GET['oid']) and isset($_GET['osid'])){
     $oid=$_GET['oid'];
     $osid=$_GET['osid'];

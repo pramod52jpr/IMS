@@ -3,7 +3,7 @@
 -- Host: localhost	Database: ims
 -- ------------------------------------------------------
 -- Server version 	10.4.27-MariaDB
--- Date: Sun, 09 Jul 2023 12:14:22 +0200
+-- Date: Tue, 08 Aug 2023 12:46:49 +0200
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -85,6 +85,7 @@ COMMIT;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `company` (
   `Company_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL DEFAULT 0,
   `Admin_Type` int(11) NOT NULL DEFAULT 2,
   `Active_Status` int(11) NOT NULL DEFAULT 1,
   `Approvel` int(11) DEFAULT 0,
@@ -112,7 +113,7 @@ CREATE TABLE `company` (
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `company` VALUES (1,1,1,1,1,'Bioroles','1141069993','info@bioroles.com','Okhla','bioroles','bioroles','','','','',''),(2,2,1,1,2,'tre','7653468976','tre@gmail.com','delhi','tre','tre','','','','',''),(3,2,0,1,3,'sts','9899299993','sushil@stsinfo.com','b78','sushil','sushil','','','','',''),(9,2,0,1,4,'pramod','9991969489','pramod52jpr@gmail.com','palwal','pramod','pramod','','','','','');
+INSERT INTO `company` VALUES (1,1,1,1,1,1,'Bioroles','1141069993','info@bioroles.com','Okhla','bioroles','bioroles','','','','',''),(2,14,2,1,1,2,'tre','7653468976','tre@gmail.com','delhi','tre','tre','','','','',''),(3,14,2,0,1,3,'sts','9899299993','sushil@stsinfo.com','b78','sushil','sushil','','','','',''),(9,2,2,1,1,4,'pramod','9991969489','pramod52jpr@gmail.com','palwal','pramod','pramod','','','','','');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -149,6 +150,37 @@ COMMIT;
 --
 
 --
+-- Table structure for table `mycart`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mycart` (
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+  `comp_id` int(11) NOT NULL,
+  `pro_id` int(11) NOT NULL,
+  `sale_prize` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `delivery_mode` int(11) NOT NULL,
+  PRIMARY KEY (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mycart`
+--
+
+LOCK TABLES `mycart` WRITE;
+/*!40000 ALTER TABLE `mycart` DISABLE KEYS */;
+SET autocommit=0;
+/*!40000 ALTER TABLE `mycart` ENABLE KEYS */;
+UNLOCK TABLES;
+COMMIT;
+
+-- Dumped table `mycart` with 0 row(s)
+--
+
+--
 -- Table structure for table `orders`
 --
 
@@ -156,6 +188,7 @@ COMMIT;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
   `Order_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `cart_no` int(11) NOT NULL DEFAULT 0,
   `Order_Date` varchar(100) NOT NULL,
   `Delivery_Date` varchar(100) DEFAULT '',
   `Order_Pieces` int(11) NOT NULL,
@@ -174,7 +207,7 @@ CREATE TABLE `orders` (
   `Return_Reason` varchar(500) NOT NULL DEFAULT '',
   `Return_Date` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`Order_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,12 +217,12 @@ CREATE TABLE `orders` (
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `orders` VALUES (1,'2023-06-09','2023-05-01',1,0,457,1,4,1,1,'This Item is currently out of Stock',2,'fe',2,54,1,'bhai in piece m kuch gadbad h',''),(2,'2023-05-27','2023-05-01',15,0,250,1,4,1,1,'This Item is currently out of Stock',1,'',3,67,1,'bhai in piece m kuch gadbad h','2023-06-01'),(3,'2023-05-29','2023-05-01',60,0,4600,1,4,1,2,'This Item is currently out of Stock',3,'rgre',3,56,1,'bhai .... bike na piece','2023-05-29'),(4,'2023-05-03','',40,0,1500,0,1,1,1,'This Item is currently out of Stock',0,'',0,0,0,'',''),(5,'2023-05-02','',8,0,900,1,3,1,3,'This Item is currently out of Stock',3,'33354',0,0,0,'',''),(6,'2023-05-01','2023-05-01',56,0,170,1,1,1,1,'This Item is currently out of Stock',3,'erf',0,0,0,'',''),(7,'2023-05-03','',3,0,170,0,1,1,1,'This Item is currently out of Stock',0,'',0,0,0,'',''),(12,'2023-05-06','2023-05-02',76,0,344,1,2,3,2,'This Item is currently out of Stock',2,'',0,0,0,'',''),(13,'2023-05-04','',1,450,450,1,1,1,1,'This Item is currently out of Stock',0,'',0,0,0,'',''),(14,'2023-05-04','',2,445,445,1,2,2,1,'This Item is currently out of Stock',0,'',0,0,0,'',''),(15,'2023-05-05','',60,566,566,1,5,2,1,'Ase hi',0,'',0,0,0,'',''),(16,'2023-05-05','2023-05-02',45,45,45,1,4,1,2,'This Item is currently out of Stock',3,'',0,0,0,'',''),(17,'2023-05-08','',18,76,76,1,3,2,2,'This Item is currently out of Stock',3,'rge',0,0,0,'',''),(18,'2023-05-08','',190,56,56,1,3,3,1,'This Item is currently out of Stock',3,'Pramod Pandit',0,0,0,'',''),(19,'2023-05-08','',187,65,65,1,3,8,1,'This Item is currently out of Stock',2,'teu',0,0,0,'',''),(25,'2023-05-09','',1,3400,3400,1,3,1,2,'This Item is currently out of Stock',1,'uenx755',0,0,0,'',''),(26,'2023-06-07','2023-06-07',1,7,7,1,4,2,1,'This Item is currently out of Stock',1,'tfnt',0,0,0,'',''),(27,'2023-06-07','',56,545,545,0,5,1,1,'This Item is currently out of Stock',0,'',0,0,0,'','');
+INSERT INTO `orders` VALUES (16,8072431,'2023-08-08','',12,43,43,0,1,2,2,'This Item is currently out of Stock',0,'',0,0,0,'',''),(17,8072431,'2023-08-08','',132,32,32,0,1,3,2,'This Item is currently out of Stock',1,'',0,0,0,'',''),(18,335628,'2023-08-08','',1,23,23,0,1,1,2,'This Item is currently out of Stock',0,'',0,0,0,'',''),(19,335628,'2023-08-08','2023-08-08',165,32,32,1,4,3,2,'This Item is currently out of Stock',1,'23434',0,0,0,'',''),(20,2392644,'2023-08-08','',1345,345,345,0,1,3,2,'This Item is currently out of Stock',0,'',0,0,0,'',''),(21,2392644,'2023-08-08','',1234,234,234,0,1,1,2,'This Item is currently out of Stock',0,'',0,0,0,'',''),(22,3951823,'2023-08-08','',132,34,34,0,1,4,9,'This Item is currently out of Stock',0,'',0,0,0,'',''),(23,3951823,'2023-08-08','',13,32,32,0,1,2,9,'This Item is currently out of Stock',0,'',0,0,0,'','');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `orders` with 18 row(s)
+-- Dumped table `orders` with 8 row(s)
 --
 
 --
@@ -247,7 +280,7 @@ CREATE TABLE `product` (
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `product` VALUES (1,'pehla','6576576576','Biometric-Attendence-Solution.png',250,170,562,'2023-05-01',5),(2,'disra','8772489356','WhatsApp Image 2023-03-24 at 2.37.47 AM.jpeg',345,654,270,'2023-05-08',5),(3,'teesra pro','54646','youtube-logo-hd-8.png',567,344,0,'2023-06-07',5),(4,'disra','435353','WhatsApp Image 2023-03-24 at 2.38.27 AM (1).jpeg',5345,5345,454,'2023-05-02',5),(5,'rdgsr','4t354','WhatsApp Image 2023-03-24 at 2.38.28 AM (2).jpeg',3454,345,0,'2023-05-02',5),(6,'dswbtrnt','43534543','abstract-blue-background-with-wavy-curves-free-vector (1).png',345,7644,54,'2023-05-05',5),(7,'teesra pro','34523453','slider2.jpeg',342,45,76,'2023-05-05',5),(8,'naya product','56456453','WhatsApp_Image_2023-03-24_at_2.39.57_AM-removebg-preview.png',345,234,244,'2023-06-06',9);
+INSERT INTO `product` VALUES (1,'pehla','6576576576','Biometric-Attendence-Solution.png',250,170,562,'2023-05-01',5),(2,'disra','8772489356','WhatsApp Image 2023-03-24 at 2.37.47 AM.jpeg',345,654,270,'2023-05-08',5),(3,'teesra pro','54646','youtube-logo-hd-8.png',567,344,-165,'2023-06-07',5),(4,'disra','435353','WhatsApp Image 2023-03-24 at 2.38.27 AM (1).jpeg',5345,5345,454,'2023-05-02',5),(5,'rdgsr','4t354','WhatsApp Image 2023-03-24 at 2.38.28 AM (2).jpeg',3454,345,0,'2023-05-02',5),(6,'dswbtrntyu','43534543','pict--circular-motion-arrows-vector-clipart-library-removebg-preview.png',345,7644,54,'2023-05-05',5),(7,'teesra pro','34523453','slider2.jpeg',342,45,143,'2023-07-31',5),(8,'naya product','56456453','WhatsApp_Image_2023-03-24_at_2.39.57_AM-removebg-preview.png',345,234,244,'2023-06-06',9);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -354,7 +387,7 @@ CREATE TABLE `stockreport` (
   `Stock_Date` varchar(50) NOT NULL DEFAULT '',
   `Product_Id` int(11) NOT NULL,
   PRIMARY KEY (`Stock_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,12 +397,12 @@ CREATE TABLE `stockreport` (
 LOCK TABLES `stockreport` WRITE;
 /*!40000 ALTER TABLE `stockreport` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `stockreport` VALUES (1,55,'2023-05-01',1),(2,567,'2023-05-02',1),(3,56,'2023-05-08',2),(4,100,'2023-06-03',3),(5,122,'2023-06-06',8),(6,122,'2023-06-06',8),(7,122,'2023-06-06',8),(8,56,'2023-06-07',3);
+INSERT INTO `stockreport` VALUES (1,55,'2023-05-01',1),(2,567,'2023-05-02',1),(3,56,'2023-05-08',2),(4,100,'2023-06-03',3),(5,122,'2023-06-06',8),(6,122,'2023-06-06',8),(7,122,'2023-06-06',8),(8,56,'2023-06-07',3),(9,67,'2023-07-31',7);
 /*!40000 ALTER TABLE `stockreport` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `stockreport` with 8 row(s)
+-- Dumped table `stockreport` with 9 row(s)
 --
 
 --
@@ -399,7 +432,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `users` VALUES (2,1,1,'demo','demo','2147483647','demo@gmail.com','ordersreturnOrders',1),(14,1,0,'Pradeep','pradeep','8276785765','pradeep@bioroles.com','product',1);
+INSERT INTO `users` VALUES (2,1,1,'demo','demo','2147483647','demo@gmail.com','ordersreturnOrders',1),(14,1,1,'Pradeep','pradeep','8276785765','pradeep@bioroles.com','productorders',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -417,4 +450,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Sun, 09 Jul 2023 12:14:22 +0200
+-- Dump completed on: Tue, 08 Aug 2023 12:46:49 +0200

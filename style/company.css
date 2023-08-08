@@ -85,7 +85,6 @@ table td a {
     padding: 1px 10px;
     font-weight: bold;
     letter-spacing: 1px;
-    width: 50%;
     text-decoration: none;
     border-radius: 5px;
 }
@@ -117,3 +116,27 @@ tr:nth-child(odd) {
 }
 
 
+.user select{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    outline: none;
+    height: auto;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.user .save input{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(79, 79, 255);
+    color: white;
+    font-size: 13px;
+    outline: none;
+    height: auto;
+    padding: 5px;
+    margin: 0px 5px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+}

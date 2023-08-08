@@ -245,7 +245,11 @@ if($adminRow['Admin_Type']==1){
                 }
             }
         }
-        $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
+        if(isset($_SESSION['User_Id'])){
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`='$todayDate' and company.`userId`=$userId order by orders.`Order_Id` asc";
+        }else{
+            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
+        }
         $aoresult=mysqli_query($conn,$aosql);
         if(mysqli_num_rows($aoresult)>0){
             while($aorow=mysqli_fetch_assoc($aoresult)){

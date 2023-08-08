@@ -1,6 +1,8 @@
 <?php include "conn.php" ?>
 <?php
 session_start();
+$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
+$companyCode=$_SESSION['Company_Code'];
 if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
 }
@@ -8,8 +10,6 @@ session_abort();
 ?>
 <?php include "./components/header.php" ?>
 <?php
-$id=isset($_SESSION['Company_Id'])?$_SESSION['Company_Id']:1;
-$companyCode=$_SESSION['Company_Code'];
 if(isset($_POST['username']) and isset($_POST['userPassword'])){
     $username=$_POST['username'];
     $userPassword=$_POST['userPassword'];
