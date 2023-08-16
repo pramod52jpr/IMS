@@ -98,14 +98,20 @@ session_abort();
 
                             $companyRgCode=$rgCodeRow['Company_Code']+1;
 
-                            $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername' or `Company_Email`='$rgEmail'";
+                            $rgConfirmSql="select `Company_Username`,`Company_Code` from company where `Company_Username`='$rgUsername'";
                             $rgConfirmResult=mysqli_query($conn,$rgConfirmSql);
                             if(mysqli_num_rows($rgConfirmResult)>0){
-                                echo "<script>alert('This Username or Email is already Registered! Please try different One')</script>";
+                                echo "<script>alert('This Username is already Registered! Please try different One')</script>";
                             }else{
                                 $rgSql="insert into company(`Company_Name`,`Company_Phone`,`Company_Email`,`Company_Username`,`Company_Password`,`Company_Address`,`Company_Code`) values('$rgName','$rgMobile','$rgEmail','$rgUsername','$rgPassword','$rgAddress',$companyRgCode)";
                                 $rgResult=mysqli_query($conn,$rgSql);
                                 if($rgResult){
+                                    $rgName="";
+                                    $rgMobile="";
+                                    $rgEmail="";
+                                    $rgUsername="";
+                                    $rgPassword="";
+                                    $rgAddress="";
                                     echo "<script>alert('Registration Successful! Your Company Code is $companyRgCode')</script>";
                                 }else{
                                     echo "<script>alert('Registration Unsuccessful! Please Try Again')</script>";
@@ -114,17 +120,17 @@ session_abort();
                         }
                     ?>
                     <label for="rgName">Company Name</label>
-                    <input type="text" name="rgName" id="rgName" value="<?php echo isset($_POST['rgName'])?$_POST['rgName']:'' ?>" required>
+                    <input type="text" name="rgName" id="rgName" value="<?php echo isset($rgName)?$rgName:'' ?>" required>
                     <label for="rgEmail">Company Email</label>
-                    <input type="email" name="rgEmail" id="rgEmail" value="<?php echo isset($_POST['rgEmail'])?$_POST['rgEmail']:'' ?>" required>
+                    <input type="email" name="rgEmail" id="rgEmail" value="<?php echo isset($rgEmail)?$rgEmail:'' ?>">
                     <label for="rgMobile">Company Mobile</label>
-                    <input type="tel" name="rgMobile" id="rgMobile" value="<?php echo isset($_POST['rgMobile'])?$_POST['rgMobile']:'' ?>" maxlength="10" required>
+                    <input type="tel" name="rgMobile" id="rgMobile" value="<?php echo isset($rgMobile)?$rgMobile:'' ?>" maxlength="10" required>
                     <label for="rgUsername">Username</label>
-                    <input type="text" name="rgUsername" id="rgUsername" value="<?php echo isset($_POST['rgUsername'])?$_POST['rgUsername']:'' ?>" required>
+                    <input type="text" name="rgUsername" id="rgUsername" value="<?php echo isset($rgUsername)?$rgUsername:'' ?>" required>
                     <label for="rgPassword">Password</label>
-                    <input type="password" name="rgPassword" id="rgPassword" value="<?php echo isset($_POST['rgPassword'])?$_POST['rgPassword']:'' ?>" required>
+                    <input type="password" name="rgPassword" id="rgPassword" value="<?php echo isset($rgPassword)?$rgPassword:'' ?>" required>
                     <label for="rgAddress">Company Address</label>
-                    <input type="text" name="rgAddress" id="rgAddress" value="<?php echo isset($_POST['rgAddress'])?$_POST['rgAddress']:'' ?>" required>
+                    <input type="text" name="rgAddress" id="rgAddress" value="<?php echo isset($rgAddress)?$rgAddress:'' ?>" required>
                     <input class="button" name="rgSubmit" type="submit" value="Registration">
                 </form>
             </div>

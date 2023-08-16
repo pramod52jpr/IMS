@@ -1,6 +1,7 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Exception;
 ?>
 <?php include "conn.php" ?>
 <?php
@@ -91,17 +92,18 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
 
                 //    //Enable verbose debug output
                 //     try{
+                //         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
                 //         $mail->isSMTP();                                
                 //         $mail->Host       = 'smtp.gmail.com';
                 //         $mail->SMTPAuth   = true;
-                //         $mail->Username   = 'pramodbioroles@gmail.com';
-                //         $mail->Password   = 'mgqjozmdwayfmcby';
+                //         $mail->Username   = 'pramod52jpr@gmail.com';
+                //         $mail->Password   = 'urvsbokshuyudadi';
                 //         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                //         $mail->Port       = 465;
+                //         $mail->Port       = 587;
 
                 //         //Recipients
-                //         $mail->setFrom('pramodbioroles@gmail.com', 'Pramod Pandit');
-                //         $mail->addAddress('sushil@bioroles.com', 'Sushil Kumar Karma');
+                //         $mail->setFrom('pramod52jpr@gmail.com', 'Pramod Pandit');
+                //         $mail->addAddress('pramodbioroles@gmail.com', 'Pramod Sharma');
 
                 //         //Attachments
                 //         $mail->addAttachment("./uploadImages/".$mailOrderRow['Product_Img'], 'Product-Image.jpg');    //Optional name
@@ -487,7 +489,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                             }
                             ?>
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Sale_Price'] ?>" <?php echo $disable ?>>
+                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
                             <input class="order-btn" type="submit" value="Approve" <?php echo $disable ?>>
                         </form>
                     </div>

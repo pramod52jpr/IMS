@@ -77,7 +77,7 @@ if(isset($_POST['user']) and isset($_POST['id'])){
                                     $disabled="";
                                 }
                             ?>
-                            <form action="" method="post">
+                            <form action="approvalCompanies.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo $row['Company_Id'] ?>">
                                 <select name="user" id="user" required <?php echo $disabled ?>>
                                     <option value="" selected disabled>Select User</option>

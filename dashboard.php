@@ -315,7 +315,7 @@ if($adminRow['Admin_Type']==1){
                             }
                             ?>
                             <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Sale_Price'] ?>" <?php echo $disable ?>>
+                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
                             <input class="order-btn" type="submit" value="Approve" <?php echo $disable ?>>
                         </form>
                     </div>
