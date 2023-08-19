@@ -164,7 +164,7 @@ if(isset($_GET['oid']) and isset($_GET['osid'])){
 if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
     $billProcess=$_POST['billProcess'];
     $odrId=$_POST['odrId'];
-    $docketNo=$_POST['docketNo'];
+    $docketNo=$_POST['docketNo']==""?"ByHand":$_POST['docketNo'];
     $delivery=$_POST['delivery'];
     if($billProcess<2){
         echo "<script>alert('Stay for Approvel of billing')</script>";
@@ -531,7 +531,7 @@ if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
                                 }
                                 ?>
                             </select><br>
-                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?> required>
+                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?>>
                             <input class="order-btn" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
                         <form style="margin-top:5px;" action="orders.php?orderNo=<?php echo $_GET['orderNo'] ?>&<?php echo $compId ?><?php echo $dateId ?><?php echo $statusId ?>" method="post">

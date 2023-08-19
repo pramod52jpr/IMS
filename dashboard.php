@@ -36,7 +36,7 @@ if($adminRow['Admin_Type']==1){
         $lastWeekYear=intval(date("Y"));
     }
     $lastweekDate=date("$lastWeekYear-$lastWeekMonth-$Lastweek");
-    $last2DaysOrderSql="select * from orders where `Order_Date`>'$lastweekDate'";
+    $last2DaysOrderSql="select * from orders where `Order_Date`>'$lastweekDate' group by `cart_no`";
     $lastWeekOrderResult=mysqli_query($conn,$last2DaysOrderSql);
 // last month sql code
     if((intval(date("m"))-1)<1){
@@ -47,10 +47,10 @@ if($adminRow['Admin_Type']==1){
         $LastMonthYear=intval(date("Y"));
     }
     $lastMonthDate=date("$LastMonthYear-$LastMonth-d");
-    $lastMonthOrderSql="select * from orders where `Order_Date`>'$lastMonthDate'";
+    $lastMonthOrderSql="select * from orders where `Order_Date`>'$lastMonthDate' group by `cart_no`";
     $lastMonthOrderResult=mysqli_query($conn,$lastMonthOrderSql);
 // all Orders sql code
-    $allOrderSql="select * from orders";
+    $allOrderSql="select * from orders group by `cart_no`";
     $allOrderResult=mysqli_query($conn,$allOrderSql);
 // all Conpanies sql code
     $allCompanySql="select * from company";
@@ -65,7 +65,7 @@ if($adminRow['Admin_Type']==1){
                 <p>Order Recieved</p>
             </div>
             <div class="inner-item2">
-                <a href="orders.php?weekDate=<?php echo $lastweekDate ?>">
+                <a href="allOrders.php?weekDate=<?php echo $lastweekDate ?>">
                 <span class="title">View Order</span>
                 <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
@@ -77,7 +77,7 @@ if($adminRow['Admin_Type']==1){
                 <p>Order Recieved</p>
             </div>
             <div class="inner-item2">
-                <a href="orders.php?monthDate=<?php echo $lastMonthDate ?>">
+                <a href="allOrders.php?monthDate=<?php echo $lastMonthDate ?>">
                 <span class="title">View Order</span>
                 <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
@@ -89,7 +89,7 @@ if($adminRow['Admin_Type']==1){
                 <p>Order Recieved</p>
             </div>
             <div class="inner-item2">
-                <a href="orders.php">
+                <a href="allOrders.php">
                 <span class="title">View Order</span>
                 <i class="fa-solid fa-cart-shopping"></i></a>
             </div>
@@ -213,7 +213,7 @@ if($adminRow['Admin_Type']==1){
         if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
             $billProcess=$_POST['billProcess'];
             $odrId=$_POST['odrId'];
-            $docketNo=$_POST['docketNo'];
+            $docketNo=$_POST['docketNo']==""?"ByHand":$_POST['docketNo'];
             $delivery=$_POST['delivery'];
             if($billProcess<2){
                 echo "<script>alert('Stay for Approvel of billing')</script>";
@@ -352,7 +352,7 @@ if($adminRow['Admin_Type']==1){
                                 }
                                 ?>
                             </select><br>
-                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?> required>
+                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?>>
                             <input class="order-btn" type="submit" value="save" <?php echo $disabledAgain ?>>
                         </form>
                         <form style="margin-top:5px;" action="dashboard.php" method="post">

@@ -67,6 +67,12 @@ if(isset($_GET['comdeactive'])){
 <section class="companyPage">
     <div class="heading">
         <h2>Company Master</h2>
+        <div class="search">
+            <form action="" method="get">
+                <input type="text" value="<?php echo isset($_GET['search'])?$_GET['search']:(isset($_POST['search'])?$_POST['search']:'') ?>" name="search" id="search">
+                <input type="submit" value="Search">
+            </form>
+        </div>
     </div>
     <div class="companyContainer">
         <table>
@@ -83,7 +89,12 @@ if(isset($_GET['comdeactive'])){
             </thead>
             <tbody>
                 <?php
-                $sql="select * from company join category on company.`Admin_Type`=category.`Category_Id` where `Approvel`=1";
+                if(isset($_GET['search']) or isset($_POST['search'])){
+                    $search=isset($_GET['search'])?$_GET['search']:$_POST['search'];
+                    $sql="select * from company join category on company.`Admin_Type`=category.`Category_Id` where `Approvel`=1 and `Company_Name` like '%$search%'";
+                }else{
+                    $sql="select * from company join category on company.`Admin_Type`=category.`Category_Id` where `Approvel`=1";
+                }
                 $result=mysqli_query($conn,$sql);
                 if(mysqli_num_rows($result)>0){
                     while($row=mysqli_fetch_assoc($result)){
@@ -103,13 +114,18 @@ if(isset($_GET['comdeactive'])){
                         }
                     ?>
                     <?php
+                    if(isset($_GET['search']) or isset($_POST['search'])){
+                        $getSearch="search=$search&";
+                    }else{
+                        $getSearch="";
+                    }
                     if($row['Active_Status']==1){   
                     ?>
-                        <a href="?comactive=<?php echo $row['Company_Id'] ?>" style="background-color:blue;<?php echo $disables ?>"><?php echo "Active" ?></a>
+                        <a href="?<?php echo $getSearch ?>comactive=<?php echo $row['Company_Id'] ?>" style="background-color:blue;<?php echo $disables ?>"><?php echo "Active" ?></a>
                     <?php
                     }else{
                     ?>
-                        <a href="?comdeactive=<?php echo $row['Company_Id'] ?>" style="background-color:grey"><?php echo "Deactive" ?></a>
+                        <a href="?<?php echo $getSearch ?>comdeactive=<?php echo $row['Company_Id'] ?>" style="background-color:grey"><?php echo "Deactive" ?></a>
                     <?php
                     }
                     ?>
@@ -122,9 +138,8 @@ if(isset($_GET['comdeactive'])){
                             $disable="";
                         }
                         ?>
-                        <a href="updateCompanyForm.php?comId=<?php echo $row['Company_Id'] ?>">Edit</a>
-                        <a href="company.php?dcomId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?> style="background-color:red">Delete</Button>
-                    </a>
+                        <a href="updateCompanyForm.php?<?php echo $getSearch ?>comId=<?php echo $row['Company_Id'] ?>">Edit</a>
+                        <a href="company.php?<?php echo $getSearch ?>dcomId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?> style="background-color:red">Delete</a>
                 </tr>
                 <?php
                     }

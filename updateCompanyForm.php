@@ -5,6 +5,11 @@ if(!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])){
     Header("Location: $lDomain");
 }
 session_abort();
+if(isset($_GET['search'])){
+    $searchInput="<input type='hidden' name='search' value='$_GET[search]'>";
+}else{
+    $searchInput="";
+}
 ?>
 <?php include "./components/header.php" ?>
 <section class="updateCompanyPage">
@@ -19,6 +24,7 @@ session_abort();
     <h2>Company Master</h2>
     <form class="updateCompanyForm" action="company.php" method="post">
         <h4 class="heading">Company Details</h4>
+        <?php echo $searchInput ?>
         <div class="row">
             <div class= "col-25">
         <label class="labelfill" for="companyCode">Company Code</label>
@@ -134,7 +140,7 @@ session_abort();
     </div>
         <div class="updateCompanyBtn newbtn">
             <input class="btn" type="submit" value="Update">
-            <a class="btn" href="company.php">Cancel</a>
+            <a class="btn" href="javascript:history.go(-1)">Cancel</a>
         </div>
     </form>
 </section>

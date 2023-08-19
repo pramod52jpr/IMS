@@ -32,6 +32,24 @@ body {
     color: white;
     text-decoration: none;
 }
+.companyPage .heading .search form{
+    display: flex;
+}
+.companyPage .heading .search form input{
+    margin-right: 5px;
+    height: 30px;
+}
+.companyPage .heading .search form input[Type=text]{
+    width: 150px;
+}
+.companyPage .heading .search form input[Type=submit]{
+    color: white;
+    background-color: blueviolet;
+    border: none;
+}
+.companyPage .heading .search form input[Type=submit]:hover{
+    background-color: rgb(113, 14, 206);
+}
 
 .companyPage .crudBtn {
     display: flex;

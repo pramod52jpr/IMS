@@ -10,7 +10,20 @@ session_abort();
 <?php include "./components/header.php" ?>
 <section class="branchPage">
     <div class="heading">
-        <h2>All Orders</h2>
+        <?php
+        if(isset($_GET['weekDate'])){
+            $weekDate=$_GET['weekDate'];
+            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` where `Order_Date`>'$weekDate' group by `cart_no`";
+            echo "<h2>Last Week Orders</h2>";
+        }elseif(isset($_GET['monthDate'])){
+            $monthDate=$_GET['monthDate'];
+            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` where `Order_Date`>'$monthDate' group by `cart_no`";
+            echo "<h2>Last Month Orders</h2>";
+        }else{
+            echo "<h2>All Orders</h2>";
+            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` group by `cart_no`";
+        }
+        ?>
     </div>
     <div class="branchContainer">
         <table>
@@ -25,7 +38,6 @@ session_abort();
             </thead>
             <tbody>
                 <?php
-                $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` group by `cart_no`";
                 $result=mysqli_query($conn,$sql);
                 if(mysqli_num_rows($result)>0){
                     while($row=mysqli_fetch_assoc($result)){
