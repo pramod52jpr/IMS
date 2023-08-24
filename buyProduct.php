@@ -67,7 +67,7 @@ if(isset($_POST['pid']) and isset($_POST['piece'])){
                                 <input type="hidden" name="pid" value="<?php echo $row['Product_Id'] ?>">
                                 <div class="formi-p">
                                     <label for="salePrice">Sale Rs. <span style="color:red">*</span></label>
-                                    <input type="number" name="salePrice" id="salePrice" placeholder="Enter Sale Rs." required>
+                                    <input type="text" name="salePrice" id="salePrice" placeholder="Enter Sale Rs." required>
                                 </div>
                                 <div class="formi-p">
                                     <label for="shippingMode">Shipping Mode</label>
