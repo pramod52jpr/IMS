@@ -23,6 +23,7 @@ if(isset($_POST['pid']) and isset($_POST['piece'])){
 ?>
 <?php include "./components/header.php" ?>
 <section class="buyProductPage">
+    <button class="backToTopBtn"><i class="fa-solid fa-arrow-up"></i></button>
     <div class="search">
         <form action="" method="post">
             <input type="text" name="search" placeholder="search item" value="<?php echo isset($_POST['search'])?$_POST['search']:"" ?>">
@@ -93,7 +94,7 @@ if(isset($_POST['pid']) and isset($_POST['piece'])){
                                 </div>
                                 <div class="formi-p">
                                     <label for="piece">Quantity <span style="color:red">*</span></label>
-                                    <input type="number" name="piece" id="piece" value="1" min="1" required>
+                                    <input type="number" name="piece" id="piece" placeholder="Quantity" min="1" required>
                                 </div>
                                 <div class="formi-p">
                                     <input class="btn" type="submit" value="Add to Cart">

@@ -276,3 +276,24 @@ form .form-p .formi-p label {
         margin-left: 0;
     }
 }
+
+
+.backToTopBtn{
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 40px;
+    width: 40px;
+    background-color: orange;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    border: 0;
+    outline: none;
+    border-radius: 50%;
+}
+.backToTopBtn:hover{
+    background-color: rgb(218, 141, 0);
+}
