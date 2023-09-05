@@ -139,7 +139,7 @@ if(isset($_GET['comdeactive'])){
                         }
                         ?>
                         <a href="updateCompanyForm.php?<?php echo $getSearch ?>comId=<?php echo $row['Company_Id'] ?>">Edit</a>
-                        <a href="company.php?<?php echo $getSearch ?>dcomId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?> style="background-color:red">Delete</a>
+                        <a href="company.php?<?php echo $getSearch ?>dcomId=<?php echo $row['Company_Id'] ?>" <?php echo $disable ?> style="background-color:red;pointer-events:none;background:grey">Delete</a>
                 </tr>
                 <?php
                     }
