@@ -23,8 +23,9 @@ if(isset($_POST['companyName']) and $_POST['companyUsername']){
     $companyTan=$_POST['companyTan'];
     $companyLicence=$_POST['companyLicence'];
     $companyRgNo=$_POST['companyRgNo'];
+    $user=$_POST['user'];
     
-    $comUpdateSql="update company set `Company_Name`='$companyName',`Admin_Type`='$companyCategory',`Company_Phone`='$companyContact',`Company_Email`='$companyEmail',`Company_Address`='$companyAddress',`Company_Username`='$companyUsername',`Company_Password`='$companyPassword',`Company_GST`='$companyGst',`Company_PAN`='$companyPan',`Company_TAN`='$companyTan',`Company_Licence`='$companyLicence',`Company_Registration`='$companyRgNo' where `Company_Id`=$comId";
+    $comUpdateSql="update company set `Company_Name`='$companyName',`Admin_Type`='$companyCategory',`Company_Phone`='$companyContact',`Company_Email`='$companyEmail',`Company_Address`='$companyAddress',`Company_Username`='$companyUsername',`Company_Password`='$companyPassword',`Company_GST`='$companyGst',`Company_PAN`='$companyPan',`Company_TAN`='$companyTan',`Company_Licence`='$companyLicence',`Company_Registration`='$companyRgNo',`userId`=$user where `Company_Id`=$comId";
     $comUpdateResult=mysqli_query($conn,$comUpdateSql);
     if($comUpdateResult){
         echo "<script>alert('Details Updated successfully')</script>";

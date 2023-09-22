@@ -99,6 +99,11 @@ select#companyCategory {
     transition: 0.3s;
    
 }
+select#user {
+    width: 100%;
+    transition: 0.3s;
+   
+}
 
 input#companyName {
     width: 100%;
@@ -118,6 +123,7 @@ input#companyContact {
     width: 100%;
     transition: 0.3s;
 }
+
 
 .row3 {
     display: flex;
@@ -264,11 +270,6 @@ input#companyName:focus {
     border-color: rgba(248, 248, 248, 0.8);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(253, 253, 253, 0.6);
     outline: 0 none;
-}
-
-
-.col-25.col-26 {
-    width: 25%;
 }
 
 /* ----------------------------media qurrey---------------------------------- */
