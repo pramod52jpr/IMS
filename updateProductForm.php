@@ -85,7 +85,7 @@ session_abort();
         </div>
         <div class="updateMachineFormBtn">
             <input class="btn" type="submit" value="Update">
-            <a class="btn" href="product.php">Cancel</a>
+            <a class="btn" href="javascript:history.go(-1)">Cancel</a>
         </div>
     </form>
 </section>

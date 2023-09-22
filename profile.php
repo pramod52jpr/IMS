@@ -124,7 +124,7 @@ session_abort();
         </div>
         <div class="profileBtn">
             <input class="btn" type="submit" value="Save">
-            <a class="btn" href="dashboard.php">Cancel</a>
+            <a class="btn" href="javascript:history.go(-1)">Cancel</a>
         </div>
     </form>
 </section>

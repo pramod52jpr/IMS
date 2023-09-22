@@ -108,310 +108,58 @@ if($adminRow['Admin_Type']==1){
             </div>
         </div>
     </div>
-    <h1>Today Orders</h1>
-    <div class="todayOrdersContainer">
+    <h1>Today Orders</h1>        
+    <section class="branchPage">
         <?php
-        if(isset($_POST['odrId']) and isset($_POST['approvedPrice'])){
-            $odrId=$_POST['odrId'];
-            $approvedPrice=$_POST['approvedPrice'];
-            $updatePriceSql="update orders set `Approved_Price`=$approvedPrice,`Approved`=1 where `Order_Id`=$odrId";
-            $updatePriceResult=mysqli_query($conn,$updatePriceSql);
-            if($updatePriceResult){
-                echo "<script>alert('Price Approved')</script>";
-            }else{
-                echo "<script>alert('Price not Approved')</script>";
-            }
-        }
-        if(isset($_GET['oid']) and isset($_GET['osid'])){
-            $oid=$_GET['oid'];
-            $osid=$_GET['osid'];
-            $productId=$_GET['productId'];
-
-            $seriesOrderStatusSql="select `Order_Status` from orders where `Order_Id`=$oid";
-            $seriesOrderStatusResult=mysqli_query($conn,$seriesOrderStatusSql);
-            $seriesOrderStatusRow=mysqli_fetch_assoc($seriesOrderStatusResult);
-            if(($osid!=$seriesOrderStatusRow['Order_Status']+1) and $osid!=5){
-                echo "<script>alert('Please Follow the Steps One By One!')</script>";
-            }else{
-                if($osid==5){
-                    $canReason=",`Cancel_Reason`='This Item is currently out of Stock'";
-                }else{
-                    $canReason="";
-                }
-                if($osid==3){
-                    $deliveryModeSql="select `Delievery_Mode`,`Docket_No` from orders where `Order_Id`=$oid";
-                    $deliveryModeResult=mysqli_query($conn,$deliveryModeSql);
-                    $deliveryModeRow=mysqli_fetch_assoc($deliveryModeResult);
-                    if($deliveryModeRow['Delievery_Mode']==0 or $deliveryModeRow['Docket_No']==""){
-                        echo "<script>alert('Please Choose any Delivery Mode Or Enter Docket No. !')</script>";
-                    }else{
-                        $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
-                        $oresult=mysqli_query($conn,$osql);
-                        if($oresult){
-                            echo "<script>alert('Order Status Updated Successfully')</script>";
-                        }else{
-                            echo "<script>alert('Order status not Updated')</script>";
-                        }
-                    }
-                }elseif($osid==2){
-                    $priceSql="select `Approved` from orders where `Order_Id`=$oid";
-                    $priceResult=mysqli_query($conn,$priceSql);
-                    $priceRow=mysqli_fetch_assoc($priceResult);
-                    if($priceRow['Approved']==1){
-                        $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
-                        $oresult=mysqli_query($conn,$osql);
-                        if($oresult){
-                            echo "<script>alert('Order Status Updated Successfully')</script>";
-                        }else{
-                            echo "<script>alert('Order status not Updated')</script>";
-                        }
-                    }else{
-                        echo "<script>alert('Please Approve the Price')</script>";
-                    }
-                }elseif($osid==4){
-                    $DeliverySql="select `Delivery_Date` from orders where `Order_Id`=$oid";
-                    $DeliveryResult=mysqli_query($conn,$DeliverySql);
-                    $DeliveryRow=mysqli_fetch_assoc($DeliveryResult);
-                    if($DeliveryRow['Delivery_Date']==""){
-                        echo "<script>alert('Please Fill the Delivery Date')</script>";
-                    }else{
-                        $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
-                        $oresult=mysqli_query($conn,$osql);
-                    
-                        $availableQuantitySql="select `Quantity` from product where `Product_Id`=$productId";
-                        $availableQuantityResult=mysqli_query($conn,$availableQuantitySql);
-                        $availableQuantityRow=mysqli_fetch_assoc($availableQuantityResult);
-                        $availableQuantity=$availableQuantityRow['Quantity'];
-
-                        $deliveredQuantitySql="select `Order_Pieces` from orders where `Order_Id`=$oid";
-                        $deliveredQuantityResult=mysqli_query($conn,$deliveredQuantitySql);
-                        $deliveredQuantityRow=mysqli_fetch_assoc($deliveredQuantityResult);
-                        $deliveredQuantity=$deliveredQuantityRow['Order_Pieces'];
-
-                        $remainingQuantity=$availableQuantity-$deliveredQuantity;
-
-                        $updateQuantitySql="update product set `Quantity`=$remainingQuantity where `Product_Id`=$productId";
-                        $updateQuantityResult=mysqli_query($conn,$updateQuantitySql);
-
-                        if($oresult and $updateQuantityResult){
-                            echo "<script>alert('Order Status Updated Successfully')</script>";
-                        }else{
-                            echo "<script>alert('Order status not Updated')</script>";
-                        }
-                    }
-                }else{
-                    $osql="update orders set `Order_Status`=$osid".$canReason." where `Order_Id`=$oid";
-                    $oresult=mysqli_query($conn,$osql);
-                    if($oresult){
-                        echo "<script>alert('Order Status Updated Successfully')</script>";
-                    }else{
-                        echo "<script>alert('Order status not Updated')</script>";
-                    }
-                }
-            }
-        }
-        if(isset($_POST['odrId']) and isset($_POST['docketNo'])){
-            $billProcess=$_POST['billProcess'];
-            $odrId=$_POST['odrId'];
-            $docketNo=$_POST['docketNo']==""?"ByHand":$_POST['docketNo'];
-            $delivery=$_POST['delivery'];
-            if($billProcess<2){
-                echo "<script>alert('Stay for Approvel of billing')</script>";
-            }else{
-                $docketUpdateSql="update orders set `Delievery_Mode`=$delivery,`Docket_No`='$docketNo' where `Order_Id`=$odrId";
-                $docketUpdateResult=mysqli_query($conn,$docketUpdateSql);
-                if($docketUpdateResult){
-                    echo "<script>alert('Delivery Mode and Docket No. Updated')</script>";
-                }else{
-                    echo "<script>alert('Delivery Mode and Docket No. not Updated')</script>";
-                }
-            }
-        }
-        if(isset($_POST['oderId']) and isset($_POST['deliveryDate'])){
-            $oderStatus=$_POST['oderStatus'];
-            $oderId=$_POST['oderId'];
-            $deliveryDate=$_POST['deliveryDate'];
-            if($oderStatus<3){
-                echo "<script>alert('Stay for Intransit')</script>";
-            }elseif($deliveryDate==""){
-                echo "<script>alert('Please Enter Delivery Date')</script>";
-            }else{
-                $deliveryDateSql="update orders set `Delivery_Date`='$deliveryDate' where `Order_Id`=$oderId";
-                $deliveryDateResult=mysqli_query($conn,$deliveryDateSql);
-                if($deliveryDateResult){
-                    echo "<script>alert('Delivery Date Added')</script>";
-                }else{
-                    echo "<script>alert('Delivery Date not Added')</script>";
-                }
-            }
-        }
-        if(isset($_SESSION['User_Id'])){
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`='$todayDate' and company.`userId`=$userId order by orders.`Order_Id` asc";
-        }else{
-            $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` left join deliverymode on orders.`Delievery_Mode`=deliverymode.`Delivery_Id` where `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
-        }
-        $aoresult=mysqli_query($conn,$aosql);
-        if(mysqli_num_rows($aoresult)>0){
-            while($aorow=mysqli_fetch_assoc($aoresult)){
+        $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username`,`Company_Name` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` where `Order_Date`='$todayDate' group by `cart_no`";
         ?>
-                <div class="order">
-                    <div class="order-box image" style="background-image:url('./uploadImages/<?php echo $aorow['Product_Img'] ?>')">
-                    </div>
-                    <div class="order-box">
-                        <h2>Order Details : </h2>
-                        <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
-                        <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
-                        <div><span>Modal No. : </span><span><?php echo $aorow['Product_Modal_No'] ?></span></div>
-                        <div><span>Status : </span><span><?php echo $aorow['Status_Name'] ?></span></div>
+        <div class="branchContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Order Date</th>
+                        <th>No. of Items</th>
+                        <th>User</th>
+                        <th>Company Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php
-                    if($aorow['Delivery_Date']!=""){
-                    ?>
-                        <div><span>Delivery Date : </span><span><?php echo $aorow['Delivery_Date'] ?></span></div>
-                    <?php
-                    }
-                    ?>
-                        <div><span>Order Date : </span><span><?php echo $aorow['Order_Date'] ?></span></div>
-                        <div><span>Normal Price : </span><span><?php echo $aorow['Normal_Price'] ?></span></div>
-                        <div><span>Discounted Price : </span><span><?php echo $aorow['Discounted_Price'] ?></span></div>
-                    <?php
-                    if($aorow['Approved']==1){
-                    ?>
-                        <div><span>Price Approved : </span><span><?php echo $aorow['Approved_Price'] ?></span></div>
-                        <div><span>Total Price : </span><span><?php echo $aorow['Approved_Price']*$aorow['Order_Pieces'] ?></span></div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if($aorow['Order_Status']>=3 and $aorow['Order_Status']!=5){
-                    ?>
-                        <div><span>Delivery Mode : </span><span><?php echo $aorow['Delivery_Type'] ?></span></div>
-                    <?php
-                    }
-                    if($aorow['Order_Status']==5){
-                    ?>
-                        <div><span>Cancel Reason : </span><span><?php echo $aorow['Cancel_Reason'] ?></span></div>
-                    <?php
-                    }
-                    ?>
-                    </div>
-                    <div class="order-box">
-                        <h2>Company Details : </h2>
-                        <div><span>Company : </span><span><?php echo $aorow['Company_Name'] ?></span></div>
-                        <div><span>Contact : </span><span><?php echo $aorow['Company_Phone'] ?></span></div>
-                        <div><span>Email : </span><span><?php echo $aorow['Company_Email'] ?></span></div>
-                        <div><span>Address : </span><span><?php echo $aorow['Company_Address'] ?></span></div>
-                    </div>
-                    <?php
-                    if(!isset($_SESSION['User_Id'])){
-                    ?>
-                    <div class="order-box">
-                        <h2>Approval : </h2>
-                        <form action="dashboard.php" method="post">
-                            <?php
-                            if(($aorow['Approved']==1 or $aorow['Order_Status']==5) or $aorow['Order_Status']==5){
-                                $disable="style='background-color:lightgrey' disabled";
+                    $result=mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        while($row=mysqli_fetch_assoc($result)){
+                            $successSql="select `cart_no` from orders where `cart_no`='$row[cart_no]' and `Delievery_Mode`=4";
+                            $successResult=mysqli_query($conn,$successSql);
+                            if(mysqli_num_rows($successResult)==$row['items']){
+                                $success="style='background-color:lightGreen'";
                             }else{
-                                $disable="";
+                                $success="";
                             }
-                            ?>
-                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <input class="order-input" type="text" name="approvedPrice" value="<?php echo $aorow['Approved_Price'] ?>" <?php echo $disable ?>>
-                            <input class="order-btn" type="submit" value="Approve" <?php echo $disable ?>>
-                        </form>
-                    </div>
-                    <?php
-                    }
                     ?>
-                    <div class="order-box2">
-                        <form action="dashboard.php" method="post">
-                            <?php
-                            if((($aorow['Delievery_Mode']>0 or $aorow['Order_Status']==5) and $aorow['Docket_No']!=="") or $aorow['Order_Status']==5){
-                                $disabledAgain="style='background-color:lightgrey' disabled";
-                            }else{
-                                $disabledAgain="";
-                            }
-                            ?>
-                            <input type="hidden" name="billProcess" value="<?php echo $aorow['Order_Status'] ?>">
-                            <input type="hidden" name="odrId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <select class="select-b" name="delivery" <?php echo $disabledAgain ?> required>
-                                <option value="" selected disabled>Select Delivery Mode</option>
-                                <?php
-                                $delModeSql="select * from deliverymode";
-                                $delModeResult=mysqli_query($conn,$delModeSql);
-                                if(mysqli_num_rows($delModeResult)>0){
-                                    while($delModeRow=mysqli_fetch_assoc($delModeResult)){
-                                        if($aorow['Delievery_Mode']==$delModeRow['Delivery_Id']){
-                                            $selected="selected";
-                                        }else{
-                                            $selected="";
-                                        }
-                                ?>
-                                        <option value="<?php echo $delModeRow['Delivery_Id'] ?>" <?php echo $selected ?>><?php echo $delModeRow['Delivery_Type'] ?></option>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </select><br>
-                            <input class="order-input" type="text" name="docketNo" placeholder="Docket No." value="<?php echo $aorow['Docket_No'] ?>" <?php echo $disabledAgain ?>>
-                            <input class="order-btn" type="submit" value="save" <?php echo $disabledAgain ?>>
-                        </form>
-                        <form style="margin-top:5px;" action="dashboard.php" method="post">
-                            <?php
-                            if($aorow['Delivery_Date']!=="" or $aorow['Order_Status']==5){
-                                $disabling="style='background-color:lightgrey' disabled";
-                            }else{
-                                $disabling="";
-                            }
-                            ?>
-                            <input type="hidden" name="oderStatus" value="<?php echo $aorow['Order_Status'] ?>">
-                            <input type="hidden" name="oderId" value="<?php echo $aorow['Order_Id'] ?>">
-                            <label for="deliveryDate" style="color:green">Delivery Date</label><br>
-                            <input class="order-input" type="date" max="<?php echo date("Y-m-d") ?>" name="deliveryDate" id="deliveryDate" value="<?php echo $aorow['Delivery_Date'] ?>" <?php echo $disabling ?>>
-                            <input class="order-btn" type="submit" value="save" <?php echo $disabling ?>>
-                        </form>
+                    <tr <?php echo $success ?>>
+                        <td><?php echo $row['cart_no'] ?></td>
+                        <td><?php echo $row['Order_Date'] ?></td>
+                        <td><?php echo $row['items'] ?></td>
+                        <td><?php echo $row['Username'] ?></td>
+                        <td><?php echo $row['Company_Name'] ?></td>
+                        <td><a href="orders.php?orderNo=<?php echo $row['cart_no'] ?>">View</a>
+                    </tr>
                     <?php
-                        $orderstatusSql="select * from orderstatus";
-                        $orderstatusResult=mysqli_query($conn,$orderstatusSql);
-                        if(mysqli_num_rows($orderstatusResult)>0){
-                            while($orderstatusRow=mysqli_fetch_assoc($orderstatusResult)){
-                                if($aorow['Order_Status']>=$orderstatusRow['Status_Id']){
-                                    $disabled="style='background-color:lightgrey;pointer-events:none'";
-                                }else{
-                                    $disabled="";
-                                }
-                                if(($aorow['Order_Status']==5) and ($orderstatusRow['Status_Id']!=5)){
-                                    continue;
-                                }
-                                if(isset($_SESSION['User_Id'])){
-                                    if($orderstatusRow['Status_Id']<=2){
-                                        continue;
-                                    }
-                                }
-                                if($aorow['Order_Status']==3 or $aorow['Order_Status']==4){
-                                    if($orderstatusRow['Status_Id']==5){
-                                        break;
-                                    }
-                                }
-                        ?>
-                                <a class="order-button" href="dashboard.php?oid=<?php echo $aorow['Order_Id'] ?>&osid=<?php echo $orderstatusRow['Status_Id'] ?>&productId=<?php echo $aorow['Product_Id'] ?>" <?php echo $disabled ?>><?php echo $orderstatusRow['Status_Name'] ?></a>
-                        <?php
-                                if((($aorow['Order_Status']==$orderstatusRow['Status_Id'])) and ($aorow['Order_Status']>=4)){
-                                    break;
-                                }
-                            }
                         }
+                    }else{
                     ?>
-                    </div>
-                </div>
-        <?php
-            }
-        }else{
-        ?>
-            <h2 align="center">No Orders Today</h2>
-        <?php
-        }
-        ?>
-    </div>
+                    <tr>
+                        <td colspan="6" style="text-align:center;font-size:20px">No Orders Yet</td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
     <?php 
     }elseif($adminRow['Admin_Type']==2){
     // last 2 days sql code
@@ -515,104 +263,50 @@ if($adminRow['Admin_Type']==1){
         <div class="inner-item2">
             <a href="myOrders.php?status=4">
             <span class="title">View Order</span>
-  <i class="fa-solid fa-cart-shopping"></i></a>
+            <i class="fa-solid fa-cart-shopping"></i></a>
             </a>
         </div>
         </div>
     </div>
     <h1>Today Orders</h1>
-    <div class="todayOrdersContainer">
-        <?php
-        if(isset($_GET['canretoid'])){
-            $canretoid=$_GET['canretoid'];
-            $canretsql="update orders set `Return_Status`=0 where `Order_Id`=$canretoid";
-            $canretresult=mysqli_query($conn,$canretsql);
-            if($canretresult){
-                echo "<script>alert('Returning Order Application Cancelled Successfully')</script>";
-            }else{
-                echo "<script>alert('Could not Cancel Returning Order Application. Try Again Later!')</script>";
-            }
-        }
-        $aosql="select * from orders join product on orders.`Product_Id`=product.`Product_Id` join orderstatus on orderstatus.`Status_Id`=orders.`Order_Status` join company on company.`Company_Id`=orders.`Company_Id` join returnmode on returnmode.`Returnmode_Id`=orders.`Return_Status` where orders.`Company_Id`=$companyId and `Order_Date`='$todayDate' order by orders.`Order_Id` asc";
-        $aoresult=mysqli_query($conn,$aosql);
-        if(mysqli_num_rows($aoresult)>0){
-            while($aorow=mysqli_fetch_assoc($aoresult)){
-        ?>
-                <div class="Morder">
-                <div class="myorder-box image" style="background-image:url('./uploadImages/<?php echo $aorow['Product_Img'] ?>')">
-                </div>
-                <div class="myorder-box">
-                        <h2>Order Details : </h2>
-                        <div><span>Product : </span><span><?php echo $aorow['Product_Name'] ?></span></div>
-                        <div><span>Quantity : </span><span><?php echo $aorow['Order_Pieces'] ?></span></div>
+    <section class="branchPage">
+        <div class="branchContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Order Date</th>
+                        <th>No. of Items</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php
-                        if($aorow['Delivery_Date']!=""){
+                    $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date` from orders where `Company_Id`=$id and `Order_Date`='$todayDate' group by `cart_no`";
+                    $result=mysqli_query($conn,$sql);
+                    if(mysqli_num_rows($result)>0){
+                        while($row=mysqli_fetch_assoc($result)){
                     ?>
-                        <div><span>Delivery Date : </span><span><?php echo $aorow['Delivery_Date'] ?></span></div>
+                    <tr>
+                        <td><?php echo $row['cart_no'] ?></td>
+                        <td><?php echo $row['Order_Date'] ?></td>
+                        <td><?php echo $row['items'] ?></td>
+                        <td><a href="myOrders.php?orderNo=<?php echo $row['cart_no'] ?>">View</a>
+                    </tr>
                     <?php
-                    }
-                    ?>
-                        <div><span>Order Date : </span><span><?php echo $aorow['Order_Date'] ?></span></div>
-                        <div><span>Normal Price : </span><span><?php echo $aorow['Normal_Price'] ?></span></div>
-                        <div><span>Discounted Price : </span><span><?php echo $aorow['Discounted_Price'] ?></span></div>
-                    <?php
-                    if($aorow['Approved']==1){
-                    ?>
-                        <div><span>Price Approved : </span><span><?php echo $aorow['Approved_Price'] ?></span></div>
-                    <?php
-                    }
-                    ?>
-                        <div><span>Modal No. : </span><span><?php echo $aorow['Product_Modal_No'] ?></span></div>
-                        <div><span>Status : </span><span><?php echo $aorow['Status_Name'] ?></span></div>
-                        <div><span>Date : </span><span><?php echo $aorow['Order_Date'] ?></span></div>
-                    <?php
-                    if($aorow['Order_Status']==5){
-                    ?>
-                        <div><span>Cancel Reason : </span><span><?php echo $aorow['Cancel_Reason'] ?></span></div>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if($aorow['Return_Status']>0){
-                    ?>
-                        <div><span>Return Status : </span><span><?php echo $aorow['Return_Mode'] ?></span></div>
-                        <div><span>Return Reason : </span><span><?php echo $aorow['Return_Reason'] ?></span></div>
-                    <?php
-                    }
-                    ?>
-                    </div>
-                    <div class="myorder-boxbtn">
-                        <?php
-                        if($aorow['Order_Status']<4){
-                        ?>
-                            <a href="cancelReason.php?canoid=<?php echo $aorow['Order_Id'] ?>">Cancel Order</a>
-                        <?php
                         }
-                        ?>
-                        <?php
-                        if($aorow['Order_Status']==4 and $aorow['Return_Status']==0){
-                        ?>
-                            <a href="returnReason.php?retoid=<?php echo $aorow['Order_Id'] ?>">Return Order</a>
-                        <?php
-                        }
-                        ?>
-                        <?php
-                        if($aorow['Order_Status']==4 and $aorow['Return_Status']>0){
-                        ?>
-                            <a href="dashboard.php?canretoid=<?php echo $aorow['Order_Id'] ?>">Cancel Return</a>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-        <?php
-            }
-        }else{
-        ?>
-        <h2 align="center">No Orders Today</h2>
-        <?php
-        }
-        ?>
+                    }else{
+                    ?>
+                    <tr>
+                        <td colspan="6" style="text-align:center;font-size:20px">No Orders Yet</td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
     <?php } ?>
 </section>
 <?php include "./components/footer.php" ?>

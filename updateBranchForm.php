@@ -47,7 +47,7 @@ session_abort();
 </div>
         <div class="updatebranchFormBtn">
             <input class="btn" type="submit" value="Update">
-            <a class="btn" href="branch.php">Cancel</a>
+            <a class="btn" href="javascript:history.go(-1)">Cancel</a>
         </div>
     </form>
 </section>

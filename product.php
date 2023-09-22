@@ -150,7 +150,7 @@ if(isset($_POST['quantity']) and isset($_POST['proId'])){
                             <input type="submit" value="add">
                         </form>
                     </td>
-                    <td><a href="updateProductForm.php?pid=<?php echo $row['Product_Id'] ?>">Edit</a><a href="product.php?dpid=<?php echo $row['Product_Id'] ?>">Delete</Button></a>
+                    <td><a href="updateProductForm.php?pid=<?php echo $row['Product_Id'] ?>">Edit</a><a href="product.php?dpid=<?php echo $row['Product_Id'] ?>" style="pointer-events: none;background-color: grey;">Delete</Button></a>
                 </tr>
                 <?php
                     }

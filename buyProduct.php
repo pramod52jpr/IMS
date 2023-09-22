@@ -6,6 +6,21 @@ if (!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])) {
     Header("Location: $lDomain");
 }
 session_abort();
+
+// if user order their distributer orders
+
+if(isset($_GET['comp-id'])){
+    $id=$_GET['comp-id'];
+}
+if(isset($_GET['comp-id'])){
+    $comId=$_GET['comp-id'];
+    $comp_id="&comp-id=$comId";
+}else{
+    $comp_id="";
+}
+
+// if user order their distributer orders  ------> end
+
 if(isset($_POST['pid']) and isset($_POST['piece'])){
     $pid=$_POST['pid'];
     $piece=$_POST['piece'];
@@ -63,7 +78,7 @@ if(isset($_POST['pid']) and isset($_POST['piece'])){
                                 <?php echo $row['Discounted_Price'] ?>
                             </div>
                         </div>
-                        <form class="buyProductAddForm" action="buyProduct.php?cid=<?php echo $cid ?>" method="post">
+                        <form class="buyProductAddForm" action="buyProduct.php?cid=<?php echo $cid.$comp_id ?>" method="post">
                             <div class="form-p">
                                 <input type="hidden" name="pid" value="<?php echo $row['Product_Id'] ?>">
                                 <div class="formi-p">

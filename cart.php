@@ -6,6 +6,16 @@ if (!isset($_SESSION['Company_Id']) and !isset($_SESSION['User_Id'])) {
     Header("Location: $lDomain");
 }
 session_abort();
+
+if(isset($_GET['comp-id'])){
+    $id=$_GET['comp-id'];
+}
+if(isset($_GET['comp-id'])){
+    $comId=$_GET['comp-id'];
+    $comp_id="?comp-id=$comId";
+}else{
+    $comp_id="";
+}
 ?>
 <?php
 if(isset($_GET['remove'])){
@@ -21,13 +31,13 @@ if(isset($_GET['remove'])){
 if(isset($_POST['userId'])){
     $orderSql="select * from mycart join product on mycart.`pro_id`=product.`Product_Id` where mycart.`comp_id`=$id";
     $orderResult=mysqli_query($conn,$orderSql);
-    $cartNo=mt_rand(1111,9999999);
+    $cartNo=intval(microtime(true)*1000);
     if(mysqli_num_rows($orderResult)>0){
         while($orderRow=mysqli_fetch_assoc($orderResult)){
 
             $orderDate=date("Y-m-d");
 
-            $insertOrderSql="insert into orders (`Order_Date`,`cart_no`,`Order_Pieces`,`Sale_Price`,`Approved_Price`,`Product_Id`,`Company_Id`,`Delievery_Mode`) values ('$orderDate',$cartNo,$orderRow[quantity],$orderRow[sale_prize],$orderRow[sale_prize],$orderRow[Product_Id],$orderRow[comp_id],$orderRow[delivery_mode])";
+            $insertOrderSql="insert into orders (`Order_Date`,`cart_no`,`Order_Pieces`,`Sale_Price`,`Approved_Price`,`Product_Id`,`Company_Id`,`Delievery_Mode`) values ('$orderDate','$cartNo',$orderRow[quantity],$orderRow[sale_prize],$orderRow[sale_prize],$orderRow[Product_Id],$orderRow[comp_id],$orderRow[delivery_mode])";
             $insertOrderResult=mysqli_query($conn,$insertOrderSql);
         }
         $deleteCartSql="delete from mycart where `comp_id`=$id";
@@ -41,6 +51,11 @@ if(isset($_POST['userId'])){
 }
 ?>
 <?php include "./components/header.php" ?>
+<?php
+if(isset($_GET['comp-id'])){
+    $id=$_GET['comp-id'];
+}
+?>
 <section class="myOrdersPage">
     <div class="myOrdersContainer">
         <?php
@@ -89,7 +104,7 @@ if(isset($_POST['userId'])){
             </span>
         </div>
         <div class="orderNow">
-            <form action="cart.php" method="post">
+            <form action="cart.php<?php echo $comp_id ?>" method="post">
                 <input type="hidden" name="userId" value="<?php echo $id ?>">
                 <input type="submit" value="Order Now">
             </form>

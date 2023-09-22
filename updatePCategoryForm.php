@@ -32,7 +32,7 @@ session_abort();
         </div>
         <div class="updatePCategoryFormBtn">
             <input class="btn" type="submit" value="Update">
-            <a class="btn" href="PCategory.php">Cancel</a>
+            <a class="btn" href="javascript:history.go(-1)">Cancel</a>
         </div>
     </form>
 </section>

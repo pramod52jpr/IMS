@@ -92,11 +92,11 @@ body {
 
 .companyPage .companyContainer table td {
     font-size: 15px;
-    padding: 5px 10px;
-
+    padding: 10px;
 }
 
 table td a {
+    position: relative;
     margin: 0px 5px;
     background-color: blue;
     color: white;
@@ -105,6 +105,21 @@ table td a {
     letter-spacing: 1px;
     text-decoration: none;
     border-radius: 5px;
+}
+table td a .cartCount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    width: 18px;
+    height: 18px;
+    background-color: brown;
+    color: white;
+    border-radius: 50px;
+    position: absolute;
+    top: -14px;
+    right: 0px;
+    font-size: 13px;
 }
 
 .companyPage .companyContainer table td:last-child,

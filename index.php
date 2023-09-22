@@ -32,7 +32,7 @@ session_abort();
             <div class="formContainer">
                 <div class="loginRegBtn">
                     <button id="loginBtn">Login</button>
-                    <button id="regBtn">Registration</button>
+                    <button id="regBtn">Register</button>
                 </div>
                 <form id="form1" action="" method="post">
                     <?php
@@ -131,7 +131,7 @@ session_abort();
                     <input type="password" name="rgPassword" id="rgPassword" value="<?php echo isset($rgPassword)?$rgPassword:'' ?>" required>
                     <label for="rgAddress">Company Address</label>
                     <input type="text" name="rgAddress" id="rgAddress" value="<?php echo isset($rgAddress)?$rgAddress:'' ?>" required>
-                    <input class="button" name="rgSubmit" type="submit" value="Registration">
+                    <input class="button" name="rgSubmit" type="submit" value="Register">
                 </form>
             </div>
         </div>

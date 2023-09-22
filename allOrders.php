@@ -13,15 +13,15 @@ session_abort();
         <?php
         if(isset($_GET['weekDate'])){
             $weekDate=$_GET['weekDate'];
-            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` where `Order_Date`>'$weekDate' group by `cart_no`";
+            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username`,`Company_Name` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` where `Order_Date`>'$weekDate' group by `cart_no`";
             echo "<h2>Last Week Orders</h2>";
         }elseif(isset($_GET['monthDate'])){
             $monthDate=$_GET['monthDate'];
-            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` where `Order_Date`>'$monthDate' group by `cart_no`";
+            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username`,`Company_Name` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` where `Order_Date`>'$monthDate' group by `cart_no`";
             echo "<h2>Last Month Orders</h2>";
         }else{
             echo "<h2>All Orders</h2>";
-            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` group by `cart_no`";
+            $sql="select count(`cart_no`) as items,`cart_no`,`Order_Date`,`Username`,`Company_Name` from orders join company on orders.`Company_Id`=company.`Company_Id` join users on company.`userId`=users.`User_Id` group by `cart_no`";
         }
         ?>
     </div>
@@ -33,6 +33,7 @@ session_abort();
                     <th>Order Date</th>
                     <th>No. of Items</th>
                     <th>User</th>
+                    <th>Company Name</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -41,12 +42,20 @@ session_abort();
                 $result=mysqli_query($conn,$sql);
                 if(mysqli_num_rows($result)>0){
                     while($row=mysqli_fetch_assoc($result)){
+                        $successSql="select `cart_no` from orders where `cart_no`='$row[cart_no]' and `Order_Status`=4";
+                        $successResult=mysqli_query($conn,$successSql);
+                        if(mysqli_num_rows($successResult)==$row['items']){
+                            $success="style='background-color:lightGreen'";
+                        }else{
+                            $success="";
+                        }
                 ?>
-                <tr>
+                <tr <?php echo $success ?>>
                     <td><?php echo $row['cart_no'] ?></td>
                     <td><?php echo $row['Order_Date'] ?></td>
                     <td><?php echo $row['items'] ?></td>
                     <td><?php echo $row['Username'] ?></td>
+                    <td><?php echo $row['Company_Name'] ?></td>
                     <td><a href="orders.php?orderNo=<?php echo $row['cart_no'] ?>">View</a>
                 </tr>
                 <?php

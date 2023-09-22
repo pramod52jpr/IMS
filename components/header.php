@@ -44,9 +44,7 @@ include "conn.php";
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="https://www.freeiconspng.com/uploads/blue-shopping-cart-icon-4.jpg" type="image/x-icon">
-
 </head>
-
 <body>
     <header class="headerContainer">
         <div class="hamburger">
@@ -111,6 +109,18 @@ include "conn.php";
                         <span class="Title">Products</span>
                     </a>
                 </li>
+                <?php
+                if(isset($huRow)){
+                    ?>
+                    <li>
+                        <a href="my-companies.php">
+                            <span class="h-icons"><i class="fa-solid fa-bucket fa-flip"></i></span>
+                            <span class="Title">My Companies</span>
+                        </a>
+                    </li>
+                    <?php
+                }
+                ?>
             </ul>
             <?php
             if ((isset($hcRow['Admin_Type']) and $hcRow['Admin_Type'] == 1) or isset($huRow['User_Permission'])) {
@@ -303,13 +313,17 @@ include "conn.php";
                             <span class="Title"> My Branch</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="myOrderNo.php">
-                            <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
-                            <span class="Title"> My Orders</span>
-                        </a>
-                    </li>
                     <?php
+                    if($hcRow['Admin_Type']!=1){
+                        ?>
+                        <li>
+                            <a href="myOrderNo.php">
+                                <span class="h-icons"><i class="fa-sharp fa-solid fa-cart-shopping fa-flip advanceClass"></i></span>
+                                <span class="Title"> My Orders</span>
+                            </a>
+                        </li>
+                        <?php
+                    }
                 }
                 ?>
                 <?php
