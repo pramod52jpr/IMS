@@ -130,7 +130,7 @@ if($adminRow['Admin_Type']==1){
                     $result=mysqli_query($conn,$sql);
                     if(mysqli_num_rows($result)>0){
                         while($row=mysqli_fetch_assoc($result)){
-                            $successSql="select `cart_no` from orders where `cart_no`='$row[cart_no]' and `Delievery_Mode`=4";
+                            $successSql="select `cart_no` from orders where `cart_no`='$row[cart_no]' and `Order_Status`=4";
                             $successResult=mysqli_query($conn,$successSql);
                             if(mysqli_num_rows($successResult)==$row['items']){
                                 $success="style='background-color:lightGreen'";
